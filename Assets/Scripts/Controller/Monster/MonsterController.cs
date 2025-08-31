@@ -9,7 +9,6 @@ public class Patrol
     public float interval;
     public float nextPatrolTime;
     public float detectionRange;
-    public float detectionInterval;
     public Vector2[] directions;
 }
 
@@ -33,7 +32,6 @@ public abstract class MonsterController : CreatureController
     protected Vector2 destDir { get { return (destPos - (Vector2)transform.position).normalized; } }
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
-    protected CircleCollider2D detectionRangeCollider;
 
     private float fadeoutTime = 1f;
     protected enum MonsterState
@@ -77,13 +75,12 @@ public abstract class MonsterController : CreatureController
     }
     protected override void OnDied()
     {
-        StartCoroutine(FadeOut()); 
+        StartCoroutine(FadeOut());
     }
     protected virtual void Init()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        detectionRangeCollider = gameObject.GetComponent<CircleCollider2D>();
     }
     IEnumerator FadeOut()
     {
@@ -104,17 +101,71 @@ public abstract class MonsterController : CreatureController
     {
         UpdateController();
     }
-    public abstract void OnAttacked();
-    protected abstract void UpdateController();
-    protected abstract void Idle();
-    protected abstract void Chase();
+    protected override void Move()
+    {
+        transform.position += speed * Time.deltaTime * (Vector3)destDir;
+        spriteRenderer.flipX = (destDir.x < 0);
+    }
+    protected virtual void Idle()
+    {
+        if (Time.time - lastPatrolTime > patrol.interval)
+        {
+            destPos = GenRandomPosition();
+            state = MonsterState.Patrol;
+        }
+    }
+    protected override void Attack()
+    {
+    }
+    protected virtual void Chase()
+    {
+        destPos = target.transform.position;
+
+        var dist = Vector2.Distance(transform.position, destPos);
+        if (dist < attackRange)
+        {
+            state = MonsterState.Attack;
+        }
+        else
+        {
+            Move();
+        }
+    }
     protected virtual void Die() { }
-    protected abstract void Patrol();
-    protected abstract void UpdateAnimation();
+    protected virtual void Patrol()
+    {
+        var dist = Vector2.Distance(transform.position, destPos);
+        var targetDist = Vector2.Distance(destPos, transform.position);
+
+        if (dist < 0.1f)
+        {
+            lastPatrolTime = Time.time;
+            state = MonsterState.Idle;
+        }
+        else
+            Move();
+    }
     protected virtual void DestroySelf()
     {
         Object.Destroy(gameObject);
     }
+    public virtual void OnTakeDamaged()
+    {
+        state = MonsterState.Chase;
+    }
+    protected override void TakeDamage(float dmg)
+    {
+        hp = Mathf.Clamp(hp - dmg, 0, hp);
+        if (hp == 0)
+            state = MonsterState.Die;
+        else
+            state = MonsterState.TakeHit;
+    }
     protected abstract Vector2 GenRandomPosition();
-    public abstract void OnTakeDamaged();
+    public virtual void StartAttack() {}
+    public virtual void OnAttackReturn() {}
+    public virtual void OnAttackFinished() {}
+    public virtual void OnAttacked() {}
+    protected abstract void UpdateAnimation();
+    protected abstract void UpdateController();
 }

@@ -14,7 +14,7 @@ public class FlyingEyeController : MonsterController
     float attack2OnAttackDuration;
     [SerializeField]
     float attack2FinishAttackDuration;
-
+    CircleCollider2D detectionRangeCollider;
 
     [SerializeField]
     float Speed;
@@ -24,7 +24,7 @@ public class FlyingEyeController : MonsterController
     {
         // 공격 범위 탐색 후 takedamege 호출 결정
     }
-    public void OnAttackReturn()
+    public override void OnAttackReturn()
     {
         float duration = (AttackAnimNum == 1) ? attack1FinishAttackDuration : attack2FinishAttackDuration;
 
@@ -35,7 +35,7 @@ public class FlyingEyeController : MonsterController
         }
         _coMoveAttack = StartCoroutine(CoMoveAttack(_startAttackPos, duration));
     }
-    public void OnAttackFinished()
+    public override void OnAttackFinished()
     {
         if (target == null)
         {
@@ -59,11 +59,6 @@ public class FlyingEyeController : MonsterController
             animator.Play("Attack" + AttackAnimNum.ToString());
         }
     }
-
-    protected override void Attack()
-    {
-
-    }
     IEnumerator CoMoveAttack(Vector2 destPos, float duration)
     {
         Vector2 startPos = transform.position;
@@ -79,13 +74,8 @@ public class FlyingEyeController : MonsterController
         transform.position = destPos;
         _coMoveAttack = null;
     }
-    public void StartAttack()
+    public override void StartAttack()
     {
-        if (target == null)
-        {
-            state = MonsterState.Idle;
-            return;
-        }
         if (_coMoveAttack != null)
         {
             StopCoroutine(_coMoveAttack);
@@ -96,83 +86,6 @@ public class FlyingEyeController : MonsterController
         _startAttackPos = transform.position;
         _coMoveAttack = StartCoroutine(CoMoveAttack(target.transform.position, duration));
     }
-    protected override void Chase()
-    {
-        if (target == null)
-        {
-            state = MonsterState.Idle;
-            return;
-        }
-
-        if (Time.time - lastChaseTime > patrol.detectionInterval)
-        {
-            destPos = target.transform.position;
-            lastChaseTime = Time.time;
-        }
-
-        var dist = Vector2.Distance(transform.position, target.transform.position);
-        if (dist > patrol.detectionRange)
-        {
-            state = MonsterState.Idle;
-            target = null;
-            return;
-        }
-
-        if (dist < attackRange)
-        {
-            state = MonsterState.Attack;
-        }
-        else
-        {
-            Move();
-        }
-    }
-
-    protected override void Die()
-    {
-    }
-    protected override void Idle()
-    {
-        if (Time.time - lastPatrolTime > patrol.interval)
-        {
-            destPos = GenRandomPosition();
-            state = MonsterState.Patrol;
-        }
-    }
-
-    protected override void Move()
-    {
-        transform.position += speed * Time.deltaTime * (Vector3)destDir;
-        spriteRenderer.flipX = (destDir.x < 0);
-    }
-
-    protected override void Patrol()
-    {
-        var dist = Vector2.Distance(transform.position, destPos);
-        var targetDist = Vector2.Distance(destPos, transform.position);
-
-        if (dist < 0.1f)
-        {
-            lastPatrolTime = Time.time;
-            state = MonsterState.Idle;
-        }
-        else
-            Move();
-    }
-    public override void OnTakeDamaged()
-    {
-        state = MonsterState.Chase;
-    }
-
-    protected override void TakeDamage(float dmg)
-    {
-        hp = Mathf.Clamp(hp - dmg, 0, hp);
-        if (hp == 0)
-            state = MonsterState.Die;
-        else
-            state = MonsterState.TakeHit;
-    }
-
     protected override void UpdateAnimation()
     {
         switch (state)
@@ -194,7 +107,6 @@ public class FlyingEyeController : MonsterController
                 break;
         }
     }
-
     protected override void UpdateController()
     {
         switch (state)
@@ -207,12 +119,6 @@ public class FlyingEyeController : MonsterController
                 break;
             case MonsterState.Chase:
                 Chase();
-                break;
-            case MonsterState.Attack:
-                Attack();
-                break;
-            case MonsterState.Die:
-                Die();
                 break;
         }
     }
@@ -228,6 +134,8 @@ public class FlyingEyeController : MonsterController
     protected override void Init()
     {
         base.Init();
+        detectionRangeCollider = gameObject.AddComponent<CircleCollider2D>();
+        detectionRangeCollider.isTrigger = true;
         detectionRangeCollider.radius = patrol.detectionRange;
         speed = Speed;
         attackRange = AttackRange;
@@ -238,6 +146,14 @@ public class FlyingEyeController : MonsterController
         {
             target = collision.gameObject;
             state = MonsterState.Chase;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            target = null;
+            state = MonsterState.Idle;
         }
     }
 }

@@ -270,6 +270,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5794488837900973119, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
+      propertyPath: patrol.interval
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794488837900973119, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       propertyPath: patrol.detectionRange
       value: 4
       objectReference: {fileID: 0}
