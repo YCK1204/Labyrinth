@@ -140,7 +140,7 @@ public abstract class MonsterController : CreatureController
     {
         state = MonsterState.Chase;
     }
-    protected override void TakeDamage(float dmg)
+    public override void TakeDamage(float dmg)
     {
         hp = Mathf.Clamp(hp - dmg, 0, hp);
         if (hp == 0)

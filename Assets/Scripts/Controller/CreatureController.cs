@@ -13,7 +13,7 @@ public abstract class CreatureController : MonoBehaviour
     protected float armorPen;
     protected float atkSpeed;
 
-    protected abstract void TakeDamage(float dmg);
+    public abstract void TakeDamage(float dmg);
     protected abstract void OnDied();
     protected abstract void Attack();
     protected abstract void Move();
