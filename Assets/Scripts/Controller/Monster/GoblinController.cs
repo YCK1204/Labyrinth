@@ -4,30 +4,20 @@ using UnityEngine;
 
 public class GoblinController : MonsterController
 {
-    [SerializeField]
-    float Speed;
-    [SerializeField]
-    float AttackRange;
+    GoblinData _data;
     BoxCollider2D _detectionRangeCollider;
-
-    [SerializeField]
-    float backdumblingDuration;
-    [SerializeField]
-    float attack2OnAttackDuration;
-    [SerializeField]
-    float attack2FinishAttackDuration;
-    [SerializeField]
-    float maxCheckDist;
+    MonsterAttackHitboxController attackHitboxController;
+    Vector2 attackHitboxOffset { get { return _data.AttackHitboxOffset; } }
+    float maxCheckDist { get { return _data.MaxCheckDist; } }
     protected override Vector2 destDir => destPos.x < transform.position.x ? Vector2.left : Vector2.right;
     public override void OnAttacked()
     {
         Vector2 pos = transform.position;
-        var coll = Physics2D.OverlapCircle(pos, attackHitboxRadius, LayerMask.GetMask("Player"));
+        var coll = attackHitboxController.Check();
         if (coll == null) return;
         var player = coll.GetComponent<PlayerController>();
         if (player == null) return;
         player.TakeDamage(3);
-        //player.takeDamage(damage);
     }
     public override void OnAttackFinished()
     {
@@ -49,7 +39,6 @@ public class GoblinController : MonsterController
         }
         else
         {
-            spriteRenderer.flipX = (target.transform.position.x < transform.position.x);
             animator.Play("Attack1", -1, 0f);
         }
     }
@@ -87,7 +76,6 @@ public class GoblinController : MonsterController
                 animator.Play("Run", -1, 0f);
                 break;
             case MonsterState.Attack:
-                spriteRenderer.flipX = (target.transform.position.x < transform.position.x);
                 animator.Play("Attack1");
                 break;
             case MonsterState.TakeHit:
@@ -132,14 +120,17 @@ public class GoblinController : MonsterController
     protected override void Move()
     {
         transform.position += speed * Time.deltaTime * (Vector3)destDir;
-        spriteRenderer.flipX = (destDir.x < 0);
     }
-    [SerializeField]
-    Vector2 attackHitboxOffset;
     protected override void Init()
     {
         base.Init();
-        patrol.directions = new Vector2[] { Vector2.left, Vector2.right };
+
+        _data = monsterData as GoblinData;
+        if (_data == null)
+        {
+            Debug.LogError("GoblinController: monsterData is not GoblinData");
+            return;
+        }
         _detectionRangeCollider = gameObject.AddComponent<BoxCollider2D>();
         _detectionRangeCollider.isTrigger = true;
         float yBottom = GetBottomFloorY();
@@ -157,10 +148,8 @@ public class GoblinController : MonsterController
         transform.position = new Vector2(transform.position.x, yBottom + offset);
         _detectionRangeCollider.size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
         _detectionRangeCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
-        speed = Speed;
-        attackRange = AttackRange;
         var attackHitbox = new GameObject("AttackHitbox");
-        var attackHitboxController = attackHitbox.AddComponent<MonsterAttackHitboxController>();
+        attackHitboxController = attackHitbox.AddComponent<MonsterAttackHitboxController>();
         attackHitboxController.Init(attackHitboxRadius, transform, attackHitboxOffset, 1 << LayerMask.NameToLayer("Player"));
     }
 }
