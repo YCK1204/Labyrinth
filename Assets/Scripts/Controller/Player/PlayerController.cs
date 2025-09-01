@@ -206,15 +206,18 @@ public class PlayerController : CreatureController
             _anim.SetGrounded(_grounded);
         }
 
-        if (_inputX > 0f)
+        if (!_rolling)
         {
-            _facing = 1; if (_sr) _sr.flipX = false;
-            UpdateAttackPointSide();
-        }
-        else if (_inputX < 0f)
-        {
-            _facing = -1; if (_sr) _sr.flipX = true;
-            UpdateAttackPointSide();
+            if (_inputX > 0f)
+            {
+                _facing = 1; if (_sr) _sr.flipX = false;
+                UpdateAttackPointSide();
+            }
+            else if (_inputX < 0f)
+            {
+                _facing = -1; if (_sr) _sr.flipX = true;
+                UpdateAttackPointSide();
+            }
         }
 
         _anim.SetAirY(_rb.velocity.y);
