@@ -73,21 +73,21 @@ public class GoblinController : MonsterController
         switch (state)
         {
             case MonsterState.Idle:
-                animator.Play("Idle");
+                animator.Play("Idle", -1, 0f);
                 break;
             case MonsterState.Patrol:
             case MonsterState.Chase:
-                animator.Play("Run");
+                animator.Play("Run", -1, 0f);
                 break;
             case MonsterState.Attack:
                 spriteRenderer.flipX = (target.transform.position.x < transform.position.x);
                 animator.Play("Attack1");
                 break;
             case MonsterState.TakeHit:
-                animator.Play("TakeHit");
+                animator.Play("TakeHit", -1, 0f);
                 break;
             case MonsterState.Die:
-                animator.Play("Death");
+                animator.Play("Death", -1, 0f);
                 break;
         }
     }
@@ -114,6 +114,14 @@ public class GoblinController : MonsterController
             state = MonsterState.Chase;
         }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            target = null;
+            state = MonsterState.Idle;
+        }
+    }
     protected override void Move()
     {
         transform.position += speed * Time.deltaTime * (Vector3)destDir;
@@ -128,10 +136,7 @@ public class GoblinController : MonsterController
         float yBottom = GetBottomFloorY();
         float yTop = GetTopFloorY();
         float height = yTop - yBottom;
-        var offset = spriteRenderer.size.y / 2;
-        transform.position = new Vector2(transform.position.x, yBottom + offset);
-        _detectionRangeCollider.size = new Vector2(patrol.detectionRange, height);
-        _detectionRangeCollider.offset = new Vector2(0, (yTop + yBottom) / 2 - transform.position.y);
+
         var child = new GameObject("Collision");
         child.transform.parent = transform;
         child.layer = LayerMask.NameToLayer("MonsterCollision");
@@ -139,6 +144,10 @@ public class GoblinController : MonsterController
         var collision = child.gameObject.AddComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(_detectionRangeCollider, collision);
         collision.size = (Vector2)spriteRenderer.bounds.size;
+        var offset = collision.bounds.center.y - collision.bounds.min.y;
+        transform.position = new Vector2(transform.position.x, yBottom + offset);
+        _detectionRangeCollider.size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
+        _detectionRangeCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
         speed = Speed;
         attackRange = AttackRange;
     }
