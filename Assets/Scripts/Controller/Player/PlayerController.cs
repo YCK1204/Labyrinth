@@ -89,20 +89,20 @@ public class PlayerController : CreatureController
 
         if (AttackRadius <= 0f) return;
         Vector2 center   = AttackPoint ? (Vector2)AttackPoint.position : (Vector2)transform.position;
-        Vector2 forward  = new Vector2(facing, 0f).normalized;
-        float cosThresh = Mathf.Cos(0.5f * AttackArcDeg * Mathf.Deg2Rad);
 
         var hits = Physics2D.OverlapCircleAll(center, AttackRadius, EnemyLayer);
 
         bool anyHit = false;
         foreach (var h in hits)
         {
-            if (h.TryGetComponent<MonsterController>(out var monster))
-            {
-                float dmg = CalcFinalDamage(power, 0f);
-                monster.TakeDamage(dmg);
-                Debug.Log($"{monster.name}에게 {dmg} 피해!");
-            }
+            var monster = h.GetComponentInParent<MonsterController>();
+            if (monster == null) continue;
+
+            float dmg = CalcFinalDamage(power, 0f);
+            monster.TakeDamage(dmg);
+            anyHit = true;
+
+            Debug.Log($"{monster.name}에게 {dmg} 피해!");
         }
         if (!anyHit)
             Debug.Log("[ATTACK MISS] 히트 없음");

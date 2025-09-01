@@ -289,7 +289,7 @@ MonoBehaviour:
   AttackRadius: 0.8
   EnemyLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 512
   AttackArcDeg: 100
   JumpForce: 7.5
   RollForce: 6
