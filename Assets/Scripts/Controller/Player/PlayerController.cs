@@ -87,19 +87,20 @@ public class PlayerController : CreatureController
         if (!_rolling)
             _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
     }
-    // 공격 처리(몬스터 스탯이 생기면 데미지 처리 수정)
+    // 공격 애니메이션
     protected override void Attack()
     {
         if (!_combo.TryNext(out var step)) return;
-
         _anim.TrgAttack(step);
-
+    }
+    //실제 공격(몬스터 스탯이 생기면 데미지 처리 수정)
+    public void OnAttackHit()
+    {
         if (AttackRadius <= 0f) return;
-        Vector2 center   = AttackPoint ? (Vector2)AttackPoint.position : (Vector2)transform.position;
+        Vector2 center = AttackPoint ? (Vector2)AttackPoint.position : (Vector2)transform.position;
 
         var hits = Physics2D.OverlapCircleAll(center, AttackRadius, EnemyLayer);
 
-        bool anyHit = false;
         foreach (var h in hits)
         {
             var monster = h.GetComponentInParent<MonsterController>();
@@ -107,12 +108,13 @@ public class PlayerController : CreatureController
 
             var (dmg, isCrit) = CalcFinalDamage(power, 0f);
             monster.TakeDamage(dmg);
-            anyHit = true;
+
+            // 데미지 UI
+            int d = Mathf.RoundToInt(dmg);
+            DamageUI.Instance.Show(monster.transform.position + Vector3.up * 1f, dmg ,DamageStyle.Enemy, isCrit);
 
             Debug.Log($"{monster.name}에게 {dmg} 피해!");
         }
-        if (!anyHit)
-            Debug.Log("[ATTACK MISS] 히트 없음");
     }
 
 
