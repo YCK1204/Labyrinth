@@ -13,11 +13,19 @@ public sealed class ComboController
     {
         elapsed += dt;
     }
-    public bool TryNext(out int attackStep)
+    public bool TryNext(out int attackStep, bool consumeStep = true)
     {
         attackStep = 0;
         if (elapsed < minGap) return false;
         if (elapsed > resetGap) step = 0;
-        step = (step % 3) + 1; elapsed = 0f; attackStep = step; return true;
+
+        if (consumeStep)
+        {
+            step = (step % 3) + 1;
+            attackStep = step;
+        }
+
+        elapsed = 0f;
+        return true;
     }
 }

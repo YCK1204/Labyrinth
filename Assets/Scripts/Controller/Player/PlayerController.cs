@@ -87,19 +87,32 @@ public class PlayerController : CreatureController
     {
         if (_rolling) return;
 
+        float vx = _rb.velocity.x;
+
         if (_attackLocked)
         {
-            _rb.velocity = new Vector2(0f, _rb.velocity.y);
-            return;
+            if (_grounded)
+                vx = 0f;
+
+        }
+        else if (!_attackLocked)
+        {
+            vx = _inputX * speed;
         }
 
-        _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
-
+        _rb.velocity = new Vector2(vx, _rb.velocity.y);
     }
     // 공격 애니메이션
     protected override void Attack()
     {
-        if (!_combo.TryNext(out var step)) return;
+        if (!_grounded)
+        {
+            if (!_combo.TryNext(out _, consumeStep: false)) return;
+            _anim.TrgAttack(1);
+            return;
+        }
+
+        if (!_combo.TryNext(out var step, consumeStep: true)) return;
         _anim.TrgAttack(step);
     }
     //실제 공격(몬스터 스탯이 생기면 데미지 처리 수정)
