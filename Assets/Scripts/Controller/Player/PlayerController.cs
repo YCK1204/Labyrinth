@@ -9,16 +9,14 @@ public class PlayerController : CreatureController
 
     [Header("Refs")]
     [SerializeField] private SimpleSensor2D GroundSensor;
-    [SerializeField] private SimpleSensor2D WallR1, WallR2, WallL1, WallL2;
     [SerializeField] private Transform AttackPoint;     // 칼끝 기준점
     [SerializeField] private float AttackRadius = 0.6f; // 원 범위 반경
     [SerializeField] private LayerMask EnemyLayer;
-    [SerializeField] private float AttackArcDeg = 100f;
 
     [Header("Force")]
     [SerializeField] private float JumpForce = 7.5f;
-    [SerializeField] private float RollForce = 6f;
-    [SerializeField] private float RollDuration = 8f / 14f;
+    [SerializeField] private float RollForce = 10f;
+    [SerializeField] private float RollDuration = 0.5f;
 
     private SpriteRenderer _sr;
     private Rigidbody2D _rb;
@@ -26,7 +24,7 @@ public class PlayerController : CreatureController
     private ComboController _combo;
     private Vector2 _attackPointDefault;
 
-    private bool grounded, rolling, wallSlide;
+    private bool grounded, rolling;
     private int facing = 1;
     private float rollTimer;
 
@@ -150,11 +148,6 @@ public class PlayerController : CreatureController
     // 감지 & 애니메이션 동기화
     private void SenseAndAnimate()
     {
-        bool onR = WallR1 && WallR2 && WallR1.IsOn && WallR2.IsOn;
-        bool onL = WallL1 && WallL2 && WallL1.IsOn && WallL2.IsOn;
-        wallSlide = onR || onL;
-        _anim.SetWall(wallSlide);
-
         bool nowGrounded = GroundSensor && GroundSensor.IsOn;
         if (grounded != nowGrounded)
         {
@@ -182,16 +175,7 @@ public class PlayerController : CreatureController
         if (attackHold && !rolling)
             Attack();
 
-        if (blockDown && !rolling)
-        {
-            _anim.TrgBlock(); _anim.SetBlock(true);
-        }
-        if (blockUp)
-        {
-            _anim.SetBlock(false);
-        }
-
-        if (roll && !rolling && !wallSlide) OnRoll();
+        if (roll && !rolling) OnRoll();
         if (jump && grounded && !rolling) OnJump();
 
         if (rolling)
