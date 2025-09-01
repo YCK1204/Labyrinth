@@ -23,6 +23,7 @@ public class PlayerController : CreatureController
     private Playeranimator _anim;
     private ComboController _combo;
     private Vector2 _attackPointDefault;
+    private bool _attackLocked;
 
     private bool _grounded, _rolling;
     private int _facing = 1;
@@ -30,7 +31,7 @@ public class PlayerController : CreatureController
     // private float timer = 0;
 
     private float _inputX;
-    private bool _jump, _roll, _attackHold;
+    private bool _jump, _roll, _attack;
 
     private void Awake()
     {
@@ -84,8 +85,16 @@ public class PlayerController : CreatureController
     // 이동 처리
     protected override void Move()
     {
-        if (!_rolling)
-            _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
+        if (_rolling) return;
+
+        if (_attackLocked)
+        {
+            _rb.velocity = new Vector2(0f, _rb.velocity.y);
+            return;
+        }
+
+        _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
+
     }
     // 공격 애니메이션
     protected override void Attack()
@@ -116,8 +125,14 @@ public class PlayerController : CreatureController
             Debug.Log($"{monster.name}에게 {dmg} 피해!");
         }
     }
-
-
+    public void OnAttackMoveLock()
+    {
+        _attackLocked = true;
+    }
+    public void OnAttackMoveUnlock()
+    {
+        _attackLocked = false;
+    }
     // 피격 처리
     public override void TakeDamage(float atk)
     {
@@ -190,7 +205,7 @@ public class PlayerController : CreatureController
     // 액션 처리: 공격(홀드), 구르기/점프
     private void HandleActions()
     {
-        if (_attackHold && !_rolling)
+        if (_attack && !_rolling)
             Attack();
 
         if (_roll && !_rolling) OnRoll();
@@ -208,7 +223,7 @@ public class PlayerController : CreatureController
         _inputX = Input.GetAxisRaw("Horizontal");
         _jump = Input.GetKeyDown(KeyCode.Space);
         _roll = Input.GetKeyDown(KeyCode.LeftShift);
-        _attackHold = Input.GetMouseButton(0);
+        _attack = Input.GetMouseButtonDown(0);
     }
     //방향전환시 검 콜라이더 위치 조정
     private void UpdateAttackPointSide()
