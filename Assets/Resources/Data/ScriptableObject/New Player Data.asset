@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 296c44c2bb34da741bf8eacb7ad59bdc, type: 3}
   m_Name: New Player Data
   m_EditorClassIdentifier: 
-  _hp: 100
-  _speed: 5
-  _armor: 5
-  _power: 8
+  _hp: 0
+  _speed: 0
+  _armor: 0
+  _power: 0
   _crit: 0
-  _lv: 1
+  _lv: 0
   _kbResist: 0
-  _critX: 0.2
+  _critX: 0
   _armorPen: 0
-  _atkSpeed: 1
+  _atkSpeed: 0
   gold: 300
   exp: 0
