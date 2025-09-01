@@ -22,6 +22,9 @@ public class FlyingEyeController : MonsterController
     float AttackRange;
     public override void OnAttacked()
     {
+        Vector2 pos = transform.position;
+        var player =  Physics2D.Raycast(pos, pos, .1f, 1 << LayerMask.NameToLayer("Player"));
+        //player.takeDamage(damage);
         // 공격 범위 탐색 후 takedamege 호출 결정
     }
     public override void OnAttackReturn()

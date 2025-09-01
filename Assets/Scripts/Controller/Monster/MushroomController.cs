@@ -6,22 +6,17 @@ public class MushroomController : MonsterController
 {
     public override void OnAttacked()
     {
+        
     }
 
-    public override void OnTakeDamaged()
+    public override void OnAttackFinished()
     {
+        
     }
 
-    protected override void Attack()
+    public override void StartAttack()
     {
-    }
-
-    protected override void Chase()
-    {
-    }
-
-    protected override void Die()
-    {
+        
     }
 
     protected override Vector2 GenRandomPosition()
@@ -29,27 +24,13 @@ public class MushroomController : MonsterController
         return Vector2.zero;
     }
 
-    protected override void Idle()
-    {
-    }
-
-    protected override void Move()
-    {
-    }
-
-    protected override void Patrol()
-    {
-    }
-
-    protected override void TakeDamage(float dmg)
-    {
-    }
-
     protected override void UpdateAnimation()
     {
+        
     }
 
     protected override void UpdateController()
     {
+        
     }
 }
