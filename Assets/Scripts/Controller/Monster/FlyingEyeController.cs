@@ -25,7 +25,7 @@ public class FlyingEyeController : MonsterController
         Vector2 pos = transform.position;
         var player =  Physics2D.Raycast(pos, pos, .1f, 1 << LayerMask.NameToLayer("Player"));
         //player.takeDamage(damage);
-        // °ø°Ý ¹üÀ§ Å½»ö ÈÄ takedamege È£Ãâ °áÁ¤
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å½ï¿½ï¿½ ï¿½ï¿½ takedamege È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
     public override void OnAttackReturn()
     {
