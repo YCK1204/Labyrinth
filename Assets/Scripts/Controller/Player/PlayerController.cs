@@ -29,7 +29,7 @@ public class PlayerController : CreatureController
     private float rollTimer;
 
     private float inputX;
-    private bool jump, roll, attackHold, blockDown, blockUp;
+    private bool jump, roll, attackHold;
 
     private void Awake()
     {
@@ -191,8 +191,6 @@ public class PlayerController : CreatureController
         jump = Input.GetKeyDown(KeyCode.Space);
         roll = Input.GetKeyDown(KeyCode.LeftShift);
         attackHold = Input.GetMouseButton(0);
-        blockDown = Input.GetMouseButtonDown(1);
-        blockUp = Input.GetMouseButtonUp(1);
     }
     //방향전환시 검 콜라이더 위치 조정
     private void UpdateAttackPointSide()
