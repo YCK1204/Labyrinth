@@ -24,13 +24,13 @@ MonoBehaviour:
   _atkSpeed: 0
   _patrol:
     range: 2
-    interval: 0
+    interval: 1
     detectionRange: 4
     directions:
     - {x: -1, y: 0}
     - {x: 1, y: 0}
-    lastPatrolTime: 15.227446
+    lastPatrolTime: 0
   _attackHitboxRadius: 1
   _attackRange: 2
   _maxCheckDist: 5
-  _attackHitboxOffset: {x: 0.5, y: 0}
+  _attackHitboxOffset: {x: 0.1, y: 0}

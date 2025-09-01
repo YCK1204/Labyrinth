@@ -21,7 +21,7 @@ public interface IJumpable
 public abstract class MonsterController : CreatureController
 {
     protected MonsterData monsterData;
-    protected Patrol patrol { get { return monsterData.Patrol; } }
+    protected Patrol patrol = new Patrol();
     protected float attackHitboxRadius { get { return monsterData.AttackHitboxRadius; } }
     protected float attackRange { get { return monsterData.AttackRange; } }
 
@@ -62,7 +62,7 @@ public abstract class MonsterController : CreatureController
         get { return _state; }
         set
         {
-            if (_state != value)
+            if (_state != value && _state != MonsterState.Die)
             {
                 _state = value;
                 UpdateAnimation();
@@ -84,6 +84,10 @@ public abstract class MonsterController : CreatureController
         }
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        patrol.range = monsterData.Patrol.range;
+        patrol.interval = monsterData.Patrol.interval;
+        patrol.detectionRange = monsterData.Patrol.detectionRange;
+        patrol.directions = monsterData.Patrol.directions;
     }
     IEnumerator FadeOut()
     {
@@ -102,6 +106,8 @@ public abstract class MonsterController : CreatureController
     }
     private void Update()
     {
+        if (state == MonsterState.Die)
+            return;
         UpdateController();
     }
     protected override void Move()
@@ -125,13 +131,9 @@ public abstract class MonsterController : CreatureController
 
         var dist = Vector2.Distance(transform.position, destPos);
         if (dist < attackRange)
-        {
             state = MonsterState.Attack;
-        }
         else
-        {
             Move();
-        }
     }
     protected virtual void Die() { }
     protected virtual void Patrol()
@@ -157,6 +159,8 @@ public abstract class MonsterController : CreatureController
     }
     public override void TakeDamage(float dmg)
     {
+        //dmg = dmg * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * Random.Range(0f, 100f) < crit ? critX : 1;
+
         hp = Mathf.Clamp(hp - dmg, 0, hp);
         if (hp == 0)
             state = MonsterState.Die;

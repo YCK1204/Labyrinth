@@ -17,8 +17,7 @@ public class FlyingEyeController : MonsterController
         if (coll == null) return;
         var player = coll.GetComponent<PlayerController>();
         if (player == null) return;
-        player.TakeDamage(3);
-        //player.takeDamage(damage);
+        player.TakeDamage(power);
     }
     public override void OnAttackReturn()
     {
