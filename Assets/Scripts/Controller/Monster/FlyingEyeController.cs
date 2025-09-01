@@ -5,17 +5,11 @@ using UnityEngine;
 public class FlyingEyeController : MonsterController
 {
     Vector2 _startAttackPos;
+    FlyingeyeData _data;
     Coroutine _coMoveAttack = null;
-    [SerializeField]
-    float OnAttackDuration;
-    [SerializeField]
-    float FinishAttackDuration;
+    float OnAttackDuration { get { return _data.OnAttackDuration; } }
+    float FinishAttackDuration { get { return _data.FinishAttackDuration; } }
     CircleCollider2D detectionRangeCollider;
-
-    [SerializeField]
-    float Speed;
-    [SerializeField]
-    float AttackRange;
     public override void OnAttacked()
     {
         Vector2 pos = transform.position;
@@ -40,7 +34,7 @@ public class FlyingEyeController : MonsterController
         if (target == null)
         {
             state = MonsterState.Idle;
-            return; 
+            return;
         }
 
         var dist = Vector2.Distance(transform.position, target.transform.position);
@@ -131,11 +125,10 @@ public class FlyingEyeController : MonsterController
     protected override void Init()
     {
         base.Init();
+        _data = monsterData as FlyingeyeData;
         detectionRangeCollider = gameObject.AddComponent<CircleCollider2D>();
         detectionRangeCollider.isTrigger = true;
         detectionRangeCollider.radius = patrol.detectionRange;
-        speed = Speed;
-        attackRange = AttackRange;
         var child = new GameObject("Collision");
         child.transform.parent = transform;
         child.layer = LayerMask.NameToLayer("MonsterCollision");

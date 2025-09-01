@@ -4,9 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerController : CreatureController
 {
-    [Header("Stats")]
-    [SerializeField] private PlayerStats PlayerStats;
-
+    //[Header("Stats")]
+    //[SerializeField] private PlayerStats PlayerStats;
     [Header("Refs")]
     [SerializeField] private SimpleSensor2D GroundSensor;
     [SerializeField] private Transform AttackPoint;     // 칼끝 기준점
@@ -35,23 +34,9 @@ public class PlayerController : CreatureController
 
     private float _inputX;
     private bool _jump, _roll, _attack;
-
-    private void Awake()
+    protected override void Init()
     {
-        // 초기화: SO로 스탯 초기화
-        if (PlayerStats != null)
-        {
-            hp = PlayerStats.hp;
-            speed = PlayerStats.speed;
-            armor = PlayerStats.armor;
-            power = PlayerStats.power;
-            crit = PlayerStats.crit;
-            lv = PlayerStats.lv;
-            kbResist = PlayerStats.kbResist;
-            critX = PlayerStats.critX;
-            armorPen = PlayerStats.armorPen;
-            atkSpeed = PlayerStats.atkSpeed;
-        }
+        base.Init();
         if (AttackPoint) _attackPointDefault = AttackPoint.localPosition;
 
         _sr = GetComponent<SpriteRenderer>();
