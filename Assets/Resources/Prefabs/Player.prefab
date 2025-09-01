@@ -127,7 +127,7 @@ Rigidbody2D:
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ed018aa43a34c8d4dbb85cb8af9d34e4, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -322,6 +322,3 @@ MonoBehaviour:
   rayLength: 0.08
   rayWidth: 0.4
   rayCount: 3
-  drawRays: 1
-  gizmoHitColor: {r: 0, g: 1, b: 0, a: 1}
-  gizmoMissColor: {r: 1, g: 0, b: 0, a: 1}
