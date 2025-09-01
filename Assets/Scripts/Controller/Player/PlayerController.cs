@@ -122,8 +122,8 @@ public class PlayerController : CreatureController
             monster.TakeDamage(dmg);
 
             // 데미지 UI
-            int d = Mathf.RoundToInt(dmg);
-            DamageUI.Instance.Show(monster.transform.position + Vector3.up * 1f, dmg ,DamageStyle.Enemy, isCrit);
+            if(DamageUI.Instance != null)
+                DamageUI.Instance.Show(monster.transform.position + Vector3.up * 1f, dmg ,DamageStyle.Enemy, isCrit);
 
             Debug.Log($"{monster.name}에게 {dmg} 피해!");
         }
@@ -147,7 +147,8 @@ public class PlayerController : CreatureController
         hp -= dmg;
 
         Vector3 pos = transform.position + Vector3.up * 1.0f;
-        DamageUI.Instance.Show(pos, dmg, DamageStyle.Player, isCrit);
+        if(DamageUI.Instance != null)
+            DamageUI.Instance.Show(pos, dmg, DamageStyle.Player, isCrit);
 
         if (hp <= 0f)
         {
