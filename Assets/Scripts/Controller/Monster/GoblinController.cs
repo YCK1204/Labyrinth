@@ -9,7 +9,6 @@ public class GoblinController : MonsterController
     [SerializeField]
     float AttackRange;
     BoxCollider2D _detectionRangeCollider;
-    Rigidbody2D _rigidbody2D;
 
     [SerializeField]
     float backdumblingDuration;
@@ -19,32 +18,9 @@ public class GoblinController : MonsterController
     float attack2FinishAttackDuration;
     [SerializeField]
     float maxCheckDist;
-    Vector2 _startAttackPos;
-    Coroutine _coMoveAttack = null;
+    protected override Vector2 destDir => destPos.x < transform.position.x ? Vector2.left : Vector2.right;
     public override void OnAttacked()
     {
-    }
-    public override void StartAttack()
-    {
-        _startAttackPos = transform.position;
-        if (_coMoveAttack != null)
-        {
-            StopCoroutine(_coMoveAttack);
-            _coMoveAttack = null;
-        }
-        var position = (Vector2)transform.position;
-        Vector2 dest = position + (spriteRenderer.flipX ? Vector2.right : Vector2.left);
-        destPos = target.transform.position;
-        _coMoveAttack = StartCoroutine(CoMoveAttack(dest, backdumblingDuration));
-    }
-    public void OnBackdumblingFinished()
-    {
-        if (_coMoveAttack != null)
-        {
-            StopCoroutine(_coMoveAttack);
-            _coMoveAttack = null;
-        }
-        _coMoveAttack = StartCoroutine(CoMoveAttack(new (destPos.x, transform.position.y), attack2OnAttackDuration));
     }
     public override void OnAttackFinished()
     {
@@ -66,32 +42,9 @@ public class GoblinController : MonsterController
         }
         else
         {
-            AttackAnimNum = Random.Range(1, attackAnimCount + 1);
-            animator.Play("Attack" + AttackAnimNum.ToString());
+            spriteRenderer.flipX = (target.transform.position.x < transform.position.x);
+            animator.Play("Attack1", -1, 0f);
         }
-    }
-    public override void OnAttackReturn()
-    {
-        if (_coMoveAttack != null)
-        {
-            StopCoroutine(_coMoveAttack);
-            _coMoveAttack = null;
-        }
-        _coMoveAttack = StartCoroutine(CoMoveAttack(_startAttackPos, backdumblingDuration));
-    }
-    IEnumerator CoMoveAttack(Vector2 destPos, float duration)
-    {
-        float time = 0;
-        Vector2 startPos = transform.position;
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            var t = time / duration;
-            transform.position = Vector2.Lerp(startPos, destPos, t);
-            yield return null;
-        }
-        transform.position = destPos;
-        _coMoveAttack = null;
     }
     protected override Vector2 GenRandomPosition()
     {
@@ -120,21 +73,21 @@ public class GoblinController : MonsterController
         switch (state)
         {
             case MonsterState.Idle:
-                animator.Play("Idle");
+                animator.Play("Idle", -1, 0f);
                 break;
             case MonsterState.Patrol:
             case MonsterState.Chase:
-                animator.Play("Run");
+                animator.Play("Run", -1, 0f);
                 break;
             case MonsterState.Attack:
-                AttackAnimNum = Random.Range(1, attackAnimCount + 1);
-                animator.Play("Attack" + AttackAnimNum.ToString());
+                spriteRenderer.flipX = (target.transform.position.x < transform.position.x);
+                animator.Play("Attack1");
                 break;
             case MonsterState.TakeHit:
-                animator.Play("TakeHit");
+                animator.Play("TakeHit", -1, 0f);
                 break;
             case MonsterState.Die:
-                animator.Play("Death");
+                animator.Play("Death", -1, 0f);
                 break;
         }
     }
@@ -161,6 +114,19 @@ public class GoblinController : MonsterController
             state = MonsterState.Chase;
         }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            target = null;
+            state = MonsterState.Idle;
+        }
+    }
+    protected override void Move()
+    {
+        transform.position += speed * Time.deltaTime * (Vector3)destDir;
+        spriteRenderer.flipX = (destDir.x < 0);
+    }
     protected override void Init()
     {
         base.Init();
@@ -170,17 +136,18 @@ public class GoblinController : MonsterController
         float yBottom = GetBottomFloorY();
         float yTop = GetTopFloorY();
         float height = yTop - yBottom;
-        _detectionRangeCollider.size = new Vector2(patrol.detectionRange, height);
-        _detectionRangeCollider.offset = new Vector2(0, (yTop + yBottom) / 2 - transform.position.y);
+
         var child = new GameObject("Collision");
         child.transform.parent = transform;
         child.layer = LayerMask.NameToLayer("MonsterCollision");
         child.transform.localPosition = Vector2.zero;
         var collision = child.gameObject.AddComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(_detectionRangeCollider, collision);
-        Debug.Log(spriteRenderer.bounds.size);
         collision.size = (Vector2)spriteRenderer.bounds.size;
-        _rigidbody2D = gameObject.AddComponent<Rigidbody2D>();
+        var offset = collision.bounds.center.y - collision.bounds.min.y;
+        transform.position = new Vector2(transform.position.x, yBottom + offset);
+        _detectionRangeCollider.size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
+        _detectionRangeCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
         speed = Speed;
         attackRange = AttackRange;
     }

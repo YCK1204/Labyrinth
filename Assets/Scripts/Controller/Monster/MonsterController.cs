@@ -22,15 +22,13 @@ public abstract class MonsterController : CreatureController
 {
     [SerializeField]
     protected Patrol patrol;
-    [SerializeField]
-    protected int attackAnimCount;
 
     protected GameObject target;
     protected float lastPatrolTime;
     protected float lastChaseTime;
     protected float attackRange;
     protected Vector2 destPos = Vector2.zero;
-    protected Vector2 destDir { get { return (destPos - (Vector2)transform.position).normalized; } }
+    protected virtual Vector2 destDir { get { return (destPos - (Vector2)transform.position).normalized; } }
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
 
@@ -55,18 +53,6 @@ public abstract class MonsterController : CreatureController
             {
                 _state = value;
                 UpdateAnimation();
-            }
-        }
-    }
-    int _attackAnimNum = 1;
-    protected virtual int AttackAnimNum
-    {
-        get { return _attackAnimNum; }
-        set
-        {
-            if (_attackAnimNum != value)
-            {
-                _attackAnimNum = value;
             }
         }
     }
@@ -154,7 +140,7 @@ public abstract class MonsterController : CreatureController
     {
         state = MonsterState.Chase;
     }
-    protected override void TakeDamage(float dmg)
+    public override void TakeDamage(float dmg)
     {
         hp = Mathf.Clamp(hp - dmg, 0, hp);
         if (hp == 0)

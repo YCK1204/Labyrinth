@@ -7,13 +7,9 @@ public class FlyingEyeController : MonsterController
     Vector2 _startAttackPos;
     Coroutine _coMoveAttack = null;
     [SerializeField]
-    float attack1OnAttackDuration;
+    float OnAttackDuration;
     [SerializeField]
-    float attack1FinishAttackDuration;
-    [SerializeField]
-    float attack2OnAttackDuration;
-    [SerializeField]
-    float attack2FinishAttackDuration;
+    float FinishAttackDuration;
     CircleCollider2D detectionRangeCollider;
 
     [SerializeField]
@@ -25,18 +21,16 @@ public class FlyingEyeController : MonsterController
         Vector2 pos = transform.position;
         var player =  Physics2D.Raycast(pos, pos, .1f, 1 << LayerMask.NameToLayer("Player"));
         //player.takeDamage(damage);
-        // °ø°Ý ¹üÀ§ Å½»ö ÈÄ takedamege È£Ãâ °áÁ¤
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å½ï¿½ï¿½ ï¿½ï¿½ takedamege È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
     public override void OnAttackReturn()
     {
-        float duration = (AttackAnimNum == 1) ? attack1FinishAttackDuration : attack2FinishAttackDuration;
-
         if (_coMoveAttack != null)
         {
             StopCoroutine(_coMoveAttack);
             _coMoveAttack = null;
         }
-        _coMoveAttack = StartCoroutine(CoMoveAttack(_startAttackPos, duration));
+        _coMoveAttack = StartCoroutine(CoMoveAttack(_startAttackPos, FinishAttackDuration));
     }
     public override void OnAttackFinished()
     {
@@ -58,8 +52,7 @@ public class FlyingEyeController : MonsterController
         }
         else
         {
-            AttackAnimNum = Random.Range(1, attackAnimCount + 1);
-            animator.Play("Attack" + AttackAnimNum.ToString());
+            animator.Play("Attack1");
         }
     }
     IEnumerator CoMoveAttack(Vector2 destPos, float duration)
@@ -85,9 +78,8 @@ public class FlyingEyeController : MonsterController
             _coMoveAttack = null;
         }
 
-        float duration = (AttackAnimNum == 1) ? attack1OnAttackDuration : attack2OnAttackDuration;
         _startAttackPos = transform.position;
-        _coMoveAttack = StartCoroutine(CoMoveAttack(target.transform.position, duration));
+        _coMoveAttack = StartCoroutine(CoMoveAttack(target.transform.position, OnAttackDuration));
     }
     protected override void UpdateAnimation()
     {
@@ -99,8 +91,7 @@ public class FlyingEyeController : MonsterController
                 animator.Play("Flight");
                 break;
             case MonsterState.Attack:
-                AttackAnimNum = Random.Range(1, attackAnimCount + 1);
-                animator.Play("Attack" + AttackAnimNum.ToString());
+                animator.Play("Attack1");
                 break;
             case MonsterState.TakeHit:
                 animator.Play("TakeHit");
@@ -142,6 +133,13 @@ public class FlyingEyeController : MonsterController
         detectionRangeCollider.radius = patrol.detectionRange;
         speed = Speed;
         attackRange = AttackRange;
+        var child = new GameObject("Collision");
+        child.transform.parent = transform;
+        child.layer = LayerMask.NameToLayer("MonsterCollision");
+        child.transform.localPosition = Vector2.zero;
+        var collision = child.gameObject.AddComponent<BoxCollider2D>();
+        Physics2D.IgnoreCollision(detectionRangeCollider, collision);
+        collision.size = (Vector2)spriteRenderer.bounds.size;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
