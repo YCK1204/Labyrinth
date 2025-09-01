@@ -21,6 +21,13 @@ public class GoblinController : MonsterController
     protected override Vector2 destDir => destPos.x < transform.position.x ? Vector2.left : Vector2.right;
     public override void OnAttacked()
     {
+        Vector2 pos = transform.position;
+        var coll = Physics2D.OverlapCircle(pos, attackHitboxRadius, LayerMask.GetMask("Player"));
+        if (coll == null) return;
+        var player = coll.GetComponent<PlayerController>();
+        if (player == null) return;
+        player.TakeDamage(3);
+        //player.takeDamage(damage);
     }
     public override void OnAttackFinished()
     {
@@ -127,6 +134,8 @@ public class GoblinController : MonsterController
         transform.position += speed * Time.deltaTime * (Vector3)destDir;
         spriteRenderer.flipX = (destDir.x < 0);
     }
+    [SerializeField]
+    Vector2 attackHitboxOffset;
     protected override void Init()
     {
         base.Init();
@@ -150,5 +159,8 @@ public class GoblinController : MonsterController
         _detectionRangeCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
         speed = Speed;
         attackRange = AttackRange;
+        var attackHitbox = new GameObject("AttackHitbox");
+        var attackHitboxController = attackHitbox.AddComponent<MonsterAttackHitboxController>();
+        attackHitboxController.Init(attackHitboxRadius, transform, attackHitboxOffset, 1 << LayerMask.NameToLayer("Player"));
     }
 }

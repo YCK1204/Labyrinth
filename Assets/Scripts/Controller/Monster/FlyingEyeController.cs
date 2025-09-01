@@ -19,9 +19,12 @@ public class FlyingEyeController : MonsterController
     public override void OnAttacked()
     {
         Vector2 pos = transform.position;
-        var player =  Physics2D.Raycast(pos, pos, .1f, 1 << LayerMask.NameToLayer("Player"));
+        var coll = Physics2D.OverlapCircle(pos, attackHitboxRadius, LayerMask.GetMask("Player"));
+        if (coll == null) return;
+        var player = coll.GetComponent<PlayerController>();
+        if (player == null) return;
+        player.TakeDamage(3);
         //player.takeDamage(damage);
-        // ���� ���� Ž�� �� takedamege ȣ�� ����
     }
     public override void OnAttackReturn()
     {
