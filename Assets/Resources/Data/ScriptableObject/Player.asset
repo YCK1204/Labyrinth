@@ -22,5 +22,5 @@ MonoBehaviour:
   kbResist: 0.2
   critX: 1.5
   armorPen: 0
-  atkSpeed: 1
+  atkSpeed: 2
   gold: 300

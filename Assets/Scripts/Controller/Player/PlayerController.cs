@@ -12,6 +12,8 @@ public class PlayerController : CreatureController
     [SerializeField] private Transform AttackPoint;     // 칼끝 기준점
     [SerializeField] private float AttackRadius = 0.6f; // 원 범위 반경
     [SerializeField] private LayerMask EnemyLayer;
+    [SerializeField] private float RollCooldown = 0.4f; // 회피 쿨타임
+    [SerializeField] private float RollIFrame   = 0.2f; // 무적 시간(초)
 
     [Header("Force")]
     [SerializeField] private float JumpForce = 7.5f;
@@ -28,6 +30,7 @@ public class PlayerController : CreatureController
     private bool _grounded, _rolling;
     private int _facing = 1;
     private float _rollTimer;
+    private float _rollCooldownRemain;
     // private float timer = 0;
 
     private float _inputX;
@@ -85,21 +88,36 @@ public class PlayerController : CreatureController
     // 이동 처리
     protected override void Move()
     {
-        if (_rolling) return;
-
-        if (_attackLocked)
+        if (_rolling)
         {
-            _rb.velocity = new Vector2(0f, _rb.velocity.y);
+            _rb.velocity = new Vector2(_facing * RollForce, _rb.velocity.y);
             return;
         }
 
-        _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
+        float vx = _rb.velocity.x;
 
+        if (_attackLocked && _grounded)
+        {
+            vx = 0f;
+        }
+        else if (!_attackLocked)
+        {
+            vx = _inputX * speed;
+        }
+
+        _rb.velocity = new Vector2(vx, _rb.velocity.y);
     }
     // 공격 애니메이션
     protected override void Attack()
     {
-        if (!_combo.TryNext(out var step)) return;
+        if (!_grounded)
+        {
+            if (!_combo.TryNext(out _, consumeStep: false)) return;
+            _anim.TrgAttack(1);
+            return;
+        }
+
+        if (!_combo.TryNext(out var step, consumeStep: true)) return;
         _anim.TrgAttack(step);
     }
     //실제 공격(몬스터 스탯이 생기면 데미지 처리 수정)
@@ -137,7 +155,7 @@ public class PlayerController : CreatureController
     public override void TakeDamage(float atk)
     {
         //구르기 무적시간
-        if (_rolling) return;
+        if (_rolling && _rollTimer <= RollIFrame) return;
 
         var (dmg, isCrit) = CalcFinalDamage(atk, armor);
         dmg = Mathf.Round(dmg * 10f) / 10f;
@@ -188,15 +206,18 @@ public class PlayerController : CreatureController
             _anim.SetGrounded(_grounded);
         }
 
-        if (_inputX > 0f)
+        if (!_rolling)
         {
-            _facing = 1; if (_sr) _sr.flipX = false;
-            UpdateAttackPointSide();
-        }
-        else if (_inputX < 0f)
-        {
-            _facing = -1; if (_sr) _sr.flipX = true;
-            UpdateAttackPointSide();
+            if (_inputX > 0f)
+            {
+                _facing = 1; if (_sr) _sr.flipX = false;
+                UpdateAttackPointSide();
+            }
+            else if (_inputX < 0f)
+            {
+                _facing = -1; if (_sr) _sr.flipX = true;
+                UpdateAttackPointSide();
+            }
         }
 
         _anim.SetAirY(_rb.velocity.y);
@@ -205,17 +226,22 @@ public class PlayerController : CreatureController
     // 액션 처리: 공격(홀드), 구르기/점프
     private void HandleActions()
     {
-        if (_attack && !_rolling)
-            Attack();
+        if (_attack && !_rolling) Attack();
 
-        if (_roll && !_rolling) OnRoll();
+        if (_roll && !_rolling && _rollCooldownRemain <= 0f) OnRoll();
         if (_jump && _grounded && !_rolling) OnJump();
 
         if (_rolling)
         {
             _rollTimer += Time.deltaTime;
-            if (_rollTimer > RollDuration) _rolling = false;
+            if (_rollTimer > RollDuration)
+            {
+                _rolling = false;
+                _rollCooldownRemain = RollCooldown;
+            }
         }
+        if (_rollCooldownRemain > 0f)
+            _rollCooldownRemain -= Time.deltaTime;
     }
     //키입력
     private void ReadInput()

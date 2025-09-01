@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3680230271782033610}
   - component: {fileID: 4087966396102652803}
   - component: {fileID: 1744709987106868473}
-  - component: {fileID: 3149115012871207733}
   - component: {fileID: 5203837579705405518}
+  - component: {fileID: 9013992672445738455}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -124,10 +124,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.5
-  m_AngularDrag: 0.05
+  m_LinearDrag: 0
+  m_AngularDrag: 0
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ed018aa43a34c8d4dbb85cb8af9d34e4, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -138,8 +138,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &3149115012871207733
-BoxCollider2D:
+--- !u!114 &5203837579705405518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403381398340824808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77eea7e7ac4ed224d8df9eb421ce7271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerStats: {fileID: 11400000, guid: 40d58581b0095de459a03d1027dc1c29, type: 2}
+  GroundSensor: {fileID: 6254059701309835601}
+  AttackPoint: {fileID: 7986395276139832285}
+  AttackRadius: 0.8
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 640
+  RollCooldown: 0.4
+  RollIFrame: 0.2
+  JumpForce: 7.5
+  RollForce: 10
+  RollDuration: 0.5
+--- !u!70 &9013992672445738455
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -147,7 +171,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 403381398340824808}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: ed018aa43a34c8d4dbb85cb8af9d34e4, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -170,41 +194,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07, y: -0.21}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.125, y: 1.71875}
-    newSize: {x: 2, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.73, y: 1.2}
-  m_EdgeRadius: 0
---- !u!114 &5203837579705405518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 403381398340824808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77eea7e7ac4ed224d8df9eb421ce7271, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerStats: {fileID: 11400000, guid: 40d58581b0095de459a03d1027dc1c29, type: 2}
-  GroundSensor: {fileID: 6254059701309835601}
-  AttackPoint: {fileID: 7986395276139832285}
-  AttackRadius: 0.8
-  EnemyLayer:
-    serializedVersion: 2
-    m_Bits: 640
-  JumpForce: 7.5
-  RollForce: 10
-  RollDuration: 0.5
+  m_Offset: {x: 0.060605526, y: -0.13547063}
+  m_Size: {x: 0.793478, y: 1.2141504}
+  m_Direction: 0
 --- !u!1 &976934545552826254
 GameObject:
   m_ObjectHideFlags: 0
