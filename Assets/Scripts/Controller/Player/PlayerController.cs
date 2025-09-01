@@ -57,7 +57,7 @@ public class PlayerController : CreatureController
 
         float baseMinGap = 0.5f;
         float minGap = baseMinGap / Mathf.Max(0.01f, atkSpeed);
-        float resetGap = 1.0f;
+        float resetGap = 0.6f;
         _combo = new ComboController(minGap, resetGap);
     }
 

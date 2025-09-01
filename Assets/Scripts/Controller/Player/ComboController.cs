@@ -4,7 +4,7 @@ public sealed class ComboController
     readonly float resetGap;// 콤보가 초기화되는 시간
     float elapsed;
     int step;
-    public ComboController(float minGap = 0.25f, float resetGap = 1f)
+    public ComboController(float minGap = 0.25f, float resetGap = 0.6f)
     {
         this.minGap = minGap;
         this.resetGap = resetGap;
