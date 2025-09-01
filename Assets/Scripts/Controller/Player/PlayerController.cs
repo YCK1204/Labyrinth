@@ -80,7 +80,7 @@ public class PlayerController : CreatureController
         if (!rolling)
             _rb.velocity = new Vector2(inputX * speed, _rb.velocity.y);
     }
-    // 공격 처리(몬스터 체력이 없어서 일단 hit여부만)
+    // 공격 처리(몬스터 스탯이 생기면 데미지 처리 수정)
     protected override void Attack()
     {
         if (!_combo.TryNext(out var step)) return;
@@ -95,23 +95,22 @@ public class PlayerController : CreatureController
         var hits = Physics2D.OverlapCircleAll(center, AttackRadius, EnemyLayer);
 
         bool anyHit = false;
-        //hit여부만 체크
         foreach (var h in hits)
         {
-            Vector2 toTarget = ((Vector2)h.transform.position - center).normalized;
-            if (Vector2.Dot(forward, toTarget) < cosThresh) continue;
-
-            anyHit = true;
-            Debug.Log($"[ATTACK HIT] {h.name}");
+            if (h.TryGetComponent<MonsterController>(out var monster))
+            {
+                float dmg = CalcFinalDamage(power, 0f);
+                monster.TakeDamage(dmg);
+                Debug.Log($"{monster.name}에게 {dmg} 피해!");
+            }
         }
-
         if (!anyHit)
             Debug.Log("[ATTACK MISS] 히트 없음");
     }
 
 
     // 피격 처리
-        protected override void TakeDamage(float atk)
+    public override void TakeDamage(float atk)
     {
         float dmg = CalcFinalDamage(atk, armor);
         hp -= dmg;
