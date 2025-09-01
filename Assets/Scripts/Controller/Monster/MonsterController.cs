@@ -22,6 +22,8 @@ public abstract class MonsterController : CreatureController
 {
     [SerializeField]
     protected Patrol patrol;
+    [SerializeField]
+    protected float attackHitboxRadius = 0.5f;
 
     protected GameObject target;
     protected float lastPatrolTime;

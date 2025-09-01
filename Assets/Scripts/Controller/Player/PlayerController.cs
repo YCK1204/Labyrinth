@@ -12,6 +12,8 @@ public class PlayerController : CreatureController
     [SerializeField] private Transform AttackPoint;     // 칼끝 기준점
     [SerializeField] private float AttackRadius = 0.6f; // 원 범위 반경
     [SerializeField] private LayerMask EnemyLayer;
+    [SerializeField] private float RollCooldown = 0.4f; // 회피 쿨타임
+    [SerializeField] private float RollIFrame   = 0.2f; // 무적 시간(초)
 
     [Header("Force")]
     [SerializeField] private float JumpForce = 7.5f;
@@ -23,13 +25,16 @@ public class PlayerController : CreatureController
     private Playeranimator _anim;
     private ComboController _combo;
     private Vector2 _attackPointDefault;
+    private bool _attackLocked;
 
-    private bool grounded, rolling;
-    private int facing = 1;
-    private float rollTimer;
+    private bool _grounded, _rolling;
+    private int _facing = 1;
+    private float _rollTimer;
+    private float _rollCooldownRemain;
+    // private float timer = 0;
 
-    private float inputX;
-    private bool jump, roll, attackHold;
+    private float _inputX;
+    private bool _jump, _roll, _attack;
 
     private void Awake()
     {
@@ -56,7 +61,7 @@ public class PlayerController : CreatureController
 
         float baseMinGap = 0.5f;
         float minGap = baseMinGap / Mathf.Max(0.01f, atkSpeed);
-        float resetGap = 1.0f;
+        float resetGap = 0.6f;
         _combo = new ComboController(minGap, resetGap);
     }
 
@@ -66,6 +71,14 @@ public class PlayerController : CreatureController
         _combo.Tick(Time.deltaTime);
         SenseAndAnimate();
         HandleActions();
+
+        //피격 테스트용
+        // timer += Time.deltaTime;
+        // if (timer > 2f)
+        // {
+        //     timer = 0;
+        //     TakeDamage(10f);
+        // }
     }
 
     private void FixedUpdate()
@@ -75,43 +88,81 @@ public class PlayerController : CreatureController
     // 이동 처리
     protected override void Move()
     {
-        if (!rolling)
-            _rb.velocity = new Vector2(inputX * speed, _rb.velocity.y);
+        if (_rolling)
+        {
+            _rb.velocity = new Vector2(_facing * RollForce, _rb.velocity.y);
+            return;
+        }
+
+        float vx = _rb.velocity.x;
+
+        if (_attackLocked && _grounded)
+        {
+            vx = 0f;
+        }
+        else if (!_attackLocked)
+        {
+            vx = _inputX * speed;
+        }
+
+        _rb.velocity = new Vector2(vx, _rb.velocity.y);
     }
-    // 공격 처리(몬스터 스탯이 생기면 데미지 처리 수정)
+    // 공격 애니메이션
     protected override void Attack()
     {
-        if (!_combo.TryNext(out var step)) return;
+        if (!_grounded)
+        {
+            if (!_combo.TryNext(out _, consumeStep: false)) return;
+            _anim.TrgAttack(1);
+            return;
+        }
 
+        if (!_combo.TryNext(out var step, consumeStep: true)) return;
         _anim.TrgAttack(step);
-
+    }
+    //실제 공격(몬스터 스탯이 생기면 데미지 처리 수정)
+    public void OnAttackHit()
+    {
         if (AttackRadius <= 0f) return;
-        Vector2 center   = AttackPoint ? (Vector2)AttackPoint.position : (Vector2)transform.position;
+        Vector2 center = AttackPoint ? (Vector2)AttackPoint.position : (Vector2)transform.position;
 
         var hits = Physics2D.OverlapCircleAll(center, AttackRadius, EnemyLayer);
 
-        bool anyHit = false;
         foreach (var h in hits)
         {
             var monster = h.GetComponentInParent<MonsterController>();
             if (monster == null) continue;
 
-            float dmg = CalcFinalDamage(power, 0f);
+            var (dmg, isCrit) = CalcFinalDamage(power, 0f);
             monster.TakeDamage(dmg);
-            anyHit = true;
+
+            // 데미지 UI
+            int d = Mathf.RoundToInt(dmg);
+            DamageUI.Instance.Show(monster.transform.position + Vector3.up * 1f, dmg ,DamageStyle.Enemy, isCrit);
 
             Debug.Log($"{monster.name}에게 {dmg} 피해!");
         }
-        if (!anyHit)
-            Debug.Log("[ATTACK MISS] 히트 없음");
     }
-
-
+    public void OnAttackMoveLock()
+    {
+        _attackLocked = true;
+    }
+    public void OnAttackMoveUnlock()
+    {
+        _attackLocked = false;
+    }
     // 피격 처리
     public override void TakeDamage(float atk)
     {
-        float dmg = CalcFinalDamage(atk, armor);
+        //구르기 무적시간
+        if (_rolling && _rollTimer <= RollIFrame) return;
+
+        var (dmg, isCrit) = CalcFinalDamage(atk, armor);
+        dmg = Mathf.Round(dmg * 10f) / 10f;
         hp -= dmg;
+
+        Vector3 pos = transform.position + Vector3.up * 1.0f;
+        DamageUI.Instance.Show(pos, dmg, DamageStyle.Player, isCrit);
 
         if (hp <= 0f)
         {
@@ -119,7 +170,7 @@ public class PlayerController : CreatureController
             OnDied();
         }
         else
-        _anim.TrgHurt();
+            _anim.TrgHurt();
 
     }
     // 사망 처리
@@ -131,16 +182,16 @@ public class PlayerController : CreatureController
     // 구르기 시작
     private void OnRoll()
     {
-        rolling = true;
-        rollTimer = 0f;
+        _rolling = true;
+        _rollTimer = 0f;
         _anim.TrgRoll();
-        _rb.velocity = new Vector2(facing * RollForce, _rb.velocity.y);
+        _rb.velocity = new Vector2(_facing * RollForce, _rb.velocity.y);
     }
     // 점프 시작
     private void OnJump()
     {
         _anim.TrgJump();
-        grounded = false;
+        _grounded = false;
         _anim.SetGrounded(false);
         _rb.velocity = new Vector2(_rb.velocity.x, JumpForce);
         GroundSensor?.DisableFor(0.2f);
@@ -149,69 +200,73 @@ public class PlayerController : CreatureController
     private void SenseAndAnimate()
     {
         bool nowGrounded = GroundSensor && GroundSensor.IsOn;
-        if (grounded != nowGrounded)
+        if (_grounded != nowGrounded)
         {
-            grounded = nowGrounded;
-            _anim.SetGrounded(grounded);
+            _grounded = nowGrounded;
+            _anim.SetGrounded(_grounded);
         }
 
-        if (inputX > 0f)
+        if (!_rolling)
         {
-            facing = 1; if (_sr) _sr.flipX = false;
-            UpdateAttackPointSide();
-        }
-        else if (inputX < 0f)
-        {
-            facing = -1; if (_sr) _sr.flipX = true;
-            UpdateAttackPointSide();
+            if (_inputX > 0f)
+            {
+                _facing = 1; if (_sr) _sr.flipX = false;
+                UpdateAttackPointSide();
+            }
+            else if (_inputX < 0f)
+            {
+                _facing = -1; if (_sr) _sr.flipX = true;
+                UpdateAttackPointSide();
+            }
         }
 
         _anim.SetAirY(_rb.velocity.y);
-        _anim.SetState(Mathf.Abs(inputX) > Mathf.Epsilon ? 1 : 0);
+        _anim.SetState(Mathf.Abs(_inputX) > Mathf.Epsilon ? 1 : 0);
     }
-    // 액션 처리: 공격(홀드), 막기 토글, 구르기/점프
+    // 액션 처리: 공격(홀드), 구르기/점프
     private void HandleActions()
     {
-        if (attackHold && !rolling)
-            Attack();
+        if (_attack && !_rolling) Attack();
 
-        if (roll && !rolling) OnRoll();
-        if (jump && grounded && !rolling) OnJump();
+        if (_roll && !_rolling && _rollCooldownRemain <= 0f) OnRoll();
+        if (_jump && _grounded && !_rolling) OnJump();
 
-        if (rolling)
+        if (_rolling)
         {
-            rollTimer += Time.deltaTime;
-            if (rollTimer > RollDuration) rolling = false;
+            _rollTimer += Time.deltaTime;
+            if (_rollTimer > RollDuration)
+            {
+                _rolling = false;
+                _rollCooldownRemain = RollCooldown;
+            }
         }
+        if (_rollCooldownRemain > 0f)
+            _rollCooldownRemain -= Time.deltaTime;
     }
     //키입력
     private void ReadInput()
     {
-        inputX = Input.GetAxisRaw("Horizontal");
-        jump = Input.GetKeyDown(KeyCode.Space);
-        roll = Input.GetKeyDown(KeyCode.LeftShift);
-        attackHold = Input.GetMouseButton(0);
+        _inputX = Input.GetAxisRaw("Horizontal");
+        _jump = Input.GetKeyDown(KeyCode.Space);
+        _roll = Input.GetKeyDown(KeyCode.LeftShift);
+        _attack = Input.GetMouseButtonDown(0);
     }
     //방향전환시 검 콜라이더 위치 조정
     private void UpdateAttackPointSide()
     {
         if (!AttackPoint) return;
         var pos = _attackPointDefault;
-        pos.x = Mathf.Abs(pos.x) * (facing >= 0 ? 1 : -1);
+        pos.x = Mathf.Abs(pos.x) * (_facing >= 0 ? 1 : -1);
         AttackPoint.localPosition = pos;
     }
     //피해량 계산식
-    float CalcFinalDamage(float atk, float targetArmor)
+    (float damage, bool isCrit) CalcFinalDamage(float atk, float targetArmor)
     {
         float effArmor = Mathf.Max(0f, targetArmor - armorPen);
         float reducMul = 100f / (100f + effArmor);
-        float critMul = (Random.value < crit) ? critX : 1f;
-        return atk * reducMul * critMul;
+        bool  isCrit   = Random.value < crit;
+        float damage   = atk * reducMul * (isCrit ? critX : 1f);
+        Debug.Log(damage);
+        return (damage, isCrit);
     }
-    private void OnDrawGizmosSelected()
-{
-    if (!AttackPoint) return;
-    Gizmos.color = Color.red;
-    Gizmos.DrawWireSphere(AttackPoint.position, AttackRadius);
-}
 }

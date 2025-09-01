@@ -4,7 +4,7 @@ public sealed class ComboController
     readonly float resetGap;// 콤보가 초기화되는 시간
     float elapsed;
     int step;
-    public ComboController(float minGap = 0.25f, float resetGap = 1f)
+    public ComboController(float minGap = 0.25f, float resetGap = 0.6f)
     {
         this.minGap = minGap;
         this.resetGap = resetGap;
@@ -13,11 +13,19 @@ public sealed class ComboController
     {
         elapsed += dt;
     }
-    public bool TryNext(out int attackStep)
+    public bool TryNext(out int attackStep, bool consumeStep = true)
     {
         attackStep = 0;
         if (elapsed < minGap) return false;
         if (elapsed > resetGap) step = 0;
-        step = (step % 3) + 1; elapsed = 0f; attackStep = step; return true;
+
+        if (consumeStep)
+        {
+            step = (step % 3) + 1;
+            attackStep = step;
+        }
+
+        elapsed = 0f;
+        return true;
     }
 }
