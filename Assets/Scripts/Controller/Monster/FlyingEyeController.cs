@@ -133,6 +133,13 @@ public class FlyingEyeController : MonsterController
         detectionRangeCollider.radius = patrol.detectionRange;
         speed = Speed;
         attackRange = AttackRange;
+        var child = new GameObject("Collision");
+        child.transform.parent = transform;
+        child.layer = LayerMask.NameToLayer("MonsterCollision");
+        child.transform.localPosition = Vector2.zero;
+        var collision = child.gameObject.AddComponent<BoxCollider2D>();
+        Physics2D.IgnoreCollision(detectionRangeCollider, collision);
+        collision.size = (Vector2)spriteRenderer.bounds.size;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
