@@ -219,9 +219,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3149115012871207733, guid: 38d85a4a2529d0c48b43e2bd6c49ba82, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ed018aa43a34c8d4dbb85cb8af9d34e4, type: 2}
     - target: {fileID: 4087966396102652803, guid: 38d85a4a2529d0c48b43e2bd6c49ba82, type: 3}
       propertyPath: m_SortingOrder
-      value: 10
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203837579705405518, guid: 38d85a4a2529d0c48b43e2bd6c49ba82, type: 3}
+      propertyPath: EnemyLayer.m_Bits
+      value: 640
       objectReference: {fileID: 0}
     - target: {fileID: 5214729825315119424, guid: 38d85a4a2529d0c48b43e2bd6c49ba82, type: 3}
       propertyPath: m_LocalPosition.y
