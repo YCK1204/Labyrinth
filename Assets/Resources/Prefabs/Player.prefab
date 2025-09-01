@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7986395276139832285}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 5214729825315119424}
   - component: {fileID: 2138752518189375985}
   - component: {fileID: 6254059701309835601}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GroundSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
