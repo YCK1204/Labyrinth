@@ -7,13 +7,9 @@ public class FlyingEyeController : MonsterController
     Vector2 _startAttackPos;
     Coroutine _coMoveAttack = null;
     [SerializeField]
-    float attack1OnAttackDuration;
+    float OnAttackDuration;
     [SerializeField]
-    float attack1FinishAttackDuration;
-    [SerializeField]
-    float attack2OnAttackDuration;
-    [SerializeField]
-    float attack2FinishAttackDuration;
+    float FinishAttackDuration;
     CircleCollider2D detectionRangeCollider;
 
     [SerializeField]
@@ -29,14 +25,12 @@ public class FlyingEyeController : MonsterController
     }
     public override void OnAttackReturn()
     {
-        float duration = (AttackAnimNum == 1) ? attack1FinishAttackDuration : attack2FinishAttackDuration;
-
         if (_coMoveAttack != null)
         {
             StopCoroutine(_coMoveAttack);
             _coMoveAttack = null;
         }
-        _coMoveAttack = StartCoroutine(CoMoveAttack(_startAttackPos, duration));
+        _coMoveAttack = StartCoroutine(CoMoveAttack(_startAttackPos, FinishAttackDuration));
     }
     public override void OnAttackFinished()
     {
@@ -58,8 +52,7 @@ public class FlyingEyeController : MonsterController
         }
         else
         {
-            AttackAnimNum = Random.Range(1, attackAnimCount + 1);
-            animator.Play("Attack" + AttackAnimNum.ToString());
+            animator.Play("Attack1");
         }
     }
     IEnumerator CoMoveAttack(Vector2 destPos, float duration)
@@ -85,9 +78,8 @@ public class FlyingEyeController : MonsterController
             _coMoveAttack = null;
         }
 
-        float duration = (AttackAnimNum == 1) ? attack1OnAttackDuration : attack2OnAttackDuration;
         _startAttackPos = transform.position;
-        _coMoveAttack = StartCoroutine(CoMoveAttack(target.transform.position, duration));
+        _coMoveAttack = StartCoroutine(CoMoveAttack(target.transform.position, OnAttackDuration));
     }
     protected override void UpdateAnimation()
     {
@@ -99,8 +91,7 @@ public class FlyingEyeController : MonsterController
                 animator.Play("Flight");
                 break;
             case MonsterState.Attack:
-                AttackAnimNum = Random.Range(1, attackAnimCount + 1);
-                animator.Play("Attack" + AttackAnimNum.ToString());
+                animator.Play("Attack1");
                 break;
             case MonsterState.TakeHit:
                 animator.Play("TakeHit");
