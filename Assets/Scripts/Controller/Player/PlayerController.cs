@@ -110,6 +110,9 @@ public class PlayerController : CreatureController
     // 피격 처리
     public override void TakeDamage(float atk)
     {
+        //구르기 무적시간
+        if (rolling) return;
+
         float dmg = CalcFinalDamage(atk, armor);
         hp -= dmg;
 
@@ -169,7 +172,7 @@ public class PlayerController : CreatureController
         _anim.SetAirY(_rb.velocity.y);
         _anim.SetState(Mathf.Abs(inputX) > Mathf.Epsilon ? 1 : 0);
     }
-    // 액션 처리: 공격(홀드), 막기 토글, 구르기/점프
+    // 액션 처리: 공격(홀드), 구르기/점프
     private void HandleActions()
     {
         if (attackHold && !rolling)
