@@ -24,12 +24,13 @@ public class PlayerController : CreatureController
     private ComboController _combo;
     private Vector2 _attackPointDefault;
 
-    private bool grounded, rolling;
-    private int facing = 1;
-    private float rollTimer;
+    private bool _grounded, _rolling;
+    private int _facing = 1;
+    private float _rollTimer;
+    // private float timer = 0;
 
-    private float inputX;
-    private bool jump, roll, attackHold;
+    private float _inputX;
+    private bool _jump, _roll, _attackHold;
 
     private void Awake()
     {
@@ -66,6 +67,14 @@ public class PlayerController : CreatureController
         _combo.Tick(Time.deltaTime);
         SenseAndAnimate();
         HandleActions();
+
+        //피격 테스트용
+        // timer += Time.deltaTime;
+        // if (timer > 2f)
+        // {
+        //     timer = 0;
+        //     TakeDamage(10f);
+        // }
     }
 
     private void FixedUpdate()
@@ -75,8 +84,8 @@ public class PlayerController : CreatureController
     // 이동 처리
     protected override void Move()
     {
-        if (!rolling)
-            _rb.velocity = new Vector2(inputX * speed, _rb.velocity.y);
+        if (!_rolling)
+            _rb.velocity = new Vector2(_inputX * speed, _rb.velocity.y);
     }
     // 공격 처리(몬스터 스탯이 생기면 데미지 처리 수정)
     protected override void Attack()
@@ -96,7 +105,7 @@ public class PlayerController : CreatureController
             var monster = h.GetComponentInParent<MonsterController>();
             if (monster == null) continue;
 
-            float dmg = CalcFinalDamage(power, 0f);
+            var (dmg, isCrit) = CalcFinalDamage(power, 0f);
             monster.TakeDamage(dmg);
             anyHit = true;
 
@@ -111,10 +120,14 @@ public class PlayerController : CreatureController
     public override void TakeDamage(float atk)
     {
         //구르기 무적시간
-        if (rolling) return;
+        if (_rolling) return;
 
-        float dmg = CalcFinalDamage(atk, armor);
+        var (dmg, isCrit) = CalcFinalDamage(atk, armor);
+        dmg = Mathf.Round(dmg * 10f) / 10f;
         hp -= dmg;
+
+        Vector3 pos = transform.position + Vector3.up * 1.0f;
+        DamageUI.Instance.Show(pos, dmg, DamageStyle.Player, isCrit);
 
         if (hp <= 0f)
         {
@@ -122,7 +135,7 @@ public class PlayerController : CreatureController
             OnDied();
         }
         else
-        _anim.TrgHurt();
+            _anim.TrgHurt();
 
     }
     // 사망 처리
@@ -134,16 +147,16 @@ public class PlayerController : CreatureController
     // 구르기 시작
     private void OnRoll()
     {
-        rolling = true;
-        rollTimer = 0f;
+        _rolling = true;
+        _rollTimer = 0f;
         _anim.TrgRoll();
-        _rb.velocity = new Vector2(facing * RollForce, _rb.velocity.y);
+        _rb.velocity = new Vector2(_facing * RollForce, _rb.velocity.y);
     }
     // 점프 시작
     private void OnJump()
     {
         _anim.TrgJump();
-        grounded = false;
+        _grounded = false;
         _anim.SetGrounded(false);
         _rb.velocity = new Vector2(_rb.velocity.x, JumpForce);
         GroundSensor?.DisableFor(0.2f);
@@ -152,69 +165,65 @@ public class PlayerController : CreatureController
     private void SenseAndAnimate()
     {
         bool nowGrounded = GroundSensor && GroundSensor.IsOn;
-        if (grounded != nowGrounded)
+        if (_grounded != nowGrounded)
         {
-            grounded = nowGrounded;
-            _anim.SetGrounded(grounded);
+            _grounded = nowGrounded;
+            _anim.SetGrounded(_grounded);
         }
 
-        if (inputX > 0f)
+        if (_inputX > 0f)
         {
-            facing = 1; if (_sr) _sr.flipX = false;
+            _facing = 1; if (_sr) _sr.flipX = false;
             UpdateAttackPointSide();
         }
-        else if (inputX < 0f)
+        else if (_inputX < 0f)
         {
-            facing = -1; if (_sr) _sr.flipX = true;
+            _facing = -1; if (_sr) _sr.flipX = true;
             UpdateAttackPointSide();
         }
 
         _anim.SetAirY(_rb.velocity.y);
-        _anim.SetState(Mathf.Abs(inputX) > Mathf.Epsilon ? 1 : 0);
+        _anim.SetState(Mathf.Abs(_inputX) > Mathf.Epsilon ? 1 : 0);
     }
     // 액션 처리: 공격(홀드), 구르기/점프
     private void HandleActions()
     {
-        if (attackHold && !rolling)
+        if (_attackHold && !_rolling)
             Attack();
 
-        if (roll && !rolling) OnRoll();
-        if (jump && grounded && !rolling) OnJump();
+        if (_roll && !_rolling) OnRoll();
+        if (_jump && _grounded && !_rolling) OnJump();
 
-        if (rolling)
+        if (_rolling)
         {
-            rollTimer += Time.deltaTime;
-            if (rollTimer > RollDuration) rolling = false;
+            _rollTimer += Time.deltaTime;
+            if (_rollTimer > RollDuration) _rolling = false;
         }
     }
     //키입력
     private void ReadInput()
     {
-        inputX = Input.GetAxisRaw("Horizontal");
-        jump = Input.GetKeyDown(KeyCode.Space);
-        roll = Input.GetKeyDown(KeyCode.LeftShift);
-        attackHold = Input.GetMouseButton(0);
+        _inputX = Input.GetAxisRaw("Horizontal");
+        _jump = Input.GetKeyDown(KeyCode.Space);
+        _roll = Input.GetKeyDown(KeyCode.LeftShift);
+        _attackHold = Input.GetMouseButton(0);
     }
     //방향전환시 검 콜라이더 위치 조정
     private void UpdateAttackPointSide()
     {
         if (!AttackPoint) return;
         var pos = _attackPointDefault;
-        pos.x = Mathf.Abs(pos.x) * (facing >= 0 ? 1 : -1);
+        pos.x = Mathf.Abs(pos.x) * (_facing >= 0 ? 1 : -1);
         AttackPoint.localPosition = pos;
     }
     //피해량 계산식
-    float CalcFinalDamage(float atk, float targetArmor)
+    (float damage, bool isCrit) CalcFinalDamage(float atk, float targetArmor)
     {
         float effArmor = Mathf.Max(0f, targetArmor - armorPen);
         float reducMul = 100f / (100f + effArmor);
-        float critMul = (Random.value < crit) ? critX : 1f;
-        return atk * reducMul * critMul;
+        bool  isCrit   = Random.value < crit;
+        float damage   = atk * reducMul * (isCrit ? critX : 1f);
+        Debug.Log(damage);
+        return (damage, isCrit);
     }
-    private void OnDrawGizmosSelected()
-{
-    if (!AttackPoint) return;
-    Gizmos.color = Color.red;
-    Gizmos.DrawWireSphere(AttackPoint.position, AttackRadius);
-}
 }
