@@ -127,6 +127,12 @@ public abstract class MonsterController : CreatureController
     }
     protected virtual void Chase()
     {
+        if (target == null)
+        {
+            state = MonsterState.Idle;
+            return;
+        }
+
         destPos = target.transform.position;
 
         var dist = Vector2.Distance(transform.position, destPos);
