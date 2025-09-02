@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeController : MonsterController
+public class SlimeController : MonsterController, IPaltformAwareMonster
 {
     SlimeData _slimeData;
     float _maxCheckDist { get { return _slimeData.MaxCheckDist; } }
@@ -11,15 +11,7 @@ public class SlimeController : MonsterController
     protected override Vector2 destDir => destPos.x < transform.position.x ? Vector2.left : Vector2.right;
     private MonsterAttackHitboxController _attackHitbox;
     float _speed;
-    protected override Vector2 GenRandomPosition()
-    {
-        var directions = patrol.directions;
-        var ranInt = Random.Range(0, directions.Length);
-        var dir = directions[ranInt];
-        var range = Random.Range(0, patrol.range);
 
-        return transform.position + (Vector3)dir * range;
-    }
     protected override void UpdateAnimation()
     {
         switch (state)
@@ -60,6 +52,7 @@ public class SlimeController : MonsterController
                 break;
         }
     }
+    #region Attack
     public override void StartAttack()
     {
         speed = 0;
@@ -117,16 +110,8 @@ public class SlimeController : MonsterController
             yield return new WaitForSeconds(.1f);
         }
     }
-    float GetTopFloorY()
-    {
-        var hit = Physics2D.Raycast(transform.position, Vector2.up, _maxCheckDist, 1 << LayerMask.NameToLayer("Ground"));
-        return hit.collider != null ? hit.point.y : transform.position.y + _maxCheckDist;
-    }
-    float GetBottomFloorY()
-    {
-        var hit = Physics2D.Raycast(transform.position, Vector2.down, _maxCheckDist, 1 << LayerMask.NameToLayer("Ground"));
-        return hit.collider != null ? hit.point.y : transform.position.y - _maxCheckDist;
-    }
+    #endregion
+    
     protected override void Init()
     {
         base.Init();
@@ -146,8 +131,8 @@ public class SlimeController : MonsterController
         detectionCollider = gameObject.AddComponent<BoxCollider2D>();
         detectionCollider.isTrigger = true;
 
-        float yBottom = GetBottomFloorY();
-        float yTop = GetTopFloorY();
+        float yTop = (this as IPaltformAwareMonster).GetTopFloorY(transform, _maxCheckDist);
+        float yBottom = (this as IPaltformAwareMonster).GetBottomFloorY(transform, _maxCheckDist);
         float height = yTop - yBottom;
 
         detectionCollider.size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
@@ -164,19 +149,7 @@ public class SlimeController : MonsterController
         _attackHitbox.transform.parent = transform;
         _attackHitbox.Init(attackHitboxRadius, transform, Vector2.zero, LayerMask.GetMask("Player"));
     }
-    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            var pc = collision.gameObject.GetComponent<PlayerController>();
-            if (pc == null)
-                return;
-            target = pc;
-            state = MonsterState.Chase;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
+    protected override void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {

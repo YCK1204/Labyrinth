@@ -13,9 +13,18 @@ public class Patrol
     public float lastPatrolTime;
 }
 
-public interface IJumpable
+public interface IPaltformAwareMonster
 {
-    void Jump();
+    public float GetTopFloorY(UnityEngine.Transform transform, float maxCheckDist)
+    {
+        var hit = Physics2D.Raycast(transform.position, Vector2.up, maxCheckDist, 1 << LayerMask.NameToLayer("Ground"));
+        return hit.collider != null ? hit.point.y : transform.position.y + maxCheckDist;
+    }
+    public float GetBottomFloorY(UnityEngine.Transform transform, float maxCheckDist)
+    {
+        var hit = Physics2D.Raycast(transform.position, Vector2.down, maxCheckDist, 1 << LayerMask.NameToLayer("Ground"));
+        return hit.collider != null ? hit.point.y : transform.position.y - maxCheckDist;
+    }
 }
 
 public abstract class MonsterController : CreatureController
@@ -104,6 +113,7 @@ public abstract class MonsterController : CreatureController
         spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
         DestroySelf();
     }
+
     private void Update()
     {
         if (state == MonsterState.Die)
@@ -173,11 +183,41 @@ public abstract class MonsterController : CreatureController
         else
             state = MonsterState.TakeHit;
     }
-    protected abstract Vector2 GenRandomPosition();
+    protected virtual Vector2 GenRandomPosition()
+    {
+        var directions = patrol.directions;
+        var ranInt = Random.Range(0, directions.Length);
+        var dir = directions[ranInt];
+        var range = Random.Range(0, patrol.range);
+
+        return transform.position + (Vector3)dir * range;
+    }
     public virtual void StartAttack() { }
     public virtual void OnAttackReturn() { }
     public virtual void OnAttackFinished() { }
     public virtual void OnAttacked() { }
     protected abstract void UpdateAnimation();
     protected abstract void UpdateController();
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            var pc = collision.gameObject.GetComponent<PlayerController>();
+            if (pc == null)
+                return;
+            target = pc;
+            state = MonsterState.Chase;
+        }
+    }
+    protected virtual void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            var pc = collision.gameObject.GetComponent<PlayerController>();
+            if (pc == null)
+                return;
+            target = null;
+            state = MonsterState.Idle;
+        }
+    }
 }

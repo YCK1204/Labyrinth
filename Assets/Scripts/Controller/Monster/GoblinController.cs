@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoblinController : MonsterController
+public class GoblinController : MonsterController, IPaltformAwareMonster
 {
     GoblinData _data;
     BoxCollider2D _detectionRangeCollider;
@@ -52,17 +52,6 @@ public class GoblinController : MonsterController
 
         return transform.position + (Vector3)dir * range;
     }
-
-    float GetTopFloorY()
-    {
-        var hit = Physics2D.Raycast(transform.position, Vector2.up, maxCheckDist, 1 << LayerMask.NameToLayer("Ground"));
-        return hit.collider != null ? hit.point.y : transform.position.y + maxCheckDist;
-    }
-    float GetBottomFloorY()
-    {
-        var hit = Physics2D.Raycast(transform.position, Vector2.down, maxCheckDist, 1 << LayerMask.NameToLayer("Ground"));
-        return hit.collider != null ? hit.point.y : transform.position.y - maxCheckDist;
-    }
     protected override void UpdateAnimation()
     {
         switch (state)
@@ -100,28 +89,6 @@ public class GoblinController : MonsterController
                 break;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            var pc = collision.gameObject.GetComponent<PlayerController>();
-            if (pc == null)
-                return;
-            target = pc;
-            state = MonsterState.Chase;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            var pc = collision.gameObject.GetComponent<PlayerController>();
-            if (pc == null)
-                return;
-            target = null;
-            state = MonsterState.Idle;
-        }
-    }
     protected override void Init()
     {
         base.Init();
@@ -140,8 +107,8 @@ public class GoblinController : MonsterController
         _detectionRangeCollider = gameObject.AddComponent<BoxCollider2D>();
         _detectionRangeCollider.isTrigger = true;
 
-        float yBottom = GetBottomFloorY();
-        float yTop = GetTopFloorY();
+        float yTop = (this as IPaltformAwareMonster).GetTopFloorY(transform, maxCheckDist);
+        float yBottom = (this as IPaltformAwareMonster).GetBottomFloorY(transform, maxCheckDist);
         float height = yTop - yBottom;
 
         _detectionRangeCollider.size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);

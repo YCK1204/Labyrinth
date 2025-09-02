@@ -137,26 +137,4 @@ public class FlyingEyeController : MonsterController
         Physics2D.IgnoreCollision(detectionRangeCollider, collision);
         collision.size = (Vector2)spriteRenderer.bounds.size;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            var pc = collision.gameObject.GetComponent<PlayerController>();
-            if (pc == null)
-                return;
-            target = pc;
-            state = MonsterState.Chase;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            var pc = collision.gameObject.GetComponent<PlayerController>();
-            if (pc == null)
-                return;
-            target = null;
-            state = MonsterState.Idle;
-        }
-    }
 }
