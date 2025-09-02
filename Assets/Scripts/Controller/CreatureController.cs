@@ -5,15 +5,25 @@ public abstract class CreatureController : MonoBehaviour
     [SerializeField]
     protected CreatureData creatureData;
 
+    [HideInInspector]
     public float hp;
+    [HideInInspector]
     public float speed;
+    [HideInInspector]
     public float armor;
+    [HideInInspector]
     public float power;
+    [HideInInspector]
     public float crit;
+    [HideInInspector]
     public int lv;
+    [HideInInspector]
     public float kbResist;
+    [HideInInspector]
     public float critX;
+    [HideInInspector]
     public float armorPen;
+    [HideInInspector]
     public float atkSpeed;
 
     public abstract void TakeDamage(float dmg);
