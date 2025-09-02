@@ -25,7 +25,7 @@ public abstract class MonsterController : CreatureController
     protected float attackHitboxRadius { get { return monsterData.AttackHitboxRadius; } }
     protected float attackRange { get { return monsterData.AttackRange; } }
 
-    protected GameObject target;
+    protected PlayerController target;
     Vector2 _destPos = Vector2.zero;
     protected Vector2 destPos
     {
@@ -127,7 +127,7 @@ public abstract class MonsterController : CreatureController
     }
     protected virtual void Chase()
     {
-        if (target == null)
+        if (target == null || target.hp == 0)
         {
             state = MonsterState.Idle;
             return;
