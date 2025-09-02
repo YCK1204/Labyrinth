@@ -147,17 +147,17 @@ public class PlayerController : CreatureController
         _attackLocked = false;
     }
     // 피격 처리
-    public override void TakeDamage(float atk)
+    public override void TakeDamage(float dmg)
     {
         //구르기 무적시간
         if (_rolling && _rollTimer <= RollIFrame) return;
 
-        var (dmg, isCrit) = CalcFinalDamage(atk, armor);
         hp -= dmg;
 
-        Vector3 pos = transform.position + Vector3.up * 1.0f;
-        if(DamageUI.Instance != null)
-            DamageUI.Instance.Show(pos, dmg, DamageStyle.Player, isCrit);
+        //나중에 몬스터에서 처리하도록 이동
+        //Vector3 pos = transform.position + Vector3.up * 1.0f;
+        // if(DamageUI.Instance != null)
+        //     DamageUI.Instance.Show(pos, dmg, DamageStyle.Player, isCrit);
 
         if (hp <= 0f)
         {
@@ -259,7 +259,7 @@ public class PlayerController : CreatureController
     {
         float effArmor = Mathf.Max(0f, targetArmor - armorPen);
         float reducMul = 100f / (100f + effArmor);
-        bool  isCrit   = Random.value < crit;
+        bool isCrit = Random.Range(0, 100) < crit;
         float damage   = atk * reducMul * (isCrit ? critX : 1f);
         Debug.Log(damage);
         return (damage, isCrit);
