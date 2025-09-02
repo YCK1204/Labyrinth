@@ -2,24 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEyeController : MonsterController
+public class FlyingEyeController : FlyingMonsterController
 {
     Vector2 _startAttackPos;
     FlyingeyeData _data;
     Coroutine _coMoveAttack = null;
     float OnAttackDuration { get { return _data.OnAttackDuration; } }
     float FinishAttackDuration { get { return _data.FinishAttackDuration; } }
-    CircleCollider2D detectionRangeCollider;
-    public override void OnAttacked()
-    {
-        Vector2 pos = transform.position;
-        var coll = Physics2D.OverlapCircle(pos, attackHitboxRadius, LayerMask.GetMask("Player"));
-        if (coll == null) return;
-        var player = coll.GetComponent<PlayerController>();
-        if (player == null) return;
-        var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (Random.Range(0f, 100f) < crit ? critX : 1);
-        player.TakeDamage(dmg);
-    }
     public override void OnAttackReturn()
     {
         if (_coMoveAttack != null)
@@ -49,7 +38,7 @@ public class FlyingEyeController : MonsterController
         }
         else
         {
-            animator.Play("Attack1");
+            animator.Play("Attack");
         }
     }
     IEnumerator CoMoveAttack(Vector2 destPos, float duration)
@@ -78,41 +67,6 @@ public class FlyingEyeController : MonsterController
         _startAttackPos = transform.position;
         _coMoveAttack = StartCoroutine(CoMoveAttack(target.transform.position, OnAttackDuration));
     }
-    protected override void UpdateAnimation()
-    {
-        switch (state)
-        {
-            case MonsterState.Idle:
-            case MonsterState.Patrol:
-            case MonsterState.Chase:
-                animator.Play("Flight");
-                break;
-            case MonsterState.Attack:
-                animator.Play("Attack1");
-                break;
-            case MonsterState.TakeHit:
-                animator.Play("TakeHit");
-                break;
-            case MonsterState.Die:
-                animator.Play("Death");
-                break;
-        }
-    }
-    protected override void UpdateController()
-    {
-        switch (state)
-        {
-            case MonsterState.Idle:
-                Idle();
-                break;
-            case MonsterState.Patrol:
-                Patrol();
-                break;
-            case MonsterState.Chase:
-                Chase();
-                break;
-        }
-    }
     protected override Vector2 GenRandomPosition()
     {
         var range = Random.Range(0, patrol.range);
@@ -126,16 +80,5 @@ public class FlyingEyeController : MonsterController
     {
         base.Init();
         _data = monsterData as FlyingeyeData;
-        detectionRangeCollider = gameObject.AddComponent<CircleCollider2D>();
-        detectionRangeCollider.isTrigger = true;
-        detectionRangeCollider.radius = patrol.detectionRange;
-        var child = new GameObject("Collision");
-        child.transform.parent = transform;
-        child.layer = LayerMask.NameToLayer("MonsterCollision");
-        child.transform.localPosition = Vector2.zero;
-        var collision = child.gameObject.AddComponent<BoxCollider2D>();
-        Physics2D.IgnoreCollision(detectionRangeCollider, collision);
-        collision.size = (Vector2)spriteRenderer.bounds.size;
-        startPosition = transform.position;
     }
 }

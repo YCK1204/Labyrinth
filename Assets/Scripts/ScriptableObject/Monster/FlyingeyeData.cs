@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "FlyingeyeData", menuName = "Creature/Monster/FlyingeyeData", order = 2)]
-public class FlyingeyeData : MonsterData
+public class FlyingeyeData : FlyingMonsterData
 {
     [SerializeField]
     float _onAttackDuration = 0.5f;
