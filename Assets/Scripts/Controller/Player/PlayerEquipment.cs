@@ -16,9 +16,9 @@ public class PlayerEquipment : MonoBehaviour
     public float CritX      { get; private set; }
 
     public float Armor      { get; private set; }
-    public float HpMax      { get; private set; }
+    public float Hp         { get; private set; }
     public float Energy     { get; private set; }
-    public float Speed  { get; private set; }
+    public float Speed      { get; private set; }
     public float KbResist   { get; private set; }
 
     PlayerController pc;
@@ -70,9 +70,9 @@ public class PlayerEquipment : MonoBehaviour
         float bCritX     = playerSO ? playerSO.CritX     : 1.5f;
 
         float bArmor     = playerSO ? playerSO.Armor     : 0f;
-        float bHpMax     = playerSO ? playerSO.HP        : 100f;
+        float bHp        = playerSO ? playerSO.HP        : 100f;
         float bEnergy    = playerSO ? playerSO.Energy    : 100f;
-        float bSpeed = playerSO ? playerSO.Speed     : 5f;
+        float bSpeed     = playerSO ? playerSO.Speed     : 5f;
         float bKbResist  = playerSO ? playerSO.KBResist  : 0f;
 
         float addPower=0, addAtkSpeed=0, addArmorPen=0, addCrit=0, addCritX=0;
@@ -110,7 +110,7 @@ public class PlayerEquipment : MonoBehaviour
         CritX     = bCritX    + addCritX;
 
         Armor     = bArmor    + addArmor;
-        HpMax     = bHpMax    + addHp;
+        Hp        = bHp    + addHp;
         Energy    = bEnergy   + addEnergy;
         Speed     = Mathf.Max(0f, bSpeed + addSpeed);
         KbResist = Mathf.Clamp(bKbResist + addKbResist, 0f, 100f);

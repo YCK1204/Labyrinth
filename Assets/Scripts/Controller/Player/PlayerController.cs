@@ -267,7 +267,7 @@ public class PlayerController : CreatureController
         critX     = eq.CritX;
 
         armor     = eq.Armor;
-        hp        = eq.HpMax;
+        hp        = eq.Hp;
         Energy    = eq.Energy;
         speed     = eq.Speed;
         kbResist  = eq.KbResist;
