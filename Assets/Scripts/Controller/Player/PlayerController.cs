@@ -10,7 +10,7 @@ public class PlayerController : CreatureController
     [SerializeField] private float AttackRadius = 0.6f; // 원 범위 반경
     [SerializeField] private LayerMask EnemyLayer;
     [SerializeField] private float RollCooldown = 0.4f; // 회피 쿨타임
-    [SerializeField] private float RollIFrame   = 0.2f; // 무적 시간(초)
+    [SerializeField] private float RollIFrame = 0.2f; // 무적 시간(초)
     [SerializeField] public float Energy = 100f;
 
     [Header("Force")]
@@ -34,6 +34,7 @@ public class PlayerController : CreatureController
     private bool _jump, _roll, _attack;
     private Animator _an;
     private float _lockWatch;
+    private PlayerData PlayerData => creatureData as PlayerData;
     protected override void Init()
     {
         base.Init();
@@ -132,8 +133,8 @@ public class PlayerController : CreatureController
             var (dmg, isCrit) = CalcFinalDamage(power, monster.armor);
             monster.TakeDamage(dmg);
 
-            if(DamageUI.Instance != null)
-                DamageUI.Instance.Show(monster.transform.position + Vector3.up * 1f, dmg ,DamageStyle.Enemy, isCrit);
+            if (DamageUI.Instance != null)
+                DamageUI.Instance.Show(monster.transform.position + Vector3.up * 1f, dmg, DamageStyle.Enemy, isCrit);
 
             Debug.Log($"{monster.name}에게 {dmg} 피해!");
         }
@@ -256,17 +257,17 @@ public class PlayerController : CreatureController
     {
         if (eq == null) return;
 
-        power     = eq.Power;
-        atkSpeed  = eq.AtkSpeed;
-        armorPen  = eq.ArmorPen;
-        crit      = eq.Crit;
-        critX     = eq.CritX;
+        power = eq.Power;
+        atkSpeed = eq.AtkSpeed;
+        armorPen = eq.ArmorPen;
+        crit = eq.Crit;
+        critX = eq.CritX;
 
-        armor     = eq.Armor;
-        hp        = eq.Hp;
-        Energy    = eq.Energy;
-        speed     = eq.Speed;
-        kbResist  = eq.KbResist;
+        armor = eq.Armor;
+        hp = eq.Hp;
+        Energy = eq.Energy;
+        speed = eq.Speed;
+        kbResist = eq.KbResist;
     }
     //피해량 계산식
     (float damage, bool isCrit) CalcFinalDamage(float atk, float targetArmor)
@@ -274,7 +275,30 @@ public class PlayerController : CreatureController
         float effArmor = Mathf.Max(0f, targetArmor - armorPen);
         float reducMul = 100f / (100f + effArmor);
         bool isCrit = Random.Range(0, 100) < crit;
-        float damage   = atk * reducMul * (isCrit ? critX : 1f);
+        float damage = atk * reducMul * (isCrit ? critX : 1f);
         return (damage, isCrit);
+    }
+    public void AddExp(int amount)
+    {
+        if (amount <= 0) return;
+
+        PlayerData.Exp += amount;
+
+        // 여러 번 레벨업 가능
+        while (PlayerData.Exp >= PlayerData.MaxExp)
+        {
+            PlayerData.Exp -= PlayerData.MaxExp;
+            PlayerData.Level++;
+            LevelUp();
+        }
+
+        Debug.Log($"현재 레벨: {PlayerData.Level}, 경험치: {PlayerData.Exp}/{PlayerData.MaxExp}");
+    }
+
+    // 레벨업 시 처리
+    private void LevelUp()
+    {
+        Debug.Log($"🎉 레벨업! 현재 레벨 {PlayerData.Level}");
+        //능력치 증가 or 회복처리 
     }
 }

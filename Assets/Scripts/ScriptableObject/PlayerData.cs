@@ -12,6 +12,10 @@ public class PlayerData : CreatureData
     private int gold = 300;
     public int Gold { get { return gold; } set { gold = value; } }
     [SerializeField]
+    private int level = 1;
+    public int Level { get { return level; } set { level = value; } }
     private int exp = 0;
     public int Exp { get { return exp; } set { exp = value; } }
+
+    public int MaxExp => 100 * Level * Level;
 }
