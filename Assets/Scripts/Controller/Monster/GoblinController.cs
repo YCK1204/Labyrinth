@@ -21,7 +21,7 @@ public class GoblinController : MonsterController
     }
     public override void OnAttackFinished()
     {
-        if (target == null)
+        if (target == null || target.hp == 0)
         {
             state = MonsterState.Idle;
             return;
@@ -105,7 +105,10 @@ public class GoblinController : MonsterController
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            target = collision.gameObject;
+            var pc = collision.gameObject.GetComponent<PlayerController>();
+            if (pc == null)
+                return;
+            target = pc;
             state = MonsterState.Chase;
         }
     }
@@ -113,6 +116,9 @@ public class GoblinController : MonsterController
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            var pc = collision.gameObject.GetComponent<PlayerController>();
+            if (pc == null)
+                return;
             target = null;
             state = MonsterState.Idle;
         }
