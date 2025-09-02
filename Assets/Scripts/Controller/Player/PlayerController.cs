@@ -132,7 +132,6 @@ public class PlayerController : CreatureController
             var (dmg, isCrit) = CalcFinalDamage(power, monster.armor);
             monster.TakeDamage(dmg);
 
-            // 데미지 UI
             if(DamageUI.Instance != null)
                 DamageUI.Instance.Show(monster.transform.position + Vector3.up * 1f, dmg ,DamageStyle.Enemy, isCrit);
 
@@ -156,11 +155,6 @@ public class PlayerController : CreatureController
 
         hp -= dmg;
 
-        //나중에 몬스터에서 처리하도록 이동
-        //Vector3 pos = transform.position + Vector3.up * 1.0f;
-        // if(DamageUI.Instance != null)
-        //     DamageUI.Instance.Show(pos, dmg, DamageStyle.Player, isCrit);
-
         if (hp <= 0f)
         {
             hp = 0f;
@@ -174,6 +168,8 @@ public class PlayerController : CreatureController
     protected override void OnDied()
     {
         _anim.TrgDeath();
+        _rb.velocity = Vector2.zero;
+        _rb.isKinematic = true;
         enabled = false;
     }
     // 구르기 시작
@@ -279,7 +275,6 @@ public class PlayerController : CreatureController
         float reducMul = 100f / (100f + effArmor);
         bool isCrit = Random.Range(0, 100) < crit;
         float damage   = atk * reducMul * (isCrit ? critX : 1f);
-        Debug.Log(damage);
         return (damage, isCrit);
     }
 }

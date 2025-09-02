@@ -68,8 +68,12 @@ public class SlimeController : GroundMonsterController
                 var pc = collider.GetComponent<PlayerController>();
                 if (pc != null)
                 {
-                    var dmg = power * (100 / (100 + Mathf.Max(0, target.armor - armorPen))) * (Random.Range(0f, 100f) < crit ? critX : 1);
+                    bool isCrit = Random.Range(0f, 100f) < crit;
+                    var dmg = power * (100 / (100 + Mathf.Max(0, target.armor - armorPen))) *  (isCrit ? critX : 1);
+                    dmg = Mathf.Round(dmg * 10f) / 10f;
                     pc.TakeDamage(dmg);
+                    if (DamageUI.Instance != null)
+                        DamageUI.Instance.Show(pc.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
                     break;
                 }
             }
@@ -104,7 +108,7 @@ public class SlimeController : GroundMonsterController
             return;
         }
 
-        // °ø°Ý ÆÇÁ¤¿ë MonsterAttackHitboxController »ý¼º
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MonsterAttackHitboxController ï¿½ï¿½ï¿½ï¿½
         _attackHitbox = new GameObject("AttackHitbox").AddComponent<MonsterAttackHitboxController>();
         _attackHitbox.transform.parent = transform;
         _attackHitbox.Init(attackHitboxRadius, transform, Vector2.zero, LayerMask.GetMask("Player"));
