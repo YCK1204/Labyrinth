@@ -17,7 +17,8 @@ public class GoblinController : MonsterController
         if (coll == null) return;
         var player = coll.GetComponent<PlayerController>();
         if (player == null) return;
-        player.TakeDamage(3);
+        var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (Random.Range(0f, 100f) < crit ? critX : 1);
+        player.TakeDamage(dmg);
     }
     public override void OnAttackFinished()
     {
@@ -55,13 +56,11 @@ public class GoblinController : MonsterController
     float GetTopFloorY()
     {
         var hit = Physics2D.Raycast(transform.position, Vector2.up, maxCheckDist, 1 << LayerMask.NameToLayer("Ground"));
-        Debug.DrawRay(transform.position, Vector2.up * maxCheckDist, Color.red, 10f);
         return hit.collider != null ? hit.point.y : transform.position.y + maxCheckDist;
     }
     float GetBottomFloorY()
     {
         var hit = Physics2D.Raycast(transform.position, Vector2.down, maxCheckDist, 1 << LayerMask.NameToLayer("Ground"));
-        Debug.DrawRay(transform.position, Vector2.down * maxCheckDist, Color.red, 10f);
         return hit.collider != null ? hit.point.y : transform.position.y - maxCheckDist;
     }
     protected override void UpdateAnimation()

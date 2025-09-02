@@ -15,7 +15,7 @@ MonoBehaviour:
   _hp: 10
   _speed: 1
   _armor: 0
-  _power: 0
+  _power: 10
   _crit: 0
   _lv: 0
   _kbResist: 0

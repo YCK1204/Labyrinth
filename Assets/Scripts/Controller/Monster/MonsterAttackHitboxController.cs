@@ -13,7 +13,7 @@ public class MonsterAttackHitboxController : MonoBehaviour
         _radius = radius;
         _layer = layer;
     }
-    public Collider2D Check()
+    public virtual Collider2D Check()
     {
         return Physics2D.OverlapCircle(transform.position, _radius, _layer);
     }

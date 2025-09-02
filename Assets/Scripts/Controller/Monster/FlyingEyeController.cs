@@ -17,7 +17,8 @@ public class FlyingEyeController : MonsterController
         if (coll == null) return;
         var player = coll.GetComponent<PlayerController>();
         if (player == null) return;
-        player.TakeDamage(power);
+        var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (Random.Range(0f, 100f) < crit ? critX : 1);
+        player.TakeDamage(dmg);
     }
     public override void OnAttackReturn()
     {
