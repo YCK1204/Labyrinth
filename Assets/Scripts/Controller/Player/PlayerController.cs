@@ -4,8 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerController : CreatureController
 {
-    //[Header("Stats")]
-    //[SerializeField] private PlayerStats PlayerStats;
     [Header("Refs")]
     [SerializeField] private SimpleSensor2D GroundSensor;
     [SerializeField] private Transform AttackPoint;     // 칼끝 기준점
@@ -30,10 +28,11 @@ public class PlayerController : CreatureController
     private int _facing = 1;
     private float _rollTimer;
     private float _rollCooldownRemain;
-    // private float timer = 0;
 
     private float _inputX;
     private bool _jump, _roll, _attack;
+    private Animator _an;
+    private float _lockWatch;
     protected override void Init()
     {
         base.Init();
@@ -41,6 +40,7 @@ public class PlayerController : CreatureController
 
         _sr = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
+        _an = GetComponent<Animator>();
         _anim = new Playeranimator(GetComponent<Animator>());
         _rb.freezeRotation = true;
 
@@ -56,19 +56,28 @@ public class PlayerController : CreatureController
         _combo.Tick(Time.deltaTime);
         SenseAndAnimate();
         HandleActions();
-
-        //피격 테스트용
-        // timer += Time.deltaTime;
-        // if (timer > 2f)
-        // {
-        //     timer = 0;
-        //     TakeDamage(10f);
-        // }
     }
 
     private void FixedUpdate()
     {
         Move();
+    }
+    private void LateUpdate()
+    {
+        if (_attackLocked)
+        {
+            _lockWatch += Time.deltaTime;
+
+            var st = _an.GetCurrentAnimatorStateInfo(0);
+            var inAttack = st.IsTag("Attack")
+                        || st.IsName("Attack1")
+                        || st.IsName("Attack2")
+                        || st.IsName("Attack3");
+
+            // 공격 상태가 아니면 자동 해제 (또는 타임아웃)
+            if (!inAttack || _lockWatch > 1.0f)
+                _attackLocked = false;
+        }
     }
     // 이동 처리
     protected override void Move()
@@ -131,6 +140,7 @@ public class PlayerController : CreatureController
     public void OnAttackMoveLock()
     {
         _attackLocked = true;
+        _lockWatch = 0f;
     }
     public void OnAttackMoveUnlock()
     {
