@@ -5,6 +5,9 @@ using UnityEngine;
 public abstract class MonsterData : CreatureData
 {
     [SerializeField]
+    private Sprite spriteForCollisionSize;
+    public Sprite SpriteForCollisionSize { get { return spriteForCollisionSize; } }
+    [SerializeField]
     private Patrol _patrol;
     public Patrol Patrol { get { return _patrol; } }
     [SerializeField]

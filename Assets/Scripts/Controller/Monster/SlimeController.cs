@@ -2,50 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeController : MonsterController, IPaltformAwareMonster
+public class SlimeController : GroundMonsterController
 {
     SlimeData _slimeData;
-    float _maxCheckDist { get { return _slimeData.MaxCheckDist; } }
-
-    protected override Vector2 destDir => destPos.x < transform.position.x ? Vector2.left : Vector2.right;
     private MonsterAttackHitboxController _attackHitbox;
     float _speed;
-
-    protected override void UpdateAnimation()
-    {
-        switch (state)
-        {
-            case MonsterState.Idle:
-                animator.Play("Idle", -1, 0f);
-                break;
-            case MonsterState.Patrol:
-            case MonsterState.Chase:
-                animator.Play("Walk", -1, 0f);
-                break;
-            case MonsterState.Attack:
-                animator.Play("Attack", -1, 0f);
-                break;
-            case MonsterState.TakeHit:
-                animator.Play("TakeHit", -1, 0f);
-                break;
-            case MonsterState.Die:
-                animator.Play("Death", -1, 0f);
-                break;
-        }
-    }
     protected override void UpdateController()
     {
+        base.UpdateController();
+
         switch (state)
         {
-            case MonsterState.Idle:
-                Idle();
-                break;
-            case MonsterState.Patrol:
-                Patrol();
-                break;
-            case MonsterState.Chase:
-                Chase();
-                break;
             case MonsterState.Attack:
                 Move();
                 break;
@@ -128,7 +95,7 @@ public class SlimeController : MonsterController, IPaltformAwareMonster
     protected override void Init()
     {
         base.Init();
-        _slimeData = monsterData as SlimeData;
+        _slimeData = _gmData as SlimeData;
         _speed = speed;
 
         if (_slimeData == null)
@@ -136,30 +103,6 @@ public class SlimeController : MonsterController, IPaltformAwareMonster
             Debug.LogError("GoblinController: monsterData is not GoblinData");
             return;
         }
-        // 몬스터 파격용 박스콜라이더 생성
-        var child = new GameObject("Collision");
-        child.transform.parent = transform;
-        child.layer = LayerMask.NameToLayer("MonsterCollision");
-        child.transform.localPosition = Vector2.zero;
-
-        // 플레이어 감지용 박스콜라이더 생성
-        detectionCollider = gameObject.AddComponent<BoxCollider2D>();
-        detectionCollider.isTrigger = true;
-
-        // 현재 위 아래 플랫폼 사이 간격에 맞게 감지 콜라이더 크기 조정
-        float yTop = (this as IPaltformAwareMonster).GetTopFloorY(transform, _maxCheckDist);
-        float yBottom = (this as IPaltformAwareMonster).GetBottomFloorY(transform, _maxCheckDist);
-        float height = yTop - yBottom;
-
-
-        var collision = child.gameObject.AddComponent<BoxCollider2D>();
-        collision.size = (Vector2)spriteRenderer.bounds.size;
-        var offset = collision.bounds.center.y - collision.bounds.min.y;
-        transform.position = new Vector2(transform.position.x, yBottom + offset);
-        (detectionCollider as BoxCollider2D).size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
-        detectionCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
-
-        Physics2D.IgnoreCollision(detectionCollider, collision);
 
         // 공격 판정용 MonsterAttackHitboxController 생성
         _attackHitbox = new GameObject("AttackHitbox").AddComponent<MonsterAttackHitboxController>();

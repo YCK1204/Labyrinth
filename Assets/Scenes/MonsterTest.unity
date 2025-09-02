@@ -23110,13 +23110,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 379386123481688153, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: creatureData
+      value: 
+      objectReference: {fileID: 11400000, guid: d00ba6d8fd2b82e478a17b014c1a97d9, type: 2}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.27
+      value: 1.59
       objectReference: {fileID: 0}
     - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.49
+      value: 11.37
       objectReference: {fileID: 0}
     - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23156,7 +23172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3304108167855236742, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
