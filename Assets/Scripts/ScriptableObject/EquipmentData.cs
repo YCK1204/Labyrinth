@@ -35,6 +35,8 @@ public class EquipmentData : ScriptableObject
     [Header("아이템 정보")]
     public string itemName;
     public EquipmentType type;
+    public Sprite icon;
+    public int price;
 
     [Header("스탯")]
     public StatValue[] stats;
