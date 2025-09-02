@@ -9,7 +9,6 @@ public class FlyingEyeController : MonsterController
     Coroutine _coMoveAttack = null;
     float OnAttackDuration { get { return _data.OnAttackDuration; } }
     float FinishAttackDuration { get { return _data.FinishAttackDuration; } }
-    CircleCollider2D detectionRangeCollider;
     public override void OnAttacked()
     {
         Vector2 pos = transform.position;
@@ -126,15 +125,16 @@ public class FlyingEyeController : MonsterController
     {
         base.Init();
         _data = monsterData as FlyingeyeData;
-        detectionRangeCollider = gameObject.AddComponent<CircleCollider2D>();
-        detectionRangeCollider.isTrigger = true;
-        detectionRangeCollider.radius = patrol.detectionRange;
+        detectionCollider = gameObject.AddComponent<CircleCollider2D>();
+        detectionCollider.isTrigger = true;
+        (detectionCollider as CircleCollider2D).radius = patrol.detectionRange;
         var child = new GameObject("Collision");
         child.transform.parent = transform;
         child.layer = LayerMask.NameToLayer("MonsterCollision");
         child.transform.localPosition = Vector2.zero;
         var collision = child.gameObject.AddComponent<BoxCollider2D>();
-        Physics2D.IgnoreCollision(detectionRangeCollider, collision);
+        Physics2D.IgnoreCollision(detectionCollider, collision);
         collision.size = (Vector2)spriteRenderer.bounds.size;
+        startPosition = transform.position;
     }
 }

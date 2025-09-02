@@ -33,6 +33,7 @@ public abstract class MonsterController : CreatureController
     protected Patrol patrol = new Patrol();
     protected float attackHitboxRadius { get { return monsterData.AttackHitboxRadius; } }
     protected float attackRange { get { return monsterData.AttackRange; } }
+    protected Vector2 startPosition;
 
     protected PlayerController target;
     Vector2 _destPos = Vector2.zero;
@@ -54,6 +55,7 @@ public abstract class MonsterController : CreatureController
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
 
+    protected Collider2D detectionCollider;
     private float fadeoutTime = 1f;
     protected enum MonsterState
     {
@@ -175,8 +177,6 @@ public abstract class MonsterController : CreatureController
     }
     public override void TakeDamage(float dmg)
     {
-        //dmg = dmg * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * Random.Range(0f, 100f) < crit ? critX : 1;
-
         hp = Mathf.Clamp(hp - dmg, 0, hp);
         if (hp == 0)
             state = MonsterState.Die;
@@ -190,7 +190,7 @@ public abstract class MonsterController : CreatureController
         var dir = directions[ranInt];
         var range = Random.Range(0, patrol.range);
 
-        return transform.position + (Vector3)dir * range;
+        return startPosition + dir * range;
     }
     public virtual void StartAttack() { }
     public virtual void OnAttackReturn() { }
