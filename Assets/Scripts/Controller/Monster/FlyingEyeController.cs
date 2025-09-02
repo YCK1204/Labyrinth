@@ -9,7 +9,6 @@ public class FlyingEyeController : MonsterController
     Coroutine _coMoveAttack = null;
     float OnAttackDuration { get { return _data.OnAttackDuration; } }
     float FinishAttackDuration { get { return _data.FinishAttackDuration; } }
-    CircleCollider2D detectionRangeCollider;
     public override void OnAttacked()
     {
         Vector2 pos = transform.position;
@@ -17,7 +16,8 @@ public class FlyingEyeController : MonsterController
         if (coll == null) return;
         var player = coll.GetComponent<PlayerController>();
         if (player == null) return;
-        player.TakeDamage(power);
+        var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (Random.Range(0f, 100f) < crit ? critX : 1);
+        player.TakeDamage(dmg);
     }
     public override void OnAttackReturn()
     {
@@ -125,37 +125,16 @@ public class FlyingEyeController : MonsterController
     {
         base.Init();
         _data = monsterData as FlyingeyeData;
-        detectionRangeCollider = gameObject.AddComponent<CircleCollider2D>();
-        detectionRangeCollider.isTrigger = true;
-        detectionRangeCollider.radius = patrol.detectionRange;
+        detectionCollider = gameObject.AddComponent<CircleCollider2D>();
+        detectionCollider.isTrigger = true;
+        (detectionCollider as CircleCollider2D).radius = patrol.detectionRange;
         var child = new GameObject("Collision");
         child.transform.parent = transform;
         child.layer = LayerMask.NameToLayer("MonsterCollision");
         child.transform.localPosition = Vector2.zero;
         var collision = child.gameObject.AddComponent<BoxCollider2D>();
-        Physics2D.IgnoreCollision(detectionRangeCollider, collision);
+        Physics2D.IgnoreCollision(detectionCollider, collision);
         collision.size = (Vector2)spriteRenderer.bounds.size;
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            var pc = collision.gameObject.GetComponent<PlayerController>();
-            if (pc == null)
-                return;
-            target = pc;
-            state = MonsterState.Chase;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            var pc = collision.gameObject.GetComponent<PlayerController>();
-            if (pc == null)
-                return;
-            target = null;
-            state = MonsterState.Idle;
-        }
+        startPosition = transform.position;
     }
 }

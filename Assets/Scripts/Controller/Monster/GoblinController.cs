@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoblinController : MonsterController
+public class GoblinController : MonsterController, IPaltformAwareMonster
 {
     GoblinData _data;
-    BoxCollider2D _detectionRangeCollider;
     MonsterAttackHitboxController attackHitboxController;
     Vector2 attackHitboxOffset { get { return _data.AttackHitboxOffset; } }
     float maxCheckDist { get { return _data.MaxCheckDist; } }
@@ -17,7 +16,8 @@ public class GoblinController : MonsterController
         if (coll == null) return;
         var player = coll.GetComponent<PlayerController>();
         if (player == null) return;
-        player.TakeDamage(3);
+        var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (Random.Range(0f, 100f) < crit ? critX : 1);
+        player.TakeDamage(dmg);
     }
     public override void OnAttackFinished()
     {
@@ -50,19 +50,6 @@ public class GoblinController : MonsterController
         var range = Random.Range(0, patrol.range);
 
         return transform.position + (Vector3)dir * range;
-    }
-
-    float GetTopFloorY()
-    {
-        var hit = Physics2D.Raycast(transform.position, Vector2.up, maxCheckDist, 1 << LayerMask.NameToLayer("Ground"));
-        Debug.DrawRay(transform.position, Vector2.up * maxCheckDist, Color.red, 10f);
-        return hit.collider != null ? hit.point.y : transform.position.y + maxCheckDist;
-    }
-    float GetBottomFloorY()
-    {
-        var hit = Physics2D.Raycast(transform.position, Vector2.down, maxCheckDist, 1 << LayerMask.NameToLayer("Ground"));
-        Debug.DrawRay(transform.position, Vector2.down * maxCheckDist, Color.red, 10f);
-        return hit.collider != null ? hit.point.y : transform.position.y - maxCheckDist;
     }
     protected override void UpdateAnimation()
     {
@@ -101,27 +88,20 @@ public class GoblinController : MonsterController
                 break;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void Move()
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        var pos = transform.position + speed * Time.deltaTime * (Vector3)destDir;
+        pos.y = detectionCollider.bounds.min.y + .01f;
+        Ray ray = new Ray(pos, Vector2.down);
+        var hit = Physics2D.Raycast(pos, Vector2.down, .1f, LayerMask.GetMask("Ground"));
+
+        if (hit.collider == null)
         {
-            var pc = collision.gameObject.GetComponent<PlayerController>();
-            if (pc == null)
-                return;
-            target = pc;
-            state = MonsterState.Chase;
+            if (state == MonsterState.Patrol)
+                state = MonsterState.Idle;
+            return;
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            var pc = collision.gameObject.GetComponent<PlayerController>();
-            if (pc == null)
-                return;
-            target = null;
-            state = MonsterState.Idle;
-        }
+        base.Move();
     }
     protected override void Init()
     {
@@ -133,30 +113,35 @@ public class GoblinController : MonsterController
             Debug.LogError("GoblinController: monsterData is not GoblinData");
             return;
         }
+        // 몬스터 파격용 박스콜라이더 생성
         var child = new GameObject("Collision");
         child.transform.parent = transform;
         child.layer = LayerMask.NameToLayer("MonsterCollision");
         child.transform.localPosition = Vector2.zero;
 
-        _detectionRangeCollider = gameObject.AddComponent<BoxCollider2D>();
-        _detectionRangeCollider.isTrigger = true;
+        // 플레이어 감지용 박스콜라이더 생성
+        detectionCollider = gameObject.AddComponent<BoxCollider2D>();
+        detectionCollider.isTrigger = true;
 
-        float yBottom = GetBottomFloorY();
-        float yTop = GetTopFloorY();
+        // 현재 위 아래 플랫폼 사이 간격에 맞게 감지 콜라이더 크기 조정
+        float yTop = (this as IPaltformAwareMonster).GetTopFloorY(transform, maxCheckDist);
+        float yBottom = (this as IPaltformAwareMonster).GetBottomFloorY(transform, maxCheckDist);
         float height = yTop - yBottom;
 
-        _detectionRangeCollider.size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
-        _detectionRangeCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
+        (detectionCollider as BoxCollider2D).size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
+        detectionCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
 
         var collision = child.gameObject.AddComponent<BoxCollider2D>();
         collision.size = (Vector2)spriteRenderer.bounds.size;
         var offset = collision.bounds.center.y - collision.bounds.min.y;
         transform.position = new Vector2(transform.position.x, yBottom + offset);
 
+        // 공격 판정용 MonsterAttackHitboxController 생성
         var attackHitbox = new GameObject("AttackHitbox");
         attackHitboxController = attackHitbox.AddComponent<MonsterAttackHitboxController>();
         attackHitboxController.Init(attackHitboxRadius, transform, attackHitboxOffset, 1 << LayerMask.NameToLayer("Player"));
 
-        Physics2D.IgnoreCollision(_detectionRangeCollider, collision);
+        Physics2D.IgnoreCollision(detectionCollider, collision);
+        startPosition = transform.position;
     }
 }
