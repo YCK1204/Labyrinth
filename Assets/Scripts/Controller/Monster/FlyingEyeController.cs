@@ -136,5 +136,6 @@ public class FlyingEyeController : MonsterController
         var collision = child.gameObject.AddComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(detectionRangeCollider, collision);
         collision.size = (Vector2)spriteRenderer.bounds.size;
+        startPosition = transform.position;
     }
 }

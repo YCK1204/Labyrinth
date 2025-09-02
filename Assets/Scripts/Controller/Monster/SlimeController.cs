@@ -111,7 +111,21 @@ public class SlimeController : MonsterController, IPaltformAwareMonster
         }
     }
     #endregion
-    
+    protected override void Move()
+    {
+        var pos = transform.position + speed * Time.deltaTime * (Vector3)destDir;
+        pos.y = detectionCollider.bounds.min.y + .01f;
+        Ray ray = new Ray(pos, Vector2.down);
+        var hit = Physics2D.Raycast(pos, Vector2.down, .1f, LayerMask.GetMask("Ground"));
+
+        if (hit.collider == null)
+        {
+            if (state == MonsterState.Patrol)
+                state = MonsterState.Idle;
+            return;
+        }
+        base.Move();
+    }
     protected override void Init()
     {
         base.Init();
@@ -135,19 +149,20 @@ public class SlimeController : MonsterController, IPaltformAwareMonster
         float yBottom = (this as IPaltformAwareMonster).GetBottomFloorY(transform, _maxCheckDist);
         float height = yTop - yBottom;
 
-        detectionCollider.size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
-        detectionCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
 
         var collision = child.gameObject.AddComponent<BoxCollider2D>();
         collision.size = (Vector2)spriteRenderer.bounds.size;
         var offset = collision.bounds.center.y - collision.bounds.min.y;
         transform.position = new Vector2(transform.position.x, yBottom + offset);
+        detectionCollider.size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
+        detectionCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
 
         Physics2D.IgnoreCollision(detectionCollider, collision);
 
         _attackHitbox = new GameObject("AttackHitbox").AddComponent<MonsterAttackHitboxController>();
         _attackHitbox.transform.parent = transform;
         _attackHitbox.Init(attackHitboxRadius, transform, Vector2.zero, LayerMask.GetMask("Player"));
+        startPosition = transform.position;
     }
     protected override void OnTriggerExit2D(Collider2D collision)
     {
