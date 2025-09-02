@@ -127,7 +127,7 @@ public class PlayerController : CreatureController
             var monster = h.GetComponentInParent<MonsterController>();
             if (monster == null) continue;
 
-            var (dmg, isCrit) = CalcFinalDamage(power, 0f);
+            var (dmg, isCrit) = CalcFinalDamage(power, monster.armor);
             monster.TakeDamage(dmg);
 
             // 데미지 UI
@@ -153,7 +153,6 @@ public class PlayerController : CreatureController
         if (_rolling && _rollTimer <= RollIFrame) return;
 
         var (dmg, isCrit) = CalcFinalDamage(atk, armor);
-        dmg = Mathf.Round(dmg * 10f) / 10f;
         hp -= dmg;
 
         Vector3 pos = transform.position + Vector3.up * 1.0f;
