@@ -8,9 +8,9 @@ public class Patrol
 {
     public float range;
     public float interval;
-    public float nextPatrolTime;
     public float detectionRange;
     public Vector2[] directions;
+    public float lastPatrolTime;
 }
 
 public interface IJumpable
@@ -20,16 +20,27 @@ public interface IJumpable
 
 public abstract class MonsterController : CreatureController
 {
-    [SerializeField]
-    protected Patrol patrol;
-    [SerializeField]
-    protected float attackHitboxRadius = 0.5f;
+    protected MonsterData monsterData;
+    protected Patrol patrol = new Patrol();
+    protected float attackHitboxRadius { get { return monsterData.AttackHitboxRadius; } }
+    protected float attackRange { get { return monsterData.AttackRange; } }
 
-    protected GameObject target;
-    protected float lastPatrolTime;
-    protected float lastChaseTime;
-    protected float attackRange;
-    protected Vector2 destPos = Vector2.zero;
+    protected PlayerController target;
+    Vector2 _destPos = Vector2.zero;
+    protected Vector2 destPos
+    {
+        get { return _destPos; }
+        set
+        {
+            _destPos = value;
+            var scale = transform.localScale;
+            if (_destPos.x < transform.position.x)
+                scale.x = -Mathf.Abs(scale.x);
+            else
+                scale.x = Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
+    }
     protected virtual Vector2 destDir { get { return (destPos - (Vector2)transform.position).normalized; } }
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
@@ -51,25 +62,32 @@ public abstract class MonsterController : CreatureController
         get { return _state; }
         set
         {
-            if (_state != value)
+            if (_state != value && _state != MonsterState.Die)
             {
                 _state = value;
                 UpdateAnimation();
             }
         }
     }
-    private void Start()
-    {
-        Init();
-    }
     protected override void OnDied()
     {
         StartCoroutine(FadeOut());
     }
-    protected virtual void Init()
+    protected override void Init()
     {
+        base.Init();
+        monsterData = creatureData as MonsterData;
+        if (monsterData == null)
+        {
+            Debug.LogError("Unassigned MonsterData to " + gameObject.name);
+            return;
+        }
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        patrol.range = monsterData.Patrol.range;
+        patrol.interval = monsterData.Patrol.interval;
+        patrol.detectionRange = monsterData.Patrol.detectionRange;
+        patrol.directions = monsterData.Patrol.directions;
     }
     IEnumerator FadeOut()
     {
@@ -88,16 +106,17 @@ public abstract class MonsterController : CreatureController
     }
     private void Update()
     {
+        if (state == MonsterState.Die)
+            return;
         UpdateController();
     }
     protected override void Move()
     {
         transform.position += speed * Time.deltaTime * (Vector3)destDir;
-        spriteRenderer.flipX = (destDir.x < 0);
     }
     protected virtual void Idle()
     {
-        if (Time.time - lastPatrolTime > patrol.interval)
+        if (Time.time - patrol.lastPatrolTime > patrol.interval)
         {
             destPos = GenRandomPosition();
             state = MonsterState.Patrol;
@@ -108,17 +127,19 @@ public abstract class MonsterController : CreatureController
     }
     protected virtual void Chase()
     {
+        if (target == null || target.hp == 0)
+        {
+            state = MonsterState.Idle;
+            return;
+        }
+
         destPos = target.transform.position;
 
         var dist = Vector2.Distance(transform.position, destPos);
         if (dist < attackRange)
-        {
             state = MonsterState.Attack;
-        }
         else
-        {
             Move();
-        }
     }
     protected virtual void Die() { }
     protected virtual void Patrol()
@@ -128,7 +149,7 @@ public abstract class MonsterController : CreatureController
 
         if (dist < 0.1f)
         {
-            lastPatrolTime = Time.time;
+            patrol.lastPatrolTime = Time.time;
             state = MonsterState.Idle;
         }
         else
@@ -144,6 +165,8 @@ public abstract class MonsterController : CreatureController
     }
     public override void TakeDamage(float dmg)
     {
+        //dmg = dmg * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * Random.Range(0f, 100f) < crit ? critX : 1;
+
         hp = Mathf.Clamp(hp - dmg, 0, hp);
         if (hp == 0)
             state = MonsterState.Die;
@@ -151,10 +174,10 @@ public abstract class MonsterController : CreatureController
             state = MonsterState.TakeHit;
     }
     protected abstract Vector2 GenRandomPosition();
-    public virtual void StartAttack() {}
-    public virtual void OnAttackReturn() {}
-    public virtual void OnAttackFinished() {}
-    public virtual void OnAttacked() {}
+    public virtual void StartAttack() { }
+    public virtual void OnAttackReturn() { }
+    public virtual void OnAttackFinished() { }
+    public virtual void OnAttacked() { }
     protected abstract void UpdateAnimation();
     protected abstract void UpdateController();
 }

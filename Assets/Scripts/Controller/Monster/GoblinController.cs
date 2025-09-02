@@ -4,34 +4,24 @@ using UnityEngine;
 
 public class GoblinController : MonsterController
 {
-    [SerializeField]
-    float Speed;
-    [SerializeField]
-    float AttackRange;
+    GoblinData _data;
     BoxCollider2D _detectionRangeCollider;
-
-    [SerializeField]
-    float backdumblingDuration;
-    [SerializeField]
-    float attack2OnAttackDuration;
-    [SerializeField]
-    float attack2FinishAttackDuration;
-    [SerializeField]
-    float maxCheckDist;
+    MonsterAttackHitboxController attackHitboxController;
+    Vector2 attackHitboxOffset { get { return _data.AttackHitboxOffset; } }
+    float maxCheckDist { get { return _data.MaxCheckDist; } }
     protected override Vector2 destDir => destPos.x < transform.position.x ? Vector2.left : Vector2.right;
     public override void OnAttacked()
     {
         Vector2 pos = transform.position;
-        var coll = Physics2D.OverlapCircle(pos, attackHitboxRadius, LayerMask.GetMask("Player"));
+        var coll = attackHitboxController.Check();
         if (coll == null) return;
         var player = coll.GetComponent<PlayerController>();
         if (player == null) return;
         player.TakeDamage(3);
-        //player.takeDamage(damage);
     }
     public override void OnAttackFinished()
     {
-        if (target == null)
+        if (target == null || target.hp == 0)
         {
             state = MonsterState.Idle;
             return;
@@ -49,7 +39,6 @@ public class GoblinController : MonsterController
         }
         else
         {
-            spriteRenderer.flipX = (target.transform.position.x < transform.position.x);
             animator.Play("Attack1", -1, 0f);
         }
     }
@@ -87,7 +76,6 @@ public class GoblinController : MonsterController
                 animator.Play("Run", -1, 0f);
                 break;
             case MonsterState.Attack:
-                spriteRenderer.flipX = (target.transform.position.x < transform.position.x);
                 animator.Play("Attack1");
                 break;
             case MonsterState.TakeHit:
@@ -117,7 +105,10 @@ public class GoblinController : MonsterController
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            target = collision.gameObject;
+            var pc = collision.gameObject.GetComponent<PlayerController>();
+            if (pc == null)
+                return;
+            target = pc;
             state = MonsterState.Chase;
         }
     }
@@ -125,42 +116,47 @@ public class GoblinController : MonsterController
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            var pc = collision.gameObject.GetComponent<PlayerController>();
+            if (pc == null)
+                return;
             target = null;
             state = MonsterState.Idle;
         }
     }
-    protected override void Move()
-    {
-        transform.position += speed * Time.deltaTime * (Vector3)destDir;
-        spriteRenderer.flipX = (destDir.x < 0);
-    }
-    [SerializeField]
-    Vector2 attackHitboxOffset;
     protected override void Init()
     {
         base.Init();
-        patrol.directions = new Vector2[] { Vector2.left, Vector2.right };
-        _detectionRangeCollider = gameObject.AddComponent<BoxCollider2D>();
-        _detectionRangeCollider.isTrigger = true;
-        float yBottom = GetBottomFloorY();
-        float yTop = GetTopFloorY();
-        float height = yTop - yBottom;
 
+        _data = monsterData as GoblinData;
+        if (_data == null)
+        {
+            Debug.LogError("GoblinController: monsterData is not GoblinData");
+            return;
+        }
         var child = new GameObject("Collision");
         child.transform.parent = transform;
         child.layer = LayerMask.NameToLayer("MonsterCollision");
         child.transform.localPosition = Vector2.zero;
+
+        _detectionRangeCollider = gameObject.AddComponent<BoxCollider2D>();
+        _detectionRangeCollider.isTrigger = true;
+
+        float yBottom = GetBottomFloorY();
+        float yTop = GetTopFloorY();
+        float height = yTop - yBottom;
+
+        _detectionRangeCollider.size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
+        _detectionRangeCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
+
         var collision = child.gameObject.AddComponent<BoxCollider2D>();
-        Physics2D.IgnoreCollision(_detectionRangeCollider, collision);
         collision.size = (Vector2)spriteRenderer.bounds.size;
         var offset = collision.bounds.center.y - collision.bounds.min.y;
         transform.position = new Vector2(transform.position.x, yBottom + offset);
-        _detectionRangeCollider.size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
-        _detectionRangeCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
-        speed = Speed;
-        attackRange = AttackRange;
+
         var attackHitbox = new GameObject("AttackHitbox");
-        var attackHitboxController = attackHitbox.AddComponent<MonsterAttackHitboxController>();
+        attackHitboxController = attackHitbox.AddComponent<MonsterAttackHitboxController>();
         attackHitboxController.Init(attackHitboxRadius, transform, attackHitboxOffset, 1 << LayerMask.NameToLayer("Player"));
+
+        Physics2D.IgnoreCollision(_detectionRangeCollider, collision);
     }
 }
