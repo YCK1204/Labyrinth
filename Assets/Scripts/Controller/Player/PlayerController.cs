@@ -11,6 +11,7 @@ public class PlayerController : CreatureController
     [SerializeField] private LayerMask EnemyLayer;
     [SerializeField] private float RollCooldown = 0.4f; // 회피 쿨타임
     [SerializeField] private float RollIFrame   = 0.2f; // 무적 시간(초)
+    [SerializeField] public float Energy = 100f;
 
     [Header("Force")]
     [SerializeField] private float JumpForce = 7.5f;
@@ -41,6 +42,7 @@ public class PlayerController : CreatureController
         _sr = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
         _an = GetComponent<Animator>();
+        GetComponent<PlayerEquipment>()?.SyncToController();
         _anim = new Playeranimator(GetComponent<Animator>());
         _rb.freezeRotation = true;
 
@@ -253,6 +255,22 @@ public class PlayerController : CreatureController
         var pos = _attackPointDefault;
         pos.x = Mathf.Abs(pos.x) * (_facing >= 0 ? 1 : -1);
         AttackPoint.localPosition = pos;
+    }
+    public void ApplyStatsFrom(PlayerEquipment eq)
+    {
+        if (eq == null) return;
+
+        power     = eq.Power;
+        atkSpeed  = eq.AtkSpeed;
+        armorPen  = eq.ArmorPen;
+        crit      = eq.Crit;
+        critX     = eq.CritX;
+
+        armor     = eq.Armor;
+        hp        = eq.HpMax;
+        Energy    = eq.Energy;
+        speed     = eq.Speed;
+        kbResist  = eq.KbResist;
     }
     //피해량 계산식
     (float damage, bool isCrit) CalcFinalDamage(float atk, float targetArmor)

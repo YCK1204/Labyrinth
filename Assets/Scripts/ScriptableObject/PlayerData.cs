@@ -6,6 +6,9 @@ using UnityEngine;
 public class PlayerData : CreatureData
 {
     [SerializeField]
+    private float energy = 100f;
+    public float Energy { get { return energy; } set { energy = value; } }
+    [SerializeField]
     private int gold = 300;
     public int Gold { get { return gold; } set { gold = value; } }
     [SerializeField]
