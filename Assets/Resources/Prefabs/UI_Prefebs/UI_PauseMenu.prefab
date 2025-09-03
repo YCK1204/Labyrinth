@@ -254,7 +254,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6869793554898507884}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7753487254847884477}
+        m_TargetAssemblyTypeName: PauseMenuUI, Assembly-CSharp
+        m_MethodName: OnResumeButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &977888285522180267
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +462,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6946501132233765509}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7753487254847884477}
+        m_TargetAssemblyTypeName: PauseMenuUI, Assembly-CSharp
+        m_MethodName: OnExitButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1503750639349822194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2252,6 +2276,7 @@ GameObject:
   - component: {fileID: 5744332815371909001}
   - component: {fileID: 993047229353518657}
   - component: {fileID: 7406425991398976157}
+  - component: {fileID: 7753487254847884477}
   m_Layer: 5
   m_Name: UI_PauseMenu
   m_TagString: Untagged
@@ -2342,6 +2367,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7753487254847884477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7385122467044348172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3deefa87f3ac1694894178489e41ad27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atkCountText: {fileID: 759692009587160184}
+  atkSpdCountText: {fileID: 6190409166765176724}
+  defCountText: {fileID: 766062896541227003}
+  hpCountText: {fileID: 8064544299714677917}
 --- !u!1 &7881243696659063582
 GameObject:
   m_ObjectHideFlags: 0
@@ -2596,7 +2637,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8559281226691231483}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7753487254847884477}
+        m_TargetAssemblyTypeName: PauseMenuUI, Assembly-CSharp
+        m_MethodName: OnSettingButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8830929366890824884
 GameObject:
   m_ObjectHideFlags: 0

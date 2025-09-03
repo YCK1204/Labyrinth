@@ -3,7 +3,15 @@ guid: be36e0d255eb88a46b8125cc19636690
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - startScreenUIPrefeb: {instanceID: 0}
+  - settingUIPrefeb: {fileID: 2516878641773862092, guid: b83035552ca030f4ca8d292fde547904, type: 3}
+  - exitUIPrefeb: {fileID: 7657130888181221254, guid: 2009828ad80a4f4478f5654b03dfa40b, type: 3}
+  - shopUIPrefeb: {instanceID: 0}
+  - upgradeUIPrefeb: {instanceID: 0}
+  - playerStatusUIPrefeb: {fileID: 6712904606964598105, guid: 45a88395005b46b49b71cf7f79715103, type: 3}
+  - topButtonUIPrefeb: {fileID: 5737659345886719407, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
+  - pauseMenuUIPrefeb: {fileID: 7385122467044348172, guid: 61e9e9e6d4228884c94612b7886e6164, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
