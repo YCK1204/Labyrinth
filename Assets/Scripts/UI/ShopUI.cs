@@ -6,12 +6,14 @@ using TMPro;
 public class ShopUI : MonoBehaviour
 {
     [SerializeField] private PlayerData playerSO;
-    [SerializeField] private GameObject shopPanel;
+    
     [Header("List UI")]
     [SerializeField] private Transform content;
     [SerializeField] private GameObject rowPrefab;
     [SerializeField] private List<EquipmentData> shopItems = new();
     [SerializeField] private TMP_Text playerGoldText;
+    PlayerEquipment equipRef;
+
 
     [Header("Confirm UI")]
     [SerializeField] private GameObject buySellPanel;
@@ -54,6 +56,8 @@ public class ShopUI : MonoBehaviour
 
     void Start()
     {
+        equipRef = FindObjectOfType<PlayerEquipment>();
+
         Refresh();
         if (itemDetailPanel) itemDetailPanel.SetActive(false);
         if (buySellPanel) buySellPanel.SetActive(false);
@@ -65,12 +69,17 @@ public class ShopUI : MonoBehaviour
         if (noButton) noButton.onClick.AddListener(CloseConfirm);
         if (cantBuyPanel) cantBuyPanel.SetActive(false);
         if (confirmButton) confirmButton.onClick.AddListener(() => cantBuyPanel.SetActive(false));
-        if (exitButton) exitButton.onClick.AddListener(() => shopPanel.SetActive(false));
+        if (exitButton) exitButton.onClick.AddListener(() => Manager.UI.HideShopUI());
+
         UpdateGoldUI();
         UpdateBuyButtonState();
         UpdateSellButtonState();
         UpdateEquipButtonState();
+
+        // 장착 배지 초기 동기화
+        if (equipRef) SyncBadges(equipRef);
     }
+
 
     public void Refresh()
     {
@@ -124,6 +133,7 @@ public class ShopUI : MonoBehaviour
                 btn.onClick.AddListener(() => OnRowClicked(row, item));
             }
         }
+        if (equipRef) SyncBadges(equipRef);
     }
 
     void OnRowClicked(GameObject row, EquipmentData item)
@@ -194,24 +204,15 @@ public class ShopUI : MonoBehaviour
     void SellSelected()
     {
         if (selectedItem == null || !purchased.Contains(selectedItem) || playerSO == null) return;
-
-        var equip = FindObjectOfType<PlayerEquipment>();
-        if (equip)
-        {
-            if (equip.weapon == selectedItem) equip.Unequip(EquipmentData.EquipmentType.Weapon);
-            if (equip.armor == selectedItem)  equip.Unequip(EquipmentData.EquipmentType.Armor);
-            SyncBadges(equip);
-        }
+        if (equipRef && (equipRef.weapon == selectedItem || equipRef.armor == selectedItem)) return;
 
         int sellPrice = Mathf.FloorToInt(selectedItem.price * 0.7f);
-
         playerSO.Gold += sellPrice;
         UpdateGoldUI();
 
         purchased.Remove(selectedItem);
 
         if (priceText) priceText.text = "Gold " + selectedItem.price;
-
         if (rowMap.TryGetValue(selectedItem, out var row2))
         {
             var texts = row2.GetComponentsInChildren<TMP_Text>(true);
@@ -226,41 +227,24 @@ public class ShopUI : MonoBehaviour
     void ToggleEquip()
     {
         if (selectedItem == null || !purchased.Contains(selectedItem)) return;
-
-        var equip = FindObjectOfType<PlayerEquipment>();
-        if (!equip) return;
+        if (!equipRef) return;
 
         if (selectedItem.type == EquipmentData.EquipmentType.Weapon)
         {
-            if (equip.weapon == selectedItem)
-            {
-                equip.Unequip(EquipmentData.EquipmentType.Weapon);
-            }
-            else
-            {
-                var prev = equip.weapon;
-                if (prev != null) equip.Unequip(EquipmentData.EquipmentType.Weapon);
-                equip.Equip(selectedItem);
-            }
+            if (equipRef.weapon == selectedItem) { equipRef.Unequip(EquipmentData.EquipmentType.Weapon); }
+            else { if (equipRef.weapon) equipRef.Unequip(EquipmentData.EquipmentType.Weapon); equipRef.Equip(selectedItem); }
         }
         else if (selectedItem.type == EquipmentData.EquipmentType.Armor)
         {
-            if (equip.armor == selectedItem)
-            {
-                equip.Unequip(EquipmentData.EquipmentType.Armor);
-            }
-            else
-            {
-                var prev = equip.armor;
-                if (prev != null) equip.Unequip(EquipmentData.EquipmentType.Armor);
-                equip.Equip(selectedItem);
-            }
+            if (equipRef.armor == selectedItem) { equipRef.Unequip(EquipmentData.EquipmentType.Armor); }
+            else { if (equipRef.armor) equipRef.Unequip(EquipmentData.EquipmentType.Armor); equipRef.Equip(selectedItem); }
         }
 
-        SyncBadges(equip);
+        SyncBadges(equipRef);
         UpdateEquipButtonState();
         UpdateSellButtonState();
     }
+
 
 
     void UpdateBuyButtonState()
@@ -272,19 +256,16 @@ public class ShopUI : MonoBehaviour
     void UpdateSellButtonState()
     {
         if (!sellButton) return;
-
-        var equip = FindObjectOfType<PlayerEquipment>();
-        bool isEquipped = equip && 
-            ((equip.weapon == selectedItem) || (equip.armor == selectedItem));
-
+        bool isEquipped = equipRef &&
+            ((equipRef.weapon == selectedItem) || (equipRef.armor == selectedItem));
         bool canSell = selectedItem != null && purchased.Contains(selectedItem) && !isEquipped;
 
         sellButton.interactable = canSell;
-
         var colors = sellButton.colors;
         colors.normalColor = canSell ? Color.white : new Color(0.7f, 0.7f, 0.7f);
         sellButton.colors = colors;
     }
+
 
 
     void UpdateEquipButtonState()
