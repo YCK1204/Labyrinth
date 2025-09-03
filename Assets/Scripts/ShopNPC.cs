@@ -1,8 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem;
-#endif
 
 [RequireComponent(typeof(Collider2D))]
 public class ShopNPC : MonoBehaviour
@@ -12,6 +9,7 @@ public class ShopNPC : MonoBehaviour
 
     [Header("Shop UI")]
     [SerializeField] private GameObject uiRoot;
+    [SerializeField] private Button closeButton; // ✨ 닫기 버튼
 
     public bool IsOpen { get; private set; }
 
@@ -20,6 +18,9 @@ public class ShopNPC : MonoBehaviour
     void Awake()
     {
         if (uiRoot) uiRoot.SetActive(false);
+
+        if (closeButton)
+            closeButton.onClick.AddListener(CloseShop); // ✨ 닫기 버튼 연결
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -51,7 +52,6 @@ public class ShopNPC : MonoBehaviour
         if (uiRoot) uiRoot.SetActive(true);
 
         Time.timeScale = 0f;
-
     }
 
     public void CloseShop()

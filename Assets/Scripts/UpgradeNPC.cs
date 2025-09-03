@@ -1,8 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem;
-#endif
 
 [RequireComponent(typeof(Collider2D))]
 public class UpgradeNPC : MonoBehaviour
@@ -10,8 +7,9 @@ public class UpgradeNPC : MonoBehaviour
     [Header("Player Detect")]
     [SerializeField] private string playerTag = "Player";
 
-    [Header("Shop UI")]
+    [Header("Upgrade UI")]
     [SerializeField] private GameObject uiRoot;
+    [SerializeField] private Button closeButton;
 
     public bool IsOpen { get; private set; }
 
@@ -20,6 +18,9 @@ public class UpgradeNPC : MonoBehaviour
     void Awake()
     {
         if (uiRoot) uiRoot.SetActive(false);
+
+        if (closeButton)
+            closeButton.onClick.AddListener(CloseUpgrade);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -37,13 +38,13 @@ public class UpgradeNPC : MonoBehaviour
     void Update()
     {
         if (_playerInRange && !IsOpen && Input.GetKeyDown(KeyCode.F))
-            OpenShop();
+            OpenUpgrade();
 
         if (IsOpen && Input.GetKeyDown(KeyCode.Escape))
-            CloseShop();
+            CloseUpgrade();
     }
 
-    public void OpenShop()
+    public void OpenUpgrade()
     {
         if (IsOpen) return;
         IsOpen = true;
@@ -51,10 +52,9 @@ public class UpgradeNPC : MonoBehaviour
         if (uiRoot) uiRoot.SetActive(true);
 
         Time.timeScale = 0f;
-
     }
 
-    public void CloseShop()
+    public void CloseUpgrade()
     {
         if (!IsOpen) return;
         IsOpen = false;
