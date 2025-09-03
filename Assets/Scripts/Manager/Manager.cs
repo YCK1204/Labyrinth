@@ -8,7 +8,7 @@ public class Manager : MonoBehaviour
     static Manager Instance
     {
         get 
-        { 
+        {
             if (_instance == null)
             {
                 var instance = FindObjectOfType<Manager>();
@@ -16,6 +16,7 @@ public class Manager : MonoBehaviour
                 {
                     instance = new GameObject("Manager").AddComponent<Manager>();
                 }
+                _instance = instance;
             }
             return _instance; 
         }
