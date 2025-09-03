@@ -13,22 +13,43 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject shopUI;
     [SerializeField] private GameObject upgradeUI;
     [SerializeField] private GameObject playerStatusUI;
+    [SerializeField] private GameObject topButtonUI;
     [SerializeField] private GameObject pauseMenuUI;
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
 
     void Start()
     {
         Manager.UI = this;
+    }
+
+    public void SetSceneUI(string sceneName)
+    {
+        HideAllUI();
+        switch (sceneName)
+        {
+            case "StartScene":
+                startScreenUI.SetActive(true); 
+                break;
+            case "LobbyScene":
+                playerStatusUI.SetActive(true);
+                topButtonUI.SetActive(true);
+                break;
+            case "DungeonScene":
+                playerStatusUI.SetActive(true);
+                topButtonUI.SetActive(true);
+                break;
+        }
+    }
+
+    public void HideAllUI()
+    {
+        startScreenUI.SetActive(false);
+        playerStatusUI.SetActive(false);
+        topButtonUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
+        shopUI.SetActive(false);
+        upgradeUI.SetActive(false);
+        settingPanel.SetActive(false);
+        exitPanel.SetActive(false);
     }
 
     // 특정 UI 패널을 활성화하는 함수들
