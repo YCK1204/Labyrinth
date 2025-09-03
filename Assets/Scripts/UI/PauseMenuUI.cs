@@ -33,6 +33,11 @@ public class PauseMenuUI : MonoBehaviour
 
     public void OnResumeButtonClicked()
     {
-        Manager.UI.HidePauseMenuUI
+        Manager.UI.HidePauseMenuUI();
+    }
+
+    public void OnSettingButtonClicked()
+    {
+        Manager.UI.ShowSettingUI();
     }
 }
