@@ -119,16 +119,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c28644c3c9a8be40b9fceb4f44e6259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol:
-    range: 2
-    interval: 0
-    nextPatrolTime: 0
-    detectionRange: 4
-    directions: []
-  attackAnimCount: 2
-  attack1OnAttackDuration: 0.2
-  attack1FinishAttackDuration: 0.2
-  attack2OnAttackDuration: 0.2
-  attack2FinishAttackDuration: 0.2
-  Speed: 1
-  AttackRange: 2
+  creatureData: {fileID: 11400000, guid: 28aa5ff4b4c7deb4fb0320bebdf261f0, type: 2}
+  hp: 0
+  speed: 0
+  armor: 0
+  power: 0
+  crit: 0
+  lv: 0
+  kbResist: 0
+  critX: 0
+  armorPen: 0
+  atkSpeed: 0

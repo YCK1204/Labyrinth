@@ -9,7 +9,7 @@ public class MonsterAttackHitboxController : MonoBehaviour
     public void Init(float radius, Transform parent, Vector2 pos, LayerMask layer)
     {
         transform.SetParent(parent);
-        transform.localPosition = pos * parent.localScale.x;
+        transform.localPosition = pos / parent.localScale.x;
         _radius = radius;
         _layer = layer;
     }

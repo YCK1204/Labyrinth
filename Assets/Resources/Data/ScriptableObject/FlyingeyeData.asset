@@ -22,6 +22,7 @@ MonoBehaviour:
   _critX: 0
   _armorPen: 0
   _atkSpeed: 0
+  spriteForCollisionSize: {fileID: -4795363162621231457, guid: 6d7cd4f7505dc674c891ca8946cfd98b, type: 3}
   _patrol:
     range: 4
     interval: 0
@@ -30,5 +31,7 @@ MonoBehaviour:
     lastPatrolTime: 15.986398
   _attackHitboxRadius: 1
   _attackRange: 2
+  exp: 100
+  gold: 100
   _onAttackDuration: 0.2
   _finishAttackDuration: 0.2

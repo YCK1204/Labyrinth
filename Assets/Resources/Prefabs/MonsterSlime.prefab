@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174b8ad7a8eecbd498ea253390a8e694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creatureData: {fileID: 0}
+  creatureData: {fileID: 11400000, guid: ad83e48a4c4ac0348bffc9fccaf1648b, type: 2}
   hp: 0
   speed: 0
   armor: 0
