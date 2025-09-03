@@ -10,6 +10,11 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private GameObject rowPrefab;
     [SerializeField] private List<EquipmentData> shopItems = new();
 
+    [Header("Confirm UI")]
+    [SerializeField] private GameObject buySellPanel;
+    [SerializeField] private Button yesButton;
+    [SerializeField] private Button noButton;
+
     [Header("Detail UI")]
     [SerializeField] private GameObject itemDetailPanel;
     [SerializeField] private TMP_Text nameText;
@@ -21,24 +26,67 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TMP_Text[] statLabels;
     [SerializeField] private TMP_Text[] statValues;
 
+    [Header("Select / Double-Click")]
+    [SerializeField] private Button buyButton;
+    [SerializeField] private Button sellButton;
+    [SerializeField] private Button equipButton;
+    [SerializeField] private Button exitButton;
+    [SerializeField] private Color selectionOutlineColor = new Color(0.2f, 0.6f, 1f, 1f);
+    [SerializeField] private float doubleClickThreshold = 0.3f;
+
     readonly List<GameObject> rows = new();
+    readonly Dictionary<EquipmentData, GameObject> rowMap = new();
+    readonly HashSet<EquipmentData> purchased = new();
+    enum PendingAction { None, Buy, Sell }
+    PendingAction pending = PendingAction.None;
+
+    GameObject selectedRow;
+    EquipmentData selectedItem;
+    GameObject lastClickedRow;
+    float lastClickTime;
 
     void Start()
     {
         Refresh();
         if (itemDetailPanel) itemDetailPanel.SetActive(false);
+
+        if (buySellPanel) buySellPanel.SetActive(false);
+
         if (closeButton) closeButton.onClick.AddListener(() => itemDetailPanel.SetActive(false));
+
+        if (buyButton)
+        {
+            buyButton.onClick.RemoveAllListeners();
+            buyButton.onClick.AddListener(() => OpenConfirm(PendingAction.Buy));
+        }
+        if (sellButton)
+        {
+            sellButton.onClick.RemoveAllListeners();
+            sellButton.onClick.AddListener(() => OpenConfirm(PendingAction.Sell));
+        }
+
+        if (yesButton) yesButton.onClick.AddListener(OnConfirmYes);
+        if (noButton) noButton.onClick.AddListener(CloseConfirm);
+
+        UpdateBuyButtonState();
     }
 
     public void Refresh()
     {
         foreach (var r in rows) Destroy(r);
         rows.Clear();
+        rowMap.Clear();
+        selectedRow = null;
+        selectedItem = null;
+        lastClickedRow = null;
+        lastClickTime = 0f;
+        UpdateBuyButtonState();
 
         foreach (var item in shopItems)
         {
             var row = Instantiate(rowPrefab, content);
             rows.Add(row);
+            rowMap[item] = row;
 
             var images = row.GetComponentsInChildren<Image>(true);
             var texts = row.GetComponentsInChildren<TMP_Text>(true);
@@ -59,16 +107,79 @@ public class ShopUI : MonoBehaviour
                                    : st.ToString();
                     texts[3].text = $"{stName} {item.stats[0].value}";
                 }
-                texts[4].text = "Gold " + item.price;
+
+                texts[4].text = purchased.Contains(item) ? "구매완료" : ("Gold " + item.price);
             }
+
+            EnsureOutline(row, false);
 
             var btn = row.GetComponent<Button>();
             if (btn)
             {
                 btn.onClick.RemoveAllListeners();
-                btn.onClick.AddListener(() => ShowDetail(item));
+                btn.onClick.AddListener(() => OnRowClicked(row, item));
             }
         }
+    }
+
+    void OnRowClicked(GameObject row, EquipmentData item)
+    {
+        if (selectedRow != row)
+        {
+            if (selectedRow)
+            {
+                var oldOutline = selectedRow.GetComponent<Outline>();
+                if (oldOutline) oldOutline.enabled = false;
+            }
+            selectedRow = row;
+            var outline = row.GetComponent<Outline>() ?? row.AddComponent<Outline>();
+            outline.effectColor = selectionOutlineColor;
+            outline.effectDistance = new Vector2(2f, -2f);
+            outline.enabled = true;
+        }
+
+        selectedItem = item;
+        UpdateBuyButtonState();
+
+        float now = Time.unscaledTime;
+        if (lastClickedRow == row && (now - lastClickTime) <= doubleClickThreshold)
+            ShowDetail(item);
+
+        lastClickedRow = row;
+        lastClickTime = now;
+    }
+
+    void EnsureOutline(GameObject row, bool enabled)
+    {
+        var img = row.GetComponent<Image>();
+        if (!img) { img = row.AddComponent<Image>(); img.color = new Color(1, 1, 1, 0); }
+        var outline = row.GetComponent<Outline>() ?? row.AddComponent<Outline>();
+        outline.effectColor = selectionOutlineColor;
+        outline.effectDistance = new Vector2(2f, -2f);
+        outline.enabled = enabled;
+    }
+
+    void BuySelected()
+    {
+        if (selectedItem == null || purchased.Contains(selectedItem)) return;
+
+        purchased.Add(selectedItem);
+
+        if (priceText) priceText.text = "구매완료";
+
+        if (rowMap.TryGetValue(selectedItem, out var row))
+        {
+            var texts = row.GetComponentsInChildren<TMP_Text>(true);
+            if (texts.Length >= 5) texts[4].text = "구매완료";
+        }
+
+        UpdateBuyButtonState();
+    }
+
+    void UpdateBuyButtonState()
+    {
+        if (!buyButton) return;
+        buyButton.interactable = selectedItem != null && !purchased.Contains(selectedItem);
     }
 
     void ShowDetail(EquipmentData item)
@@ -110,6 +221,27 @@ public class ShopUI : MonoBehaviour
             }
         }
 
-        if (priceText) priceText.text = item.price.ToString();
+        if (priceText) priceText.text = purchased.Contains(item) ? "구매완료" : item.price.ToString();
+        UpdateBuyButtonState();
     }
+        void OpenConfirm(PendingAction action)
+    {
+        if (selectedItem == null) return;
+        pending = action;
+        if (buySellPanel) buySellPanel.SetActive(true);
+    }
+
+    void CloseConfirm()
+    {
+        pending = PendingAction.None;
+        if (buySellPanel) buySellPanel.SetActive(false);
+    }
+
+    void OnConfirmYes()
+    {
+        if (pending == PendingAction.Buy)
+            BuySelected();
+        CloseConfirm();
+    }
+
 }
