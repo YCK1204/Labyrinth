@@ -35,13 +35,11 @@ public class PlayerStatusUI : MonoBehaviour
     void Start()
     {
         _playerDataUI = PlayerDataUI.Instance;
-
-        UpdateUI();
     }
 
     void Update()
     {
-        
+        UpdateUI();
     }
 
     private void UpdateUI()
