@@ -34,7 +34,6 @@ public class PlayerController : CreatureController
     private bool _jump, _roll, _attack;
     private Animator _an;
     private float _lockWatch;
-    private PlayerData PlayerData => creatureData as PlayerData;
     protected override void Init()
     {
         base.Init();
@@ -278,27 +277,15 @@ public class PlayerController : CreatureController
         float damage = atk * reducMul * (isCrit ? critX : 1f);
         return (damage, isCrit);
     }
-    public void AddExp(int amount)
+    public void GainExp(int amount)
     {
-        if (amount <= 0) return;
-
-        PlayerData.Exp += amount;
-
-        // 여러 번 레벨업 가능
-        while (PlayerData.Exp >= PlayerData.MaxExp)
+        var pd = creatureData as PlayerData;
+        if (pd == null) return;
+        int up = pd.AddExp(amount);
+        if (up > 0)
         {
-            PlayerData.Exp -= PlayerData.MaxExp;
-            PlayerData.Level++;
-            LevelUp();
+            GetComponent<PlayerEquipment>()?.SyncToController();
+            hp = pd.HP;
         }
-
-        Debug.Log($"현재 레벨: {PlayerData.Level}, 경험치: {PlayerData.Exp}/{PlayerData.MaxExp}");
-    }
-
-    // 레벨업 시 처리
-    private void LevelUp()
-    {
-        Debug.Log($"🎉 레벨업! 현재 레벨 {PlayerData.Level}");
-        //능력치 증가 or 회복처리 
     }
 }
