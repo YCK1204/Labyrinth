@@ -43,9 +43,12 @@ public class BossMonsterController : GroundMonsterController
         if (coll == null) return;
         var player = coll.GetComponent<PlayerController>();
         if (player == null) return;
-        var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (Random.Range(0f, 100f) < crit ? critX : 1);
+        bool isCrit = Random.Range(0f, 100f) < crit;
+        var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (isCrit ? critX : 1);
         player.TakeDamage(dmg);
         attacked = true;
+        if (DamageUI.Instance != null)
+            DamageUI.Instance.Show(player.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
     }
     public override void OnAttackFinished()
     {

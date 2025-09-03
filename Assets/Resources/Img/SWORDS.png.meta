@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9aa431460aa848042ad50ea1b6d5ac41
+guid: 12d083dfee207e747924c5feaf44426f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,6 +81,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -119,2706 +132,3029 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 06_0
+      name: SWORDS_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 227
-        width: 30
-        height: 10
+        x: 0
+        y: 608
+        width: 31
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d398700e3574f1d45888beb36ebe8565
-      internalID: 78941821
+      spriteID: 00afd30fbee4c4e47bea0cb0e6f7d096
+      internalID: -663972970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_1
+      name: SWORDS_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 227
-        width: 30
-        height: 10
+        x: 32
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8432a8e1d1a50c4eba3c20d60eecffd
-      internalID: 1891438878
+      spriteID: 8613cabe1bde7e34e86ab93eae9b5246
+      internalID: -645184059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_2
+      name: SWORDS_2
       rect:
         serializedVersion: 2
-        x: 65
-        y: 227
-        width: 30
-        height: 10
+        x: 64
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4214afa83c50d6b4ca998523522c380c
-      internalID: -357736962
+      spriteID: cde0926635896ca40b8324c0a17fab3f
+      internalID: -1320846851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_3
+      name: SWORDS_3
       rect:
         serializedVersion: 2
-        x: 97
-        y: 227
-        width: 30
-        height: 10
+        x: 96
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64ca9f63e339adb4892e1020ac94f7e2
-      internalID: 769352578
+      spriteID: 09dc1147f495005459f49fa0d7db34c9
+      internalID: 1745851571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_4
+      name: SWORDS_4
       rect:
         serializedVersion: 2
-        x: 129
-        y: 227
-        width: 30
-        height: 10
+        x: 128
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4058c9119f07b294d91e3b00fd2b7158
-      internalID: 791951931
+      spriteID: 02131983a64b2534b97042f12bab0b28
+      internalID: -284010953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_5
+      name: SWORDS_5
       rect:
         serializedVersion: 2
-        x: 161
-        y: 227
-        width: 30
-        height: 10
+        x: 160
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a25a8304bda29f43a13a65f16cc839c
-      internalID: 331791110
+      spriteID: 45c27ba6b4aa39d4ba731f6e8dc65ebe
+      internalID: -854405360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_6
+      name: SWORDS_6
       rect:
         serializedVersion: 2
-        x: 3
-        y: 212
-        width: 42
-        height: 7
+        x: 192
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c55c797f0a1dc249b0547b57b4fa58a
-      internalID: 601235632
+      spriteID: 758a01a0f6b1e1d488bae251a8296aa3
+      internalID: -1201321594
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_7
+      name: SWORDS_7
       rect:
         serializedVersion: 2
-        x: 51
-        y: 212
-        width: 42
-        height: 7
+        x: 224
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18a2f8e130eef4845be1ed0ff0ae013a
-      internalID: -1157298776
+      spriteID: 6b70f2b410afb6c4f9fdd684796f8c69
+      internalID: 624489899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_8
+      name: SWORDS_8
       rect:
         serializedVersion: 2
-        x: 99
-        y: 212
-        width: 42
-        height: 7
+        x: 256
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9135e5a5e1bcf124090c6e01ff4f63c3
-      internalID: -188849988
+      spriteID: 5ab9f5e85eed49c42ae06304684734f5
+      internalID: 1844487192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_9
+      name: SWORDS_9
       rect:
         serializedVersion: 2
-        x: 147
-        y: 212
-        width: 42
-        height: 7
+        x: 288
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b948b34b1ad3c604586088c3c287989a
-      internalID: 688765355
+      spriteID: 0d350654fd6c8c74bb8bd60524094ca3
+      internalID: -1157761126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_10
+      name: SWORDS_10
       rect:
         serializedVersion: 2
-        x: 195
-        y: 212
-        width: 42
-        height: 7
+        x: 320
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b77c3d6affcb814ab4586e69bd1b1d2
-      internalID: 1676399176
+      spriteID: 6321dd59da8b09146a5c76507264b4e6
+      internalID: -550312646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_11
+      name: SWORDS_11
       rect:
         serializedVersion: 2
-        x: 3
-        y: 196
-        width: 42
-        height: 7
+        x: 352
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42315b7c5e78f5a4f82ff01aa7395afb
-      internalID: -1489630800
+      spriteID: 5cf6e9ba9447fe34c82a26bea4589d36
+      internalID: 1033463582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_12
+      name: SWORDS_12
       rect:
         serializedVersion: 2
-        x: 51
-        y: 196
-        width: 42
-        height: 7
+        x: 384
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4dd079847c903f43a578535d7617fcb
-      internalID: -1707505583
+      spriteID: 637ed82fcafcfc7468c356ba690eee9a
+      internalID: -604468246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_13
+      name: SWORDS_13
       rect:
         serializedVersion: 2
-        x: 99
-        y: 196
-        width: 42
-        height: 7
+        x: 416
+        y: 608
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7bbe4ea537466e4fbbfef2c1c58fd7d
-      internalID: -163284055
+      spriteID: 032024e5d5ace6546bb39e0b8fb487e3
+      internalID: 1945513739
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_14
+      name: NormalSword
       rect:
         serializedVersion: 2
-        x: 147
-        y: 196
-        width: 42
-        height: 7
+        x: 0
+        y: 576
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff1e7a5bddad71f4ba4bfe68ffa29520
-      internalID: 1965797926
+      spriteID: b678f23a9bec66d48a05c5fb27fcb557
+      internalID: 494363404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_15
+      name: SWORDS_15
       rect:
         serializedVersion: 2
-        x: 195
-        y: 196
-        width: 42
-        height: 7
+        x: 32
+        y: 576
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45673c31b2701df49a7ed8173b9ec3cd
-      internalID: 417914801
+      spriteID: d6b0c4a03732aba40b41c46bc10194c4
+      internalID: -1324080762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_16
+      name: SWORDS_16
       rect:
         serializedVersion: 2
-        x: 3
-        y: 180
-        width: 42
-        height: 7
+        x: 64
+        y: 576
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0eb0283bc179ae419a1d9afa93cbacc
-      internalID: 10188021
+      spriteID: f5f7c23d7f0892f49981152de29d56f0
+      internalID: -871409465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_17
+      name: SWORDS_17
       rect:
         serializedVersion: 2
-        x: 51
-        y: 180
-        width: 42
-        height: 7
+        x: 96
+        y: 576
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b54524bed377ea444ad6b3c61fea249d
-      internalID: 909352823
+      spriteID: 7987f04e63eca45419a843578bb8943c
+      internalID: 1645097200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_18
+      name: SWORDS_18
       rect:
         serializedVersion: 2
-        x: 99
-        y: 180
-        width: 42
-        height: 7
+        x: 128
+        y: 576
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 397935c698f38d646a7390e109f13376
-      internalID: -1825035440
+      spriteID: 36d025c327c36e54997f8508d8127930
+      internalID: -518054203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_19
+      name: SWORDS_19
       rect:
         serializedVersion: 2
-        x: 147
-        y: 180
-        width: 42
-        height: 7
+        x: 160
+        y: 576
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ee78716da6805049b6c0ba481d604aa
-      internalID: -576355552
+      spriteID: cd1c08bfa1d0eda4ab84267454c09cb6
+      internalID: 239198321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_20
+      name: SWORDS_20
       rect:
         serializedVersion: 2
-        x: 195
-        y: 180
-        width: 42
-        height: 7
+        x: 192
+        y: 576
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a26e5e9028f7a2489a3f55a666fa8ad
-      internalID: 1910216374
+      spriteID: a6e4108f5685bc4489d38c3f672db92e
+      internalID: -1265484143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_21
+      name: SWORDS_21
       rect:
         serializedVersion: 2
-        x: 3
-        y: 164
-        width: 42
-        height: 7
+        x: 224
+        y: 576
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70123c0bac2885d46b8d99e6aaa14c96
-      internalID: -1043727931
+      spriteID: d16cbf3ca3dbaa54283c89e3e1fa7a59
+      internalID: 1094289983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_22
+      name: SWORDS_22
       rect:
         serializedVersion: 2
-        x: 51
-        y: 164
-        width: 42
-        height: 7
+        x: 0
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58ec484b957aa664fa8ab261ee8a3097
-      internalID: -1707788603
+      spriteID: eca150458c85b9b44adfb0797e08f678
+      internalID: -1177587203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_23
+      name: SWORDS_23
       rect:
         serializedVersion: 2
-        x: 99
-        y: 164
-        width: 42
-        height: 7
+        x: 32
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac291de414ff7a146aa6f914d1241828
-      internalID: -2047782512
+      spriteID: f16a007a6566c414386ec9dd09a2215b
+      internalID: 561233930
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_24
+      name: SWORDS_24
       rect:
         serializedVersion: 2
-        x: 147
-        y: 164
-        width: 42
-        height: 7
+        x: 64
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdae3acc05b804540b0cf56d624f9391
-      internalID: 441672881
+      spriteID: 3d085429437252749a0ed4ad5615c637
+      internalID: 1972213971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_25
+      name: SWORDS_25
       rect:
         serializedVersion: 2
-        x: 195
-        y: 164
-        width: 42
-        height: 7
+        x: 96
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eccd372d485683c4995687cb878dd0d0
-      internalID: 428685135
+      spriteID: 11c38ce74d78feb4a8a5bba9c46c1b79
+      internalID: -31331265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_26
+      name: SWORDS_26
       rect:
         serializedVersion: 2
-        x: 3
-        y: 148
-        width: 42
-        height: 7
+        x: 128
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbb2b1feb35e5b240afa4a38be4e4e64
-      internalID: -312377405
+      spriteID: e931956e166c9cd43bd5b3ff626ed927
+      internalID: -103440818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_27
+      name: SWORDS_27
       rect:
         serializedVersion: 2
-        x: 51
-        y: 148
-        width: 42
-        height: 7
+        x: 160
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 220eb4129d5e3e14bb93acdbe24609d4
-      internalID: -2074516446
+      spriteID: 375d69afd739fe54cb874993ce655259
+      internalID: 1617566954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_28
+      name: SWORDS_28
       rect:
         serializedVersion: 2
-        x: 99
-        y: 148
-        width: 42
-        height: 7
+        x: 224
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3de1f044a8a8c4d469b9911746cd799e
-      internalID: 82288807
+      spriteID: bac28b4f6f1cf9a44a0a830b0435d59a
+      internalID: -1798056851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_29
+      name: SWORDS_29
       rect:
         serializedVersion: 2
-        x: 147
-        y: 148
-        width: 42
-        height: 7
+        x: 256
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c259305aa7a4a654e81acec19de6284e
-      internalID: 132262105
+      spriteID: 260e6b8bd76f27445841d889fad98fac
+      internalID: -1598519319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_30
+      name: SWORDS_30
       rect:
         serializedVersion: 2
-        x: 195
-        y: 148
-        width: 42
-        height: 7
+        x: 288
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c2bb09be9414524f95ecc17bdecf9fa
-      internalID: 1292514934
+      spriteID: 7ba01a0512e222648b3bd4d696857483
+      internalID: 705220091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_31
+      name: SWORDS_31
       rect:
         serializedVersion: 2
-        x: 3
-        y: 132
-        width: 42
-        height: 7
+        x: 320
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9542c38428358474e81405c4e1d49d26
-      internalID: -1638267825
+      spriteID: 700d3dd09b2e3be46926190aa1dfa614
+      internalID: -953324186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_32
+      name: SWORDS_32
       rect:
         serializedVersion: 2
-        x: 51
-        y: 132
-        width: 42
-        height: 7
+        x: 352
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f0078b47d9c73e4db77df066c4bb472
-      internalID: -2021397280
+      spriteID: 2842a0b97593b4b40887195d90f259fe
+      internalID: -1901602596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_33
+      name: SWORDS_33
       rect:
         serializedVersion: 2
-        x: 99
-        y: 132
-        width: 42
-        height: 7
+        x: 384
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d8e4e9c096145a4fb6ddf57e9c1cc61
-      internalID: -72623382
+      spriteID: a100cf7b775ff014ca18a722cb873184
+      internalID: -1503794091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_34
+      name: SWORDS_34
       rect:
         serializedVersion: 2
-        x: 147
-        y: 132
-        width: 42
-        height: 7
+        x: 416
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbc0920aeedac3044bf03c749b24abf7
-      internalID: -1207056148
+      spriteID: fa83cbc0b3e823745952803a741c1c79
+      internalID: -1105049906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_35
+      name: SWORDS_35
       rect:
         serializedVersion: 2
-        x: 195
-        y: 132
-        width: 42
-        height: 7
+        x: 448
+        y: 544
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26f352615a43a054e8effc2ab2068023
-      internalID: -1444982382
+      spriteID: 8e9bcfd23e7b6db4d81a60d7bd29485c
+      internalID: 267011681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_36
+      name: SWORDS_36
       rect:
         serializedVersion: 2
-        x: 6
-        y: 116
-        width: 6
-        height: 8
+        x: 0
+        y: 512
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7416c1814803eaf4db628ff18655d89b
-      internalID: 554203966
+      spriteID: 21efd748c6a7a264f83f8ded69c39fac
+      internalID: -33095333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_37
+      name: SWORDS_37
       rect:
         serializedVersion: 2
-        x: 14
-        y: 116
-        width: 5
-        height: 8
+        x: 32
+        y: 512
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 598b923041cf1b64a8e39dd3d8dd1b19
-      internalID: 1827166658
+      spriteID: d613f4d6df3c6624899941b48841f5f5
+      internalID: 1687761988
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_38
+      name: SWORDS_38
       rect:
         serializedVersion: 2
-        x: 21
-        y: 116
-        width: 6
-        height: 8
+        x: 64
+        y: 512
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f36cabd5d26b0544c955e862f79f8f11
-      internalID: -1940051795
+      spriteID: 86dd5939cff15bb409b4ffd394525c36
+      internalID: 1666640749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_39
+      name: SWORDS_39
       rect:
         serializedVersion: 2
-        x: 38
-        y: 116
-        width: 6
-        height: 8
+        x: 96
+        y: 512
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15ee62822ce4bb04b867916923a2fd72
-      internalID: 1350200010
+      spriteID: 7f020175b28cd8e45b6b849aac69ddfe
+      internalID: 382587995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_40
+      name: SWORDS_40
       rect:
         serializedVersion: 2
-        x: 46
-        y: 116
-        width: 5
-        height: 8
+        x: 128
+        y: 512
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d68ec626fc69be42aef262035584f73
-      internalID: -1215394331
+      spriteID: e864e11ddbdfe984e94c8c1251811764
+      internalID: -582078392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_41
+      name: SWORDS_41
       rect:
         serializedVersion: 2
-        x: 53
-        y: 116
-        width: 6
-        height: 8
+        x: 160
+        y: 512
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73522e4d99856b641a998a82f4c3cfcb
-      internalID: -1636313280
+      spriteID: ef55c7ba07b265b4c9284f26d52faca1
+      internalID: 448728135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_42
+      name: SWORDS_42
       rect:
         serializedVersion: 2
-        x: 66
-        y: 116
-        width: 27
-        height: 8
+        x: 320
+        y: 512
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68d9c2600b3600b429dd90a73a2557c6
-      internalID: -1778937913
+      spriteID: 353211ab9bffa2d4c873510bb41e3ee4
+      internalID: 978029241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_43
+      name: SWORDS_43
       rect:
         serializedVersion: 2
-        x: 98
-        y: 116
-        width: 27
-        height: 8
+        x: 352
+        y: 512
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e57a362ee31ba17438558bac6520a80d
-      internalID: 1750337417
+      spriteID: e23132b099d8c714cbc5490027f28673
+      internalID: 119239489
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_44
+      name: SWORDS_44
       rect:
         serializedVersion: 2
-        x: 130
-        y: 116
-        width: 27
-        height: 8
+        x: 384
+        y: 512
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 037563dcd9299ca4ba9faa0563fcaaeb
-      internalID: -1186143092
+      spriteID: 59dd4e76b4866fe4a93a3169ac16fad1
+      internalID: -1450459742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_45
+      name: SWORDS_45
       rect:
         serializedVersion: 2
-        x: 162
-        y: 116
-        width: 27
-        height: 8
+        x: 416
+        y: 512
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4db0c62b8182fb4188c7a49db20de19
-      internalID: -1926799668
+      spriteID: 1895ee80764201d45a8ba419c590fba8
+      internalID: 1919027399
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_46
+      name: SWORDS_46
       rect:
         serializedVersion: 2
-        x: 194
-        y: 116
-        width: 27
-        height: 8
+        x: 448
+        y: 512
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d2164ef48c805543ba66bf7b572c9fc
-      internalID: -230912881
+      spriteID: 1b61b53347bb0c64081c2d04e674daba
+      internalID: -1694848737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_47
+      name: SWORDS_47
       rect:
         serializedVersion: 2
-        x: 226
-        y: 116
-        width: 27
-        height: 8
+        x: 0
+        y: 480
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f550d5a21b3f1c64ba2d435f96dd0115
-      internalID: 114822772
+      spriteID: 99b462f48f0d5c744af1b3aba2e6c27b
+      internalID: 1763910963
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_48
+      name: SWORDS_48
       rect:
         serializedVersion: 2
-        x: 8
-        y: 101
-        width: 4
-        height: 6
+        x: 32
+        y: 480
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18acfc988668ad0499f51e329d7db246
-      internalID: 2122073601
+      spriteID: cadb5d09ffb0a7c4d96c893d45b66d79
+      internalID: -542131866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_49
+      name: SWORDS_49
       rect:
         serializedVersion: 2
-        x: 14
-        y: 101
-        width: 4
-        height: 6
+        x: 64
+        y: 480
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e326da9457137dd4d94fb249f102697e
-      internalID: 1759871037
+      spriteID: e51b989168d514941a3bfce92ba53eb0
+      internalID: 1271868255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_50
+      name: SWORDS_50
       rect:
         serializedVersion: 2
-        x: 20
-        y: 101
-        width: 4
-        height: 6
+        x: 96
+        y: 480
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba870e7945e38b645a39d3e8b7aef83d
-      internalID: 120023081
+      spriteID: 0fce6d95c4f10684d83930a26c709452
+      internalID: -454697845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_51
+      name: SWORDS_51
       rect:
         serializedVersion: 2
-        x: 40
-        y: 101
-        width: 4
-        height: 6
+        x: 128
+        y: 480
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59f8ab66ef3c28e40b06c708dd18b544
-      internalID: 1084037546
+      spriteID: f2f018206db2aa6479011efbde888db8
+      internalID: -62688381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_52
+      name: SWORDS_52
       rect:
         serializedVersion: 2
-        x: 46
-        y: 101
-        width: 4
-        height: 6
+        x: 160
+        y: 480
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5634ef90e731c06439b4e539f2ec0478
-      internalID: 1748112239
+      spriteID: 9cf74686f8d42af40b352dd6635781b3
+      internalID: -1194789780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_53
+      name: SWORDS_53
       rect:
         serializedVersion: 2
-        x: 52
-        y: 101
-        width: 4
-        height: 6
+        x: 192
+        y: 480
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49bd6994000192d489003c8f03743d06
-      internalID: 618205964
+      spriteID: db3206bbd0936974187652b5186df16e
+      internalID: -1954271296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_54
+      name: SWORDS_54
       rect:
         serializedVersion: 2
-        x: 71
-        y: 101
-        width: 18
-        height: 6
+        x: 224
+        y: 480
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb33371f22fe1594abc0ea46410917de
-      internalID: -529606750
+      spriteID: a8ebda7af5710ad4982d678a70d5aa1c
+      internalID: -1578695433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_55
+      name: SWORDS_55
       rect:
         serializedVersion: 2
-        x: 103
-        y: 101
-        width: 18
-        height: 6
+        x: 0
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e330276e75672d44a31db2e84395041
-      internalID: 1812025927
+      spriteID: ba6ed1039accc114ba15847a1cfac69e
+      internalID: 513523808
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_56
+      name: SWORDS_56
       rect:
         serializedVersion: 2
-        x: 135
-        y: 101
-        width: 18
-        height: 6
+        x: 32
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37a25682f4de5434383d6c1a72848c59
-      internalID: -279679272
+      spriteID: 30fd89fabf8b17a45a00c5124fd5cd62
+      internalID: 2004801281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_57
+      name: SWORDS_57
       rect:
         serializedVersion: 2
-        x: 167
-        y: 101
-        width: 18
-        height: 6
+        x: 64
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdaa8d5185a30d640957e197c02713e3
-      internalID: 679919391
+      spriteID: 62df58c71d1380f49bfabc46042f4b2c
+      internalID: 230900162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_58
+      name: SWORDS_58
       rect:
         serializedVersion: 2
-        x: 199
-        y: 101
-        width: 18
-        height: 6
+        x: 96
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb7c4808a88e88a4c9db61848482a73e
-      internalID: -2073672723
+      spriteID: f312052a534c4384f9681fbdf11386f4
+      internalID: 1460607362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_59
+      name: SWORDS_59
       rect:
         serializedVersion: 2
-        x: 6
-        y: 84
-        width: 6
-        height: 8
+        x: 128
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 670de66bee1614f408aad97e50f47dfa
-      internalID: -419779051
+      spriteID: 4b82d0554b1eeb14f87946152085af45
+      internalID: 401005521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_60
+      name: SWORDS_60
       rect:
         serializedVersion: 2
-        x: 14
-        y: 84
-        width: 5
-        height: 8
+        x: 160
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 933b94d8afc1c674892d2660f89c9a4b
-      internalID: -1453789824
+      spriteID: 58ed8a9018055d84bb18d93fc7ebb4fa
+      internalID: -1016556349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_61
+      name: SWORDS_61
       rect:
         serializedVersion: 2
-        x: 21
-        y: 84
-        width: 6
-        height: 8
+        x: 192
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 253a3e554c55d8a4f93676b92b033573
-      internalID: 829379527
+      spriteID: 42f60a663cc41db4893bcd3f82d4dd74
+      internalID: -254815169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_62
+      name: SWORDS_62
       rect:
         serializedVersion: 2
-        x: 38
-        y: 84
-        width: 6
-        height: 8
+        x: 224
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64b7ae1b92af06e449140982e07569e3
-      internalID: 859448621
+      spriteID: 8d04aca1851221e4c8f0b3e6dd3001a5
+      internalID: 2027310433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_63
+      name: SWORDS_63
       rect:
         serializedVersion: 2
-        x: 46
-        y: 84
-        width: 5
-        height: 8
+        x: 256
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 252908e089ccc4a48a10748e33ce4c2e
-      internalID: 1658532617
+      spriteID: 1b43193c2c06a5044b3c4a559dceb505
+      internalID: -1072120190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_64
+      name: SWORDS_64
       rect:
         serializedVersion: 2
-        x: 53
-        y: 84
-        width: 6
-        height: 8
+        x: 384
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 871dc0f27d1945a43b16f03e9d77d3c4
-      internalID: 2049544489
+      spriteID: 989d8cf88793c4b40af2d04b1c049b82
+      internalID: -557501516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_65
+      name: SWORDS_65
       rect:
         serializedVersion: 2
-        x: 66
-        y: 84
-        width: 27
-        height: 8
+        x: 416
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e33b5144f545cdb4d9c05b73b838c534
-      internalID: 1173491539
+      spriteID: f19b5d3b37a09884d9b78989fe185130
+      internalID: -936678346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_66
+      name: SWORDS_66
       rect:
         serializedVersion: 2
-        x: 98
-        y: 84
-        width: 27
-        height: 8
+        x: 448
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 621c2a37780cb1948a55c2b9609cd74a
-      internalID: 477970655
+      spriteID: 7b607a6b1a35ab44e9c22c931b675809
+      internalID: -1692299651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_67
+      name: SWORDS_67
       rect:
         serializedVersion: 2
-        x: 130
-        y: 84
-        width: 27
-        height: 8
+        x: 480
+        y: 448
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5974f2d8d0aaf7448b1acd6aa6d40514
-      internalID: -1792376914
+      spriteID: 03bae50f0c9b20444a5ae78ae4bc0114
+      internalID: -877774838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_68
+      name: SWORDS_68
       rect:
         serializedVersion: 2
-        x: 162
-        y: 84
-        width: 27
-        height: 8
+        x: 0
+        y: 416
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e0588136f62f544ea629e092a7a7c26
-      internalID: -1986417117
+      spriteID: 03b5e3f24dfc73a4f9ec1ca52f76c600
+      internalID: 1911231293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_69
+      name: SWORDS_69
       rect:
         serializedVersion: 2
-        x: 194
-        y: 84
-        width: 27
-        height: 8
+        x: 32
+        y: 416
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f44e34483961e424b95b47374b7e0bf8
-      internalID: -235441413
+      spriteID: c9f36396b426ee44f98aca7c28b375fe
+      internalID: -1354970986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_70
+      name: SWORDS_70
       rect:
         serializedVersion: 2
-        x: 226
-        y: 84
-        width: 27
-        height: 8
+        x: 64
+        y: 416
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d10913b065bfd741b5f76828d9db502
-      internalID: 1946527445
+      spriteID: 88b8f72f8f970844b9b62aff65ef749f
+      internalID: -1585574631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_71
+      name: SWORDS_71
       rect:
         serializedVersion: 2
-        x: 8
-        y: 69
-        width: 4
-        height: 6
+        x: 96
+        y: 416
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d9cb7cc1838d4246b9ebec3f9332f1f
-      internalID: -1849929467
+      spriteID: d2142619ae28866418670ff9c524cfe9
+      internalID: 58401106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_72
+      name: SWORDS_72
       rect:
         serializedVersion: 2
-        x: 14
-        y: 69
-        width: 4
-        height: 6
+        x: 193
+        y: 415
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf44b2ddec5e09a448359ee0fa9cae80
-      internalID: -357744727
+      spriteID: 55711088f1dcd424a80bf04b92de0142
+      internalID: -114693659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_73
+      name: SWORDS_73
       rect:
         serializedVersion: 2
-        x: 20
-        y: 69
-        width: 4
-        height: 6
+        x: 224
+        y: 416
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 866b53e488f33ee4f95a925fb7bba5f1
-      internalID: -797477848
+      spriteID: 5d86654e81b4bc94081298ded4dc8a70
+      internalID: 1749307132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_74
+      name: SWORDS_74
       rect:
         serializedVersion: 2
-        x: 40
-        y: 69
-        width: 4
-        height: 6
+        x: 256
+        y: 416
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c86513d26b40e0d4a8429dc55e46ab63
-      internalID: -784313107
+      spriteID: 6df37a0e3b5033d4cbe976a52c505bdb
+      internalID: -2068769933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_75
+      name: SWORDS_75
       rect:
         serializedVersion: 2
-        x: 46
-        y: 69
-        width: 4
-        height: 6
+        x: 384
+        y: 416
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e09cd8ae1567e049ab46062ff5565c1
-      internalID: -457346096
+      spriteID: 68b6fa0f30ee3534da90476b308aeb5a
+      internalID: -1516866185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_76
+      name: SWORDS_76
       rect:
         serializedVersion: 2
-        x: 52
-        y: 69
-        width: 4
-        height: 6
+        x: 416
+        y: 416
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5698f52b914ac64aba5bd535c622bba
-      internalID: 620531576
+      spriteID: 60173e59631625044932b5192951b7d3
+      internalID: -463478130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_77
+      name: SWORDS_77
       rect:
         serializedVersion: 2
-        x: 71
-        y: 69
-        width: 18
-        height: 6
+        x: 448
+        y: 416
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70aa40d7ef5522b40af427312f24a939
-      internalID: 1440139967
+      spriteID: 47c7188462c344845bd6e3b6ca2294db
+      internalID: 1125494927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_78
+      name: SWORDS_78
       rect:
         serializedVersion: 2
-        x: 103
-        y: 69
-        width: 18
-        height: 6
+        x: 480
+        y: 416
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d34901780eb13414dbd17b1abdae2a92
-      internalID: 1408341219
+      spriteID: c99949603b303e5479a120a4e958dd9a
+      internalID: 587198570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_79
+      name: SWORDS_79
       rect:
         serializedVersion: 2
-        x: 135
-        y: 69
-        width: 18
-        height: 6
+        x: 0
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e28b2d9fecd43404d838a29aba738404
-      internalID: -738572390
+      spriteID: 37969e26b4c9c0347bc0548cf9b37022
+      internalID: -958490112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_80
+      name: SWORDS_80
       rect:
         serializedVersion: 2
-        x: 167
-        y: 69
-        width: 18
-        height: 6
+        x: 32
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18fe5c9094548224f8268e02830da9ba
-      internalID: 1680731655
+      spriteID: d6dd097e83885614584f7b84f1ce8bb4
+      internalID: 723768071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_81
+      name: SWORDS_81
       rect:
         serializedVersion: 2
-        x: 199
-        y: 69
-        width: 18
-        height: 6
+        x: 64
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d200280d55fc68344918e7e178fc209a
-      internalID: -1799402593
+      spriteID: 7228cc609620f0e4fa0e4a0299afd6f9
+      internalID: -642390888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_82
+      name: SWORDS_82
       rect:
         serializedVersion: 2
-        x: 6
-        y: 52
-        width: 6
-        height: 8
+        x: 96
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b692230a73f76248b028a30f0f7ce4f
-      internalID: 1403314535
+      spriteID: 1d2fd9169112c2c4da11d4fe7b65b097
+      internalID: -1460186126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_83
+      name: SWORDS_83
       rect:
         serializedVersion: 2
-        x: 14
-        y: 52
-        width: 5
-        height: 8
+        x: 128
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93b2f5b14868bdb4c959fedf34fe8740
-      internalID: -63400834
+      spriteID: 1afbcd46ac0c6d247a13adde78cac145
+      internalID: -1265212949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_84
+      name: SWORDS_84
       rect:
         serializedVersion: 2
-        x: 21
-        y: 52
-        width: 6
-        height: 8
+        x: 160
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0cdf695969125a240b0a6dcc667fac7a
-      internalID: 1257675376
+      spriteID: 0038be031fd5d964faed34c2a1d2bff7
+      internalID: 93777392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_85
+      name: SWORDS_85
       rect:
         serializedVersion: 2
-        x: 38
-        y: 52
-        width: 6
-        height: 8
+        x: 192
+        y: 383
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c646518284120c4f9f5965a6587436d
-      internalID: -1465685614
+      spriteID: 998a43e0b658eba4e93ba78ed2bc5f42
+      internalID: -282599163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_86
+      name: SWORDS_86
       rect:
         serializedVersion: 2
-        x: 46
-        y: 52
-        width: 5
-        height: 8
+        x: 224
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 261f55f0e9e7d40429c237ab42382680
-      internalID: 1924345834
+      spriteID: 6afe13b499f43a1428a0cb43df8ab671
+      internalID: 1089585288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_87
+      name: SWORDS_87
       rect:
         serializedVersion: 2
-        x: 53
-        y: 52
-        width: 6
-        height: 8
+        x: 256
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89509fd6dbb31df49b81dd861947d24f
-      internalID: -383932279
+      spriteID: 2e44659ad3acd2649a63d9a734a3a7a0
+      internalID: 1325751881
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_88
+      name: SWORDS_88
       rect:
         serializedVersion: 2
-        x: 66
-        y: 52
-        width: 27
-        height: 8
+        x: 288
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8968b90301cf05448b31d0494d2164e3
-      internalID: -1224050012
+      spriteID: 340bdb4d5d7d0ad4281a626aa6b0085d
+      internalID: 691897090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_89
+      name: SWORDS_89
       rect:
         serializedVersion: 2
-        x: 98
-        y: 52
-        width: 27
-        height: 8
+        x: 384
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f422a0ce152103b40bc7c1acf904b72f
-      internalID: -2056066099
+      spriteID: 18c20c73a74cec84b88c29d923011566
+      internalID: -1112612814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_90
+      name: SWORDS_90
       rect:
         serializedVersion: 2
-        x: 130
-        y: 52
-        width: 27
-        height: 8
+        x: 416
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d4ff2f6c8192d2449d0e9f56a0b3379
-      internalID: -313487554
+      spriteID: 95ffb49854373b541af577414adc7a84
+      internalID: 1457891145
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_91
+      name: SWORDS_91
       rect:
         serializedVersion: 2
-        x: 162
-        y: 52
-        width: 27
-        height: 8
+        x: 448
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d90c399612fecf947b7a9f2929b83871
-      internalID: -1998474351
+      spriteID: bffe58a85f8eb0c42b43ce7835dc9176
+      internalID: -1101885341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_92
+      name: SWORDS_92
       rect:
         serializedVersion: 2
-        x: 194
-        y: 52
-        width: 27
-        height: 8
+        x: 480
+        y: 384
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a356183f42b96c841b4a4f244d5421ef
-      internalID: -1271898633
+      spriteID: 9a1e1eb59f972df418d5b9774c08daa7
+      internalID: -687879395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_93
+      name: AdvancedSword
       rect:
         serializedVersion: 2
-        x: 226
-        y: 52
-        width: 27
-        height: 8
+        x: 0
+        y: 352
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3bcc48395cdd5f4a8f4b3b4143c2019
-      internalID: 625720548
+      spriteID: 5fa9a07d87c8c3b48a6df80b3915502b
+      internalID: 768356394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_94
+      name: SWORDS_94
       rect:
         serializedVersion: 2
-        x: 8
-        y: 37
-        width: 4
-        height: 6
+        x: 32
+        y: 353
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21662d8456c34154fbb206519055069c
-      internalID: -69782459
+      spriteID: bbdbe1f72be35ca48a2eceabe8b5a8e1
+      internalID: 2067217347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_95
+      name: SWORDS_95
       rect:
         serializedVersion: 2
-        x: 14
-        y: 37
-        width: 4
-        height: 6
+        x: 64
+        y: 352
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99fc7711ad4d3b149a0245e961e262a4
-      internalID: 1450710500
+      spriteID: 2577d013012aeb54cbcf5deafe627608
+      internalID: -173451495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_96
+      name: SWORDS_96
       rect:
         serializedVersion: 2
-        x: 20
-        y: 37
-        width: 4
-        height: 6
+        x: 96
+        y: 352
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d167c8bbaeb11343b575590d217bbe1
-      internalID: -83862624
+      spriteID: 86e3bdb41f9076b4bbe94c67bf4ffc85
+      internalID: -254548163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_97
+      name: SWORDS_97
       rect:
         serializedVersion: 2
-        x: 40
-        y: 37
-        width: 4
-        height: 6
+        x: 128
+        y: 352
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6f3db26c0018684f836692e304df40a
-      internalID: 579861375
+      spriteID: aa50512e1fa467a4394846d2a55614f1
+      internalID: 2074826894
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_98
+      name: SWORDS_98
       rect:
         serializedVersion: 2
-        x: 46
-        y: 37
-        width: 4
-        height: 6
+        x: 480
+        y: 352
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83d213bc2c1fc2e448e6b662ccce3d63
-      internalID: 891533074
+      spriteID: e9c80145a5bf1ad43beaa9d870d4c368
+      internalID: -108774636
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_99
+      name: SWORDS_99
       rect:
         serializedVersion: 2
-        x: 52
-        y: 37
-        width: 4
-        height: 6
+        x: 0
+        y: 320
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 103a0d238fce4d944b7bcb8244b53892
-      internalID: 1065225413
+      spriteID: af7807524e2a1f5498361570fd728520
+      internalID: 905670836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_100
+      name: SWORDS_100
       rect:
         serializedVersion: 2
-        x: 71
-        y: 37
-        width: 18
-        height: 6
+        x: 32
+        y: 320
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c62d2bb8467c224897132e3fd04f4ff
-      internalID: 1209962439
+      spriteID: 35084b342f3ffc04f8d9b4a0bf4f571a
+      internalID: -86156339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_101
+      name: SWORDS_101
       rect:
         serializedVersion: 2
-        x: 103
-        y: 37
-        width: 18
-        height: 6
+        x: 64
+        y: 320
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51059428b5a948f44ab14cc055b82ca3
-      internalID: 1648799739
+      spriteID: cf3257f5e0b886945a2772ea4abe2ee4
+      internalID: 1532626775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_102
+      name: SWORDS_102
       rect:
         serializedVersion: 2
-        x: 135
-        y: 37
-        width: 18
-        height: 6
+        x: 160
+        y: 320
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cdaca4a8b04b2b41a14011514ec0d87
-      internalID: 342789201
+      spriteID: 98d64f45671774d4c851a33ddab0f066
+      internalID: 1925683202
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_103
+      name: SWORDS_103
       rect:
         serializedVersion: 2
-        x: 167
-        y: 37
-        width: 18
-        height: 6
+        x: 192
+        y: 320
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce47f27984fe3df4aac49ca6cb519144
-      internalID: 1806732426
+      spriteID: fe45274681431464ba7001483204ffda
+      internalID: -203600281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_104
+      name: SWORDS_104
       rect:
         serializedVersion: 2
-        x: 199
-        y: 37
-        width: 18
-        height: 6
+        x: 352
+        y: 320
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6878e9cbafbf93439cbba795daf4502
-      internalID: 4245325
+      spriteID: 486ae698f0c86f04aa535c1ed793cb97
+      internalID: 1865735340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_105
+      name: SWORDS_105
       rect:
         serializedVersion: 2
-        x: 6
-        y: 20
-        width: 6
-        height: 8
+        x: 0
+        y: 288
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f2418af5cbe8944191db99cd9ce6b8f
-      internalID: -1812604271
+      spriteID: a7e68af951928184f83665d5fc67e1a8
+      internalID: 437900715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_106
+      name: SWORDS_106
       rect:
         serializedVersion: 2
-        x: 14
-        y: 20
-        width: 5
-        height: 8
+        x: 32
+        y: 288
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1c08b9602824374ab3d64be4c3efa5e
-      internalID: -153276047
+      spriteID: 8295f794ec457bd489dec542e1a69aa7
+      internalID: -2132241024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_107
+      name: SWORDS_107
       rect:
         serializedVersion: 2
-        x: 21
-        y: 20
-        width: 6
-        height: 8
+        x: 64
+        y: 288
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf81c695b7e671a46a22c36c5631938d
-      internalID: 465833324
+      spriteID: f5e6f0c0e0e2c6e49971fbf67b328548
+      internalID: 374040471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_108
+      name: SWORDS_108
       rect:
         serializedVersion: 2
-        x: 38
-        y: 20
-        width: 6
-        height: 8
+        x: 160
+        y: 288
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc1a97e77438d7540ae8ce55e44d2fc0
-      internalID: -157265475
+      spriteID: 6e949d6f8c40b664bbf453c28ba4ca42
+      internalID: -327805527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_109
+      name: SWORDS_109
       rect:
         serializedVersion: 2
-        x: 46
-        y: 20
-        width: 5
-        height: 8
+        x: 192
+        y: 288
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59ef6f502fc1acd488c754aa2ffe6e8e
-      internalID: 208831793
+      spriteID: bfee78a238c1ba24b8bb03580056b8df
+      internalID: 1043001051
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_110
+      name: SWORDS_110
       rect:
         serializedVersion: 2
-        x: 53
-        y: 20
-        width: 6
-        height: 8
+        x: 352
+        y: 288
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67daefe7ea3fddf40af243385b65d6de
-      internalID: 677186885
+      spriteID: 6650e9c082737c14b903d4089104e251
+      internalID: -950470840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_111
+      name: SWORDS_111
       rect:
         serializedVersion: 2
-        x: 66
-        y: 20
-        width: 27
-        height: 8
+        x: 0
+        y: 256
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e845d44bf50e79343bc6fb68a22f1b3c
-      internalID: 1103472132
+      spriteID: fc5e0babc74808a4684fe30af62673ac
+      internalID: -833822434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_112
+      name: SWORDS_112
       rect:
         serializedVersion: 2
-        x: 98
-        y: 20
-        width: 27
-        height: 8
+        x: 32
+        y: 256
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 777a7df33d7c75041bb79cff4c80be94
-      internalID: -1906316687
+      spriteID: 9198e59adb263b94197eccd64628badb
+      internalID: -128111087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_113
+      name: SWORDS_113
       rect:
         serializedVersion: 2
-        x: 130
-        y: 20
-        width: 27
-        height: 8
+        x: 64
+        y: 256
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91311a7b81b51184682ccbe287c9c7f6
-      internalID: 475550667
+      spriteID: 795f5bb606ca6c14ab2b8e774a5751a2
+      internalID: 292458837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_114
+      name: SWORDS_114
       rect:
         serializedVersion: 2
-        x: 162
-        y: 20
-        width: 27
-        height: 8
+        x: 160
+        y: 256
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5993e2ebd7869b548a77b0dc5104e07f
-      internalID: -1136483119
+      spriteID: 11459b2bf2bd2874fbab7e6cda78e91f
+      internalID: 1313047516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_115
+      name: SWORDS_115
       rect:
         serializedVersion: 2
-        x: 194
-        y: 20
-        width: 27
-        height: 8
+        x: 192
+        y: 256
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2640c972e88a06745acdd3ff6fc151d9
-      internalID: -2159045
+      spriteID: 5fbb407fd179bda4a86318b9b28cf6f9
+      internalID: 1430044373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_116
+      name: SWORDS_116
       rect:
         serializedVersion: 2
-        x: 226
-        y: 20
-        width: 27
-        height: 8
+        x: 352
+        y: 256
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51a192e24eba3e848b8359ab1710daf0
-      internalID: 1211322564
+      spriteID: c6d05518197601e49b4f146f024ea954
+      internalID: -380099504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_117
+      name: SWORDS_117
       rect:
         serializedVersion: 2
-        x: 8
-        y: 5
-        width: 4
-        height: 6
+        x: 0
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd81a5a9c3d4e8647af488524631e72f
-      internalID: 963899631
+      spriteID: 5a5e5d18a5c29294e9738d0caddeafc3
+      internalID: 1336636855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_118
+      name: SWORDS_118
       rect:
         serializedVersion: 2
-        x: 14
-        y: 5
-        width: 4
-        height: 6
+        x: 32
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a801e7e68acf174b9d7042f988985be
-      internalID: 480827945
+      spriteID: 3623b321dd5740a4aaba492b6431440e
+      internalID: 595108766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_119
+      name: SWORDS_119
       rect:
         serializedVersion: 2
-        x: 20
-        y: 5
-        width: 4
-        height: 6
+        x: 160
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e060f5a03a67fd4597604f6fe616dee
-      internalID: -1714419432
+      spriteID: 92aa7277cc3f57744bd3e2b0c8993e06
+      internalID: 595910385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_120
+      name: SWORDS_120
       rect:
         serializedVersion: 2
-        x: 40
-        y: 5
-        width: 4
-        height: 6
+        x: 192
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9cfb5d37e1fd164bac50b7f00f83c7a
-      internalID: -393783223
+      spriteID: 9a59c3384c1d02841a0568856b57ed64
+      internalID: 1521764410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_121
+      name: SWORDS_121
       rect:
         serializedVersion: 2
-        x: 46
-        y: 5
-        width: 4
-        height: 6
+        x: 352
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1d2473e53a248342bd81a3e89e4a987
-      internalID: -167044525
+      spriteID: 19769880b33254a45b574b2bebb1281b
+      internalID: -745814687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_122
+      name: SWORDS_122
       rect:
         serializedVersion: 2
-        x: 52
-        y: 5
-        width: 4
-        height: 6
+        x: 384
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc1d4a6633ed33d4c894c78c9087d0cc
-      internalID: 1626307946
+      spriteID: b223b6eab7182814f8302753fce6b1f2
+      internalID: -1232400256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_123
+      name: SWORDS_123
       rect:
         serializedVersion: 2
-        x: 71
-        y: 5
-        width: 18
-        height: 6
+        x: 416
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4108b2aed99e4804c852928941241ddc
-      internalID: -1716981855
+      spriteID: e5b854ebd6bde6546af3a16f87d9fe5e
+      internalID: 1172816397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_124
+      name: SWORDS_124
       rect:
         serializedVersion: 2
-        x: 103
-        y: 5
-        width: 18
-        height: 6
+        x: 448
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dee59ad929d5b04bbb6ecee30af86fa
-      internalID: -1973000461
+      spriteID: da06ba53f783cbf4b833515383c65737
+      internalID: 174672393
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_125
+      name: SWORDS_125
       rect:
         serializedVersion: 2
-        x: 135
-        y: 5
-        width: 18
-        height: 6
+        x: 480
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34de4b7411be84b4c9f31fca2baa3138
-      internalID: 1946832840
+      spriteID: 949fc4e3b574f2a408469da4a39cb9fa
+      internalID: -1980817372
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_126
+      name: SWORDS_126
       rect:
         serializedVersion: 2
-        x: 167
-        y: 5
-        width: 18
-        height: 6
+        x: 0
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e07e6edbc4d51643a521ef4b3670bb2
-      internalID: 519801359
+      spriteID: 0199bf1fbc3381c40bc7e4d7477a3a4f
+      internalID: -1567837097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 06_127
+      name: SWORDS_127
       rect:
         serializedVersion: 2
-        x: 199
-        y: 5
-        width: 18
-        height: 6
+        x: 32
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7353e71dd93d54b4ea572d96b3e28106
-      internalID: 958901387
+      spriteID: 453ffe727b19f364bbf37a4142b56d39
+      internalID: 1521115480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_128
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ee3209922fe8424c8021c072f256795
+      internalID: 896636795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_129
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 869cdadbf25c8424ab20e3dbb34853c1
+      internalID: -590020170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_130
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc9aecb2146f4c24c9bc20f66400512a
+      internalID: -494463422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_131
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 321db2b8429ff5641a762674216613d8
+      internalID: -1530035972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_132
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f48756fc01d8f94a891ef378ef7c6a4
+      internalID: 1510101286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LegendSword
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beebc304d020e754eace8380442e790f
+      internalID: -716639488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_134
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8eddfaa51b41664d9b1095149e7d78f
+      internalID: -1952359290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_135
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd19cd92a55aede45b285454d394b66f
+      internalID: 1017522487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_136
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4b8527e4047cb147968acf767b30086
+      internalID: -380314256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_137
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3013fb7719dfef345b2254eab8a8edef
+      internalID: -777707388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_138
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0adbd1c45fa5a0409e99dccf4ae2496
+      internalID: 1703567801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_139
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7da4eacef67565c4b888523c8f9bb50c
+      internalID: -1212145717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_140
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3f8f9fad8bb7cf4dbeede2211f0998c
+      internalID: -1985799449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_141
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa6b31aeeac8ca248873cbb7561debb3
+      internalID: 635412065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_142
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a7fde5e6b3a5ca408b668394a8979c6
+      internalID: -1379887544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SWORDS_143
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef495399a05096b4794c588e0ccf6958
+      internalID: 1921580591
       vertices: []
       indices: 
       edges: []
@@ -2834,134 +3170,150 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      06_0: 78941821
-      06_1: 1891438878
-      06_10: 1676399176
-      06_100: 1209962439
-      06_101: 1648799739
-      06_102: 342789201
-      06_103: 1806732426
-      06_104: 4245325
-      06_105: -1812604271
-      06_106: -153276047
-      06_107: 465833324
-      06_108: -157265475
-      06_109: 208831793
-      06_11: -1489630800
-      06_110: 677186885
-      06_111: 1103472132
-      06_112: -1906316687
-      06_113: 475550667
-      06_114: -1136483119
-      06_115: -2159045
-      06_116: 1211322564
-      06_117: 963899631
-      06_118: 480827945
-      06_119: -1714419432
-      06_12: -1707505583
-      06_120: -393783223
-      06_121: -167044525
-      06_122: 1626307946
-      06_123: -1716981855
-      06_124: -1973000461
-      06_125: 1946832840
-      06_126: 519801359
-      06_127: 958901387
-      06_13: -163284055
-      06_14: 1965797926
-      06_15: 417914801
-      06_16: 10188021
-      06_17: 909352823
-      06_18: -1825035440
-      06_19: -576355552
-      06_2: -357736962
-      06_20: 1910216374
-      06_21: -1043727931
-      06_22: -1707788603
-      06_23: -2047782512
-      06_24: 441672881
-      06_25: 428685135
-      06_26: -312377405
-      06_27: -2074516446
-      06_28: 82288807
-      06_29: 132262105
-      06_3: 769352578
-      06_30: 1292514934
-      06_31: -1638267825
-      06_32: -2021397280
-      06_33: -72623382
-      06_34: -1207056148
-      06_35: -1444982382
-      06_36: 554203966
-      06_37: 1827166658
-      06_38: -1940051795
-      06_39: 1350200010
-      06_4: 791951931
-      06_40: -1215394331
-      06_41: -1636313280
-      06_42: -1778937913
-      06_43: 1750337417
-      06_44: -1186143092
-      06_45: -1926799668
-      06_46: -230912881
-      06_47: 114822772
-      06_48: 2122073601
-      06_49: 1759871037
-      06_5: 331791110
-      06_50: 120023081
-      06_51: 1084037546
-      06_52: 1748112239
-      06_53: 618205964
-      06_54: -529606750
-      06_55: 1812025927
-      06_56: -279679272
-      06_57: 679919391
-      06_58: -2073672723
-      06_59: -419779051
-      06_6: 601235632
-      06_60: -1453789824
-      06_61: 829379527
-      06_62: 859448621
-      06_63: 1658532617
-      06_64: 2049544489
-      06_65: 1173491539
-      06_66: 477970655
-      06_67: -1792376914
-      06_68: -1986417117
-      06_69: -235441413
-      06_7: -1157298776
-      06_70: 1946527445
-      06_71: -1849929467
-      06_72: -357744727
-      06_73: -797477848
-      06_74: -784313107
-      06_75: -457346096
-      06_76: 620531576
-      06_77: 1440139967
-      06_78: 1408341219
-      06_79: -738572390
-      06_8: -188849988
-      06_80: 1680731655
-      06_81: -1799402593
-      06_82: 1403314535
-      06_83: -63400834
-      06_84: 1257675376
-      06_85: -1465685614
-      06_86: 1924345834
-      06_87: -383932279
-      06_88: -1224050012
-      06_89: -2056066099
-      06_9: 688765355
-      06_90: -313487554
-      06_91: -1998474351
-      06_92: -1271898633
-      06_93: 625720548
-      06_94: -69782459
-      06_95: 1450710500
-      06_96: -83862624
-      06_97: 579861375
-      06_98: 891533074
-      06_99: 1065225413
+      AdvancedSword: 768356394
+      LegendSword: -716639488
+      NormalSword: 494363404
+      SWORDS_0: -663972970
+      SWORDS_1: -645184059
+      SWORDS_10: -550312646
+      SWORDS_100: -86156339
+      SWORDS_101: 1532626775
+      SWORDS_102: 1925683202
+      SWORDS_103: -203600281
+      SWORDS_104: 1865735340
+      SWORDS_105: 437900715
+      SWORDS_106: -2132241024
+      SWORDS_107: 374040471
+      SWORDS_108: -327805527
+      SWORDS_109: 1043001051
+      SWORDS_11: 1033463582
+      SWORDS_110: -950470840
+      SWORDS_111: -833822434
+      SWORDS_112: -128111087
+      SWORDS_113: 292458837
+      SWORDS_114: 1313047516
+      SWORDS_115: 1430044373
+      SWORDS_116: -380099504
+      SWORDS_117: 1336636855
+      SWORDS_118: 595108766
+      SWORDS_119: 595910385
+      SWORDS_12: -604468246
+      SWORDS_120: 1521764410
+      SWORDS_121: -745814687
+      SWORDS_122: -1232400256
+      SWORDS_123: 1172816397
+      SWORDS_124: 174672393
+      SWORDS_125: -1980817372
+      SWORDS_126: -1567837097
+      SWORDS_127: 1521115480
+      SWORDS_128: 896636795
+      SWORDS_129: -590020170
+      SWORDS_13: 1945513739
+      SWORDS_130: -494463422
+      SWORDS_131: -1530035972
+      SWORDS_132: 1510101286
+      SWORDS_134: -1952359290
+      SWORDS_135: 1017522487
+      SWORDS_136: -380314256
+      SWORDS_137: -777707388
+      SWORDS_138: 1703567801
+      SWORDS_139: -1212145717
+      SWORDS_140: -1985799449
+      SWORDS_141: 635412065
+      SWORDS_142: -1379887544
+      SWORDS_143: 1921580591
+      SWORDS_15: -1324080762
+      SWORDS_16: -871409465
+      SWORDS_17: 1645097200
+      SWORDS_18: -518054203
+      SWORDS_19: 239198321
+      SWORDS_2: -1320846851
+      SWORDS_20: -1265484143
+      SWORDS_21: 1094289983
+      SWORDS_22: -1177587203
+      SWORDS_23: 561233930
+      SWORDS_24: 1972213971
+      SWORDS_25: -31331265
+      SWORDS_26: -103440818
+      SWORDS_27: 1617566954
+      SWORDS_28: -1798056851
+      SWORDS_29: -1598519319
+      SWORDS_3: 1745851571
+      SWORDS_30: 705220091
+      SWORDS_31: -953324186
+      SWORDS_32: -1901602596
+      SWORDS_33: -1503794091
+      SWORDS_34: -1105049906
+      SWORDS_35: 267011681
+      SWORDS_36: -33095333
+      SWORDS_37: 1687761988
+      SWORDS_38: 1666640749
+      SWORDS_39: 382587995
+      SWORDS_4: -284010953
+      SWORDS_40: -582078392
+      SWORDS_41: 448728135
+      SWORDS_42: 978029241
+      SWORDS_43: 119239489
+      SWORDS_44: -1450459742
+      SWORDS_45: 1919027399
+      SWORDS_46: -1694848737
+      SWORDS_47: 1763910963
+      SWORDS_48: -542131866
+      SWORDS_49: 1271868255
+      SWORDS_5: -854405360
+      SWORDS_50: -454697845
+      SWORDS_51: -62688381
+      SWORDS_52: -1194789780
+      SWORDS_53: -1954271296
+      SWORDS_54: -1578695433
+      SWORDS_55: 513523808
+      SWORDS_56: 2004801281
+      SWORDS_57: 230900162
+      SWORDS_58: 1460607362
+      SWORDS_59: 401005521
+      SWORDS_6: -1201321594
+      SWORDS_60: -1016556349
+      SWORDS_61: -254815169
+      SWORDS_62: 2027310433
+      SWORDS_63: -1072120190
+      SWORDS_64: -557501516
+      SWORDS_65: -936678346
+      SWORDS_66: -1692299651
+      SWORDS_67: -877774838
+      SWORDS_68: 1911231293
+      SWORDS_69: -1354970986
+      SWORDS_7: 624489899
+      SWORDS_70: -1585574631
+      SWORDS_71: 58401106
+      SWORDS_72: -114693659
+      SWORDS_73: 1749307132
+      SWORDS_74: -2068769933
+      SWORDS_75: -1516866185
+      SWORDS_76: -463478130
+      SWORDS_77: 1125494927
+      SWORDS_78: 587198570
+      SWORDS_79: -958490112
+      SWORDS_8: 1844487192
+      SWORDS_80: 723768071
+      SWORDS_81: -642390888
+      SWORDS_82: -1460186126
+      SWORDS_83: -1265212949
+      SWORDS_84: 93777392
+      SWORDS_85: -282599163
+      SWORDS_86: 1089585288
+      SWORDS_87: 1325751881
+      SWORDS_88: 691897090
+      SWORDS_89: -1112612814
+      SWORDS_9: -1157761126
+      SWORDS_90: 1457891145
+      SWORDS_91: -1101885341
+      SWORDS_92: -687879395
+      SWORDS_94: 2067217347
+      SWORDS_95: -173451495
+      SWORDS_96: -254548163
+      SWORDS_97: 2074826894
+      SWORDS_98: -108774636
+      SWORDS_99: 905670836
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
