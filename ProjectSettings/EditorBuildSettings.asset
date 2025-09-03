@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: 326d172e7f0fe8949825ffeebc4700c6
   - enabled: 1
-    path: Assets/Scenes/LobyScene.unity
+    path: Assets/Scenes/LobbyScene.unity
     guid: 4c73d8fadb0d6744e933929f8652d67c
   - enabled: 1
     path: Assets/Scenes/DungeonScene.unity

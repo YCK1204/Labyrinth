@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - startScreenUIPrefeb: {instanceID: 0}
+  - startScreenUIPrefeb: {fileID: 3100195143648603400, guid: 85a0ba391c7ecc340ba23608cbb055c0, type: 3}
   - settingUIPrefeb: {fileID: 2516878641773862092, guid: b83035552ca030f4ca8d292fde547904, type: 3}
   - exitUIPrefeb: {fileID: 7657130888181221254, guid: 2009828ad80a4f4478f5654b03dfa40b, type: 3}
   - shopUIPrefeb: {instanceID: 0}
