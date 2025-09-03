@@ -6,37 +6,33 @@ using UnityEngine.UI;
 
 public class PauseMenuUI : MonoBehaviour
 {
-    public GameObject pausePanel;
-    public GameObject exitPanel;
-    public GameObject settingPanel;
+    public GameObject pauseMenuUI;
+    public GameObject exitUI;
+    public GameObject settingUI;
 
     public TextMeshProUGUI atkCountText;
     public TextMeshProUGUI atkSpdCountText;
     public TextMeshProUGUI defCountText;
     public TextMeshProUGUI hpCountText;
 
-    private PlayerDataUI playerDataUI;
-    private bool isPaused = false;
+    private PlayerDataUI _playerDataUI;
+    private bool _isPaused = false;
 
     private void Start()
     {
-        playerDataUI = PlayerDataUI.Instance;
-
-        pausePanel.SetActive(false);
-        settingPanel.SetActive(false);
-        exitPanel.SetActive(false);
+        _playerDataUI = PlayerDataUI.Instance;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused)
-            {
-
-            }
+            Manager.UI.HidePauseMenuUI();
         }
     }
 
-    
+    public void OnResumeButtonClicked()
+    {
+        Manager.UI.HidePauseMenuUI
+    }
 }

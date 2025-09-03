@@ -125,7 +125,15 @@ public class UIManager : MonoBehaviour
         {
             pauseMenuUIInstance = Instantiate(pauseMenuUIPrefeb);
         }
+        Time.timeScale = 0f;
         pauseMenuUIInstance.SetActive(true);
     }
-    public void HidePauseMenuUI() => pauseMenuUIInstance?.SetActive(false);
+    public void HidePauseMenuUI()
+    {
+        if (pauseMenuUIInstance != null)
+        {
+            pauseMenuUIInstance.SetActive(false);
+            Time.timeScale = 1f;
+        }
+    }
 }
