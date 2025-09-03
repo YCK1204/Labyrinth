@@ -13,7 +13,7 @@ public class ExitUI : MonoBehaviour
 #endif
     }
 
-    public void ONNOButtonClicked()
+    public void OnNoButtonClicked()
     {
         if (Manager.UI != null)
         {
