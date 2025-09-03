@@ -22,8 +22,8 @@ public abstract class MonsterController : CreatureController
     protected Vector2 startPosition;
 
     protected PlayerController target;
-    Vector2 _destPos = Vector2.zero;
-    protected Vector2 destPos
+    protected Vector2 _destPos = Vector2.zero;
+    protected virtual Vector2 destPos
     {
         get { return _destPos; }
         set
@@ -48,6 +48,7 @@ public abstract class MonsterController : CreatureController
         Idle,
         Patrol,
         Chase,
+        ChaseRun,
         Attack,
         TakeHit,
         Jump,

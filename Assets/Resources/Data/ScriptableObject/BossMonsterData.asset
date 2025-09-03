@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cbb40b5dbf61b4891ab45fedb795f4, type: 3}
+  m_Name: BossMonsterData
+  m_EditorClassIdentifier: 
+  _hp: 1500
+  _speed: 0
+  _armor: 10
+  _power: 15
+  _crit: 20
+  _lv: 0
+  _kbResist: 0
+  _critX: 1.5
+  _armorPen: 0
+  _atkSpeed: 2
+  spriteForCollisionSize: {fileID: 1585066655, guid: 6b0ba3ef17a62404d985ccc14f6d9c95, type: 3}
+  _patrol:
+    range: 5
+    interval: 0
+    detectionRange: 100
+    directions:
+    - {x: -1, y: 0}
+    - {x: 1, y: 0}
+    lastPatrolTime: 0
+  _attackHitboxRadius: 1
+  _attackRange: 6
+  exp: 100
+  gold: 100
+  _maxCheckDist: 100
+  _attackHitboxOffset: {x: -1, y: 0}
+  walkingSpeed: 3
+  runningSpeed: 5
+  leapSpeed: 7
+  fastChaseArea: 15
+  cooldownTime: 0.3

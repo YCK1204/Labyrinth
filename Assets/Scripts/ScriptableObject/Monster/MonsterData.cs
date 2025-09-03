@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class MonsterData : CreatureData
@@ -16,4 +17,10 @@ public abstract class MonsterData : CreatureData
     [SerializeField]
     private float _attackRange = 1.0f;
     public float AttackRange { get { return _attackRange; } }
+    [SerializeField]
+    private int exp = 100;
+    public int Exp { get { return exp; } }
+    [SerializeField]
+    private int gold = 100;
+    public int Gold { get { return gold; } }
 }

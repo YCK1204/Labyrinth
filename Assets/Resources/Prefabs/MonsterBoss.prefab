@@ -11,19 +11,19 @@ PrefabInstance:
     - target: {fileID: 1901799842812525501, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 0d7bfb7bb181a804e91ad9c963fc4501, type: 2}
+      objectReference: {fileID: 9100000, guid: 9b7ef6e532f67c04ba063acceea09084, type: 2}
     - target: {fileID: 7914085408742787020, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       propertyPath: m_Size.x
-      value: 0.33
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7914085408742787020, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       propertyPath: m_Size.y
-      value: 0.36
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7914085408742787020, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 215861788, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+      objectReference: {fileID: 2045449560236563837, guid: 3871162483c4e794e88984c2f1ae6dba, type: 3}
     - target: {fileID: 7914085408742787020, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9015496709570990289, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       propertyPath: m_Name
-      value: MonsterGoblin
+      value: MonsterBoss
       objectReference: {fileID: 0}
     - target: {fileID: 9015496709570990289, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       propertyPath: m_IsActive
@@ -80,36 +80,5 @@ PrefabInstance:
     - {fileID: 8343348288139645703, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9015496709570990289, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 379386123481688153}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
---- !u!1 &3304108167855236742 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9015496709570990289, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
-  m_PrefabInstance: {fileID: 5820892222598739543}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &379386123481688153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3304108167855236742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bb37a583d8927c4b9e8114e3b1119c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creatureData: {fileID: 11400000, guid: d00ba6d8fd2b82e478a17b014c1a97d9, type: 2}
-  hp: 0
-  speed: 0
-  armor: 0
-  power: 0
-  crit: 0
-  lv: 0
-  kbResist: 0
-  critX: 0
-  armorPen: 0
-  atkSpeed: 0

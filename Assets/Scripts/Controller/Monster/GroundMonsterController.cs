@@ -78,13 +78,13 @@ public class GroundMonsterController : MonsterController
         float yBottom = GetBottomFloorY();
         float height = yTop - yBottom;
 
-        (detectionCollider as BoxCollider2D).size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
-        detectionCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
 
         InitCollisionChild();
         var collision = transform.FindChild<BoxCollider2D>(name:"Collision");
         var offset = collision.bounds.center.y - collision.bounds.min.y;
         transform.position = new Vector2(transform.position.x, yBottom + offset);
+        (detectionCollider as BoxCollider2D).size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);
+        detectionCollider.offset = new Vector2(0, ((yTop + yBottom) / 2 - transform.position.y) / transform.localScale.y);
         Physics2D.IgnoreCollision(detectionCollider, collision);
         startPosition = transform.position;
     }
