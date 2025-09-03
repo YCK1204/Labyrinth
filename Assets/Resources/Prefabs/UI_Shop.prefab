@@ -3909,6 +3909,7 @@ GameObject:
   - component: {fileID: 4162452668999311353}
   - component: {fileID: 4050541566859772656}
   - component: {fileID: 3601039609320758499}
+  - component: {fileID: 4366996799558797015}
   m_Layer: 5
   m_Name: UI_Shop
   m_TagString: Untagged
@@ -4002,6 +4003,56 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4366996799558797015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6393252428022487964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac48d47e4bfa484095c4562a66a7529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSO: {fileID: 11400000, guid: 95c28af892a88bc45bbf57d5ebbe6273, type: 2}
+  shopPanel: {fileID: 6393252428022487964}
+  content: {fileID: 166444169903009279}
+  rowPrefab: {fileID: 297066068600386089, guid: e3949ded709c074498c17cc3e5dc2a7c, type: 3}
+  shopItems:
+  - {fileID: 11400000, guid: 1c4fec8a232f0aa4892388a1e89060da, type: 2}
+  - {fileID: 11400000, guid: 3a60d9650f354804fa3e5c7ee2e9b80c, type: 2}
+  - {fileID: 11400000, guid: a84c702517646b247a65d4f0c87f0635, type: 2}
+  - {fileID: 11400000, guid: 6101bf5024cbf184683fe43b9e6b9eec, type: 2}
+  - {fileID: 11400000, guid: 91a9286dd476bb24082791990054d91b, type: 2}
+  - {fileID: 11400000, guid: ba993ed7de2b07447be37cdf2e5efd17, type: 2}
+  playerGoldText: {fileID: 7335923857981510438}
+  buySellPanel: {fileID: 6218089937678475879}
+  yesButton: {fileID: 5108237847072242666}
+  noButton: {fileID: 7426156710819486451}
+  cantBuyPanel: {fileID: 626727644402284734}
+  confirmButton: {fileID: 1490913426472200332}
+  itemDetailPanel: {fileID: 5124780116853424127}
+  nameText: {fileID: 2641348878498242854}
+  typeText: {fileID: 9032357577274009865}
+  priceText: {fileID: 1575568652324839629}
+  closeButton: {fileID: 4719228802632079077}
+  statLabels:
+  - {fileID: 1772763007203040190}
+  - {fileID: 7488899151355200561}
+  - {fileID: 2920612425127449737}
+  - {fileID: 4809839045062587253}
+  statValues:
+  - {fileID: 1246249456639179789}
+  - {fileID: 4173483144511064900}
+  - {fileID: 8584363197227643470}
+  - {fileID: 4706786559473131075}
+  buyButton: {fileID: 6293636838633094597}
+  sellButton: {fileID: 9078946978112961168}
+  equipButton: {fileID: 7663717207321180600}
+  exitButton: {fileID: 8906727974538822663}
+  selectionOutlineColor: {r: 0.2, g: 0.6, b: 1, a: 1}
+  doubleClickThreshold: 0.3
 --- !u!1 &6444137116558116977
 GameObject:
   m_ObjectHideFlags: 0
@@ -4564,7 +4615,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00008026795}
+  m_AnchoredPosition: {x: 0, y: -0.000014396221}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &4156664422520882154
@@ -5847,7 +5898,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3038401605595072763}
   m_HandleRect: {fileID: 6826647328587605474}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
