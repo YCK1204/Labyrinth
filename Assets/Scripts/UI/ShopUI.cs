@@ -6,6 +6,7 @@ using TMPro;
 public class ShopUI : MonoBehaviour
 {
     [SerializeField] private PlayerData playerSO;
+    [SerializeField] private GameObject shopPanel;
     
     [Header("List UI")]
     [SerializeField] private Transform content;
@@ -69,7 +70,15 @@ public class ShopUI : MonoBehaviour
         if (noButton) noButton.onClick.AddListener(CloseConfirm);
         if (cantBuyPanel) cantBuyPanel.SetActive(false);
         if (confirmButton) confirmButton.onClick.AddListener(() => cantBuyPanel.SetActive(false));
-        if (exitButton) exitButton.onClick.AddListener(() => Manager.UI.HideShopUI());
+        if (exitButton)
+        {
+            exitButton.onClick.AddListener(() =>
+            {
+                shopPanel.SetActive(false);
+                Time.timeScale = 1f;
+            });
+        }
+
 
         UpdateGoldUI();
         UpdateBuyButtonState();
