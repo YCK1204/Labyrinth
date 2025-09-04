@@ -26,7 +26,10 @@ public class ClearUI : MonoBehaviour
 
     public void Show()
     {
-        if (clearUI) clearUI.SetActive(true);
+        if (clearUI)
+        {
+            clearUI.SetActive(true);
+        }
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }

@@ -197,9 +197,9 @@ public class PlayerController : CreatureController
         _rb.velocity = Vector2.zero;
         _rb.isKinematic = true;
         enabled = false;
-
         if (deadUI != null)
         {
+            deadUI.gameObject.SetActive(true);
             deadUI.Show();
         }
     }

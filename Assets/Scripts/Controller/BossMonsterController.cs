@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BossMonsterController : GroundMonsterController
 {
+    [SerializeField] private ClearUI clearUI;
     BossMonsterData _bossData;
     MonsterAttackHitboxController _attackHitbox;
     bool attacked = false;
@@ -127,6 +128,16 @@ public class BossMonsterController : GroundMonsterController
             atkSpeed *= 1.2f;
             animator.speed = 1.2f;
 		}
+    }
+    protected override void OnDied()
+    {
+        base.OnDied();
+
+        if (clearUI != null)
+        {
+            clearUI.gameObject.SetActive(true);
+            clearUI.Show();
+        }
     }
     protected override void UpdateAnimation()
     {
