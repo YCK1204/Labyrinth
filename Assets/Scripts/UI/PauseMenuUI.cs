@@ -19,12 +19,9 @@ public class PauseMenuUI : MonoBehaviour
         _playerDataUI = PlayerDataUI.Instance;
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Manager.UI.HidePauseMenuUI();
-        }
+        UpdatePlayerStats();
     }
 
     public void OnResumeButtonClicked()
