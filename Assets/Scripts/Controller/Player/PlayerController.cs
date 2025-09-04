@@ -145,9 +145,16 @@ public class PlayerController : CreatureController
             var dummy = h.GetComponentInParent<AttackPracticeNPC>();
             if (dummy != null)
             {
-                dummy.TakeDamage(power);
+                var (dmg, isCrit) = CalcFinalDamage(power, 0);
+                dummy.TakeDamage(dmg);
+
+                if (DamageUI.Instance != null)
+                {
+                    DamageUI.Instance.Show(dummy.transform.position + Vector3.up * 1f,dmg,DamageStyle.Enemy,isCrit);
+                }
                 continue;
             }
+
         }
     }
 
