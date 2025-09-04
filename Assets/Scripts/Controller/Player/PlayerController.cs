@@ -281,6 +281,7 @@ public class PlayerController : CreatureController
         float reducMul = 100f / (100f + effArmor);
         bool isCrit = Random.Range(0, 100) < crit;
         float damage = atk * reducMul * (isCrit ? critX : 1f);
+        damage = Mathf.Round(damage * 10f) / 10f;
         return (damage, isCrit);
     }
     public void GainExp(int amount)

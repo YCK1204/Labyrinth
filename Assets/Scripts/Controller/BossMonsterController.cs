@@ -45,6 +45,7 @@ public class BossMonsterController : GroundMonsterController
         if (player == null) return;
         bool isCrit = Random.Range(0f, 100f) < crit;
         var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (isCrit ? critX : 1);
+        dmg = Mathf.Round(dmg * 10f) / 10f;
         bool isDamage = player._TakeDamage(dmg);
         attacked = true;
         if (DamageUI.Instance != null & isDamage)
