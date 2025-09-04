@@ -26,10 +26,25 @@ public class UIManager : MonoBehaviour
     private GameObject topButtonUIInstance;
     private GameObject pauseMenuUIInstance;
 
-    void Start()
+    private void Awake()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void Start()
     {
         Manager.UI = this;
         SetSceneUI(SceneManager.GetActiveScene().name);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SetSceneUI(scene.name);
     }
 
     public void SetSceneUI(string sceneName)
