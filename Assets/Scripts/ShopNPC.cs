@@ -20,7 +20,7 @@ public class ShopNPC : MonoBehaviour
         if (uiRoot) uiRoot.SetActive(false);
 
         if (closeButton)
-            closeButton.onClick.AddListener(CloseShop); // ✨ 닫기 버튼 연결
+            closeButton.onClick.AddListener(CloseShop);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -51,6 +51,9 @@ public class ShopNPC : MonoBehaviour
 
         if (uiRoot) uiRoot.SetActive(true);
 
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         Time.timeScale = 0f;
     }
 
@@ -60,6 +63,10 @@ public class ShopNPC : MonoBehaviour
         IsOpen = false;
 
         if (uiRoot) uiRoot.SetActive(false);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        
         Time.timeScale = 1f;
     }
 }

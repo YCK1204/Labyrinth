@@ -32,8 +32,8 @@ MonoBehaviour:
     - {x: 1, y: 0}
     lastPatrolTime: 0
   _attackHitboxRadius: 1
-  _attackRange: 2
+  _attackRange: 1.5
   exp: 100
   gold: 100
   _maxCheckDist: 5
-  _attackHitboxOffset: {x: 0.1, y: 0}
+  _attackHitboxOffset: {x: 0.6, y: 0}

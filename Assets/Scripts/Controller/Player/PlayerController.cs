@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerController : CreatureController
 {
+    [SerializeField] private DeadUI deadUI;
     [Header("Refs")]
     [SerializeField] private SimpleSensor2D GroundSensor;
     [SerializeField] private Transform AttackPoint;     // 칼끝 기준점
@@ -25,7 +26,8 @@ public class PlayerController : CreatureController
     private Vector2 _attackPointDefault;
     private bool _attackLocked;
 
-    private bool _grounded, _rolling;
+    private bool _grounded;
+    public bool _rolling;
     private int _facing = 1;
     private float _rollTimer;
     private float _rollCooldownRemain;
@@ -150,8 +152,13 @@ public class PlayerController : CreatureController
     // 피격 처리
     public override void TakeDamage(float dmg)
     {
+        _TakeDamage(dmg);
+
+    }
+    public bool _TakeDamage(float dmg)
+    {
         //구르기 무적시간
-        if (_rolling && _rollTimer <= RollIFrame) return;
+        if (_rolling && _rollTimer <= RollIFrame) return false;
 
         hp -= dmg;
 
@@ -162,7 +169,8 @@ public class PlayerController : CreatureController
         }
         else
             _anim.TrgHurt();
-
+        
+        return true;
     }
     // 사망 처리
     protected override void OnDied()
@@ -171,6 +179,11 @@ public class PlayerController : CreatureController
         _rb.velocity = Vector2.zero;
         _rb.isKinematic = true;
         enabled = false;
+
+        if (deadUI != null)
+        {
+            deadUI.Show();
+        }
     }
     // 구르기 시작
     private void OnRoll()
@@ -275,6 +288,7 @@ public class PlayerController : CreatureController
         float reducMul = 100f / (100f + effArmor);
         bool isCrit = Random.Range(0, 100) < crit;
         float damage = atk * reducMul * (isCrit ? critX : 1f);
+        damage = Mathf.Round(damage * 10f) / 10f;
         return (damage, isCrit);
     }
     public void GainExp(int amount)

@@ -51,6 +51,9 @@ public class UpgradeNPC : MonoBehaviour
 
         if (uiRoot) uiRoot.SetActive(true);
 
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         Time.timeScale = 0f;
     }
 
@@ -60,6 +63,10 @@ public class UpgradeNPC : MonoBehaviour
         IsOpen = false;
 
         if (uiRoot) uiRoot.SetActive(false);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         Time.timeScale = 1f;
     }
 }

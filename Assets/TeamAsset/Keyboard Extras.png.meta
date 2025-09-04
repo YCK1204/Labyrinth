@@ -63,9 +63,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -138,7 +138,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 140ef42f54532b048b774231504bb91c
-      internalID: 1053073429
+      internalID: 7443243840830288260
       vertices: []
       indices: 
       edges: []
@@ -159,7 +159,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 25d60fcc35bccdb4eaeb662f4b32f83f
-      internalID: 2015452859
+      internalID: 2659928716049758086
       vertices: []
       indices: 
       edges: []
@@ -175,8 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Keyboard Extras_0: 1053073429
-      Keyboard Extras_1: 2015452859
+      Keyboard Extras_0: 7443243840830288260
+      Keyboard Extras_1: 2659928716049758086
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

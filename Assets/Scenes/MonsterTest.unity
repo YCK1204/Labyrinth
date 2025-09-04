@@ -23083,11 +23083,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8334448616941566241, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.81
+      value: -11.7
       objectReference: {fileID: 0}
     - target: {fileID: 8334448616941566241, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.88
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 8334448616941566241, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23138,6 +23138,63 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 909106051}
   m_SourcePrefab: {fileID: 100100000, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
+--- !u!1001 &1316125106
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2553011544482434934, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.158957
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.1084282
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3304108167855236742, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
+      propertyPath: m_Name
+      value: MonsterSlime
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8f7d4abccba1bdf4385df758338a21fe, type: 3}
 --- !u!1 &1381019176
 GameObject:
   m_ObjectHideFlags: 0
@@ -63881,6 +63938,63 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &2036943901
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.551347
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.1669176
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553011544482434934, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3304108167855236742, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
+      propertyPath: m_Name
+      value: MonsterGoblin
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6eee3e299b7a3cd439f1e223760d7b7d, type: 3}
 --- !u!1 &2070527778
 GameObject:
   m_ObjectHideFlags: 0
@@ -63981,6 +64095,7 @@ SceneRoots:
   - {fileID: 166562040}
   - {fileID: 1381019178}
   - {fileID: 1226433428}
-  - {fileID: 1267484747}
   - {fileID: 1570848368}
   - {fileID: 1421533537}
+  - {fileID: 2036943901}
+  - {fileID: 1316125106}
