@@ -139,6 +139,16 @@ public class BossMonsterController : GroundMonsterController
                 state = MonsterState.Idle;
             return;
         }
+        pos = spriteRenderer.bounds.center;
+        pos.x = destDir.x > 0 ? spriteRenderer.bounds.max.x : spriteRenderer.bounds.min.x;
+        ray = new Ray(pos, destDir);
+        hit = Physics2D.Raycast(pos, destDir, .1f, LayerMask.GetMask("Ground"));
+        if (hit.collider != null)
+        {
+            if (state == MonsterState.Patrol)
+                state = MonsterState.Idle;
+            return;
+        }
         transform.position += speed * Time.deltaTime * (Vector3)_destDir;
     }
     protected override void Init()
@@ -152,7 +162,7 @@ public class BossMonsterController : GroundMonsterController
             return;
         }
         speed = _bossData.WalkingSpeed;
-        var fastChaseArea = new GameObject("FaseChaseArea").AddComponent<FastChaseAreaController>();
+        var fastChaseArea = new GameObject("FaseChaseArea").AddComponent<TriggerSensorController>();
         fastChaseArea.Init(transform, GetTopFloorY(), GetBottomFloorY(), _bossData.FastChaseArea, LayerMask.NameToLayer("Player"));
         fastChaseArea.SetCallback(FastChaseEnter, FastChaseExit);
 
