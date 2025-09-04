@@ -17,8 +17,8 @@ public class GoblinController : GroundMonsterController
         if (player == null) return;
         var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (isCrit ? critX : 1);
         dmg = Mathf.Round(dmg * 10f) / 10f;
-        player.TakeDamage(dmg);
-        if (DamageUI.Instance != null)
+        bool isDamage = player._TakeDamage(dmg);
+        if (DamageUI.Instance != null & isDamage)
             DamageUI.Instance.Show(player.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
         
     }

@@ -45,9 +45,9 @@ public class BossMonsterController : GroundMonsterController
         if (player == null) return;
         bool isCrit = Random.Range(0f, 100f) < crit;
         var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (isCrit ? critX : 1);
-        player.TakeDamage(dmg);
+        bool isDamage = player._TakeDamage(dmg);
         attacked = true;
-        if (DamageUI.Instance != null)
+        if (DamageUI.Instance != null & isDamage)
             DamageUI.Instance.Show(player.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
     }
     public override void OnAttackFinished()
@@ -155,7 +155,7 @@ public class BossMonsterController : GroundMonsterController
         fastChaseArea.Init(transform, GetTopFloorY(), GetBottomFloorY(), _bossData.FastChaseArea, LayerMask.NameToLayer("Player"));
         fastChaseArea.SetCallback(FastChaseEnter, FastChaseExit);
 
-        // °ø°Ý ÆÇÁ¤¿ë MonsterAttackHitboxController »ý¼º
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MonsterAttackHitboxController ï¿½ï¿½ï¿½ï¿½
         var attackHitbox = new GameObject("AttackHitbox");
         _attackHitbox = attackHitbox.AddComponent<MonsterAttackHitboxController>();
         _attackHitbox.Init(attackHitboxRadius, transform, _bossData.AttackHitboxOffset, 1 << LayerMask.NameToLayer("Player"));

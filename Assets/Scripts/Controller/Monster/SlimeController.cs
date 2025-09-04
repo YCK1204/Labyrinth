@@ -71,8 +71,8 @@ public class SlimeController : GroundMonsterController
                     bool isCrit = Random.Range(0f, 100f) < crit;
                     var dmg = power * (100 / (100 + Mathf.Max(0, target.armor - armorPen))) *  (isCrit ? critX : 1);
                     dmg = Mathf.Round(dmg * 10f) / 10f;
-                    pc.TakeDamage(dmg);
-                    if (DamageUI.Instance != null)
+                    bool isDamage = pc._TakeDamage(dmg);
+                    if (DamageUI.Instance != null & isDamage)
                         DamageUI.Instance.Show(pc.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
                     break;
                 }

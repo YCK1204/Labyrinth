@@ -150,8 +150,13 @@ public class PlayerController : CreatureController
     // 피격 처리
     public override void TakeDamage(float dmg)
     {
+        _TakeDamage(dmg);
+
+    }
+    public bool _TakeDamage(float dmg)
+    {
         //구르기 무적시간
-        if (_rolling && _rollTimer <= RollIFrame) return;
+        if (_rolling && _rollTimer <= RollIFrame) return false;
 
         hp -= dmg;
 
@@ -162,7 +167,8 @@ public class PlayerController : CreatureController
         }
         else
             _anim.TrgHurt();
-
+        
+        return true;
     }
     // 사망 처리
     protected override void OnDied()
