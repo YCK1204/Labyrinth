@@ -7,8 +7,16 @@ public class ExplainTextUI : MonoBehaviour
 
     void Start()
     {
-        if (textUI)
+        if (!textUI) return;
+
+        if (gameObject.layer == LayerMask.NameToLayer("MonsterCollision"))
+        {
+            textUI.text = "공격 : LeftClick";
+        }
+        else
+        {
             textUI.text = "상호작용 : F키";
+        }
     }
 
     void Update()
