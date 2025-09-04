@@ -70,6 +70,8 @@ public abstract class MonsterController : CreatureController
     protected override void OnDied()
     {
         StartCoroutine(FadeOut());
+        GameManager.Instance.PC.GainExp(monsterData.Exp);
+        GameManager.Instance.PC.GainGold(monsterData.Gold);
     }
     protected void InitCollisionChild()
     {

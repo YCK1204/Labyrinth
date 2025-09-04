@@ -46,6 +46,11 @@ public class PlayerData : CreatureData
         }
         return gained;
     }
+    public void AddGold(int amount)
+    {
+        if (amount <= 0) return;
+        Gold += amount;
+    }
 
     void ApplyLevelGrowth()
     {
