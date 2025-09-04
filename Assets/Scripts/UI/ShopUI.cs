@@ -7,6 +7,8 @@ public class ShopUI : MonoBehaviour
 {
     [SerializeField] private PlayerData playerSO;
     [SerializeField] private GameObject shopPanel;
+    [SerializeField] private EquippedHUD equippedHUD;
+
     
     [Header("List UI")]
     [SerializeField] private Transform content;
@@ -57,7 +59,8 @@ public class ShopUI : MonoBehaviour
 
     void Start()
     {
-        equipRef = FindObjectOfType<PlayerEquipment>();
+        if (!equipRef) equipRef = FindObjectOfType<PlayerEquipment>();
+        if (!equippedHUD) equippedHUD = FindObjectOfType<EquippedHUD>();
 
         Refresh();
         if (itemDetailPanel) itemDetailPanel.SetActive(false);
@@ -87,6 +90,7 @@ public class ShopUI : MonoBehaviour
 
         // 장착 배지 초기 동기화
         if (equipRef) SyncBadges(equipRef);
+        if (equipRef && equippedHUD) equippedHUD.Refresh(equipRef);
     }
 
 
@@ -231,6 +235,7 @@ public class ShopUI : MonoBehaviour
         UpdateBuyButtonState();
         UpdateSellButtonState();
         UpdateEquipButtonState();
+        if (equippedHUD && equipRef) equippedHUD.Refresh(equipRef);
     }
 
     void ToggleEquip()
@@ -250,6 +255,7 @@ public class ShopUI : MonoBehaviour
         }
 
         SyncBadges(equipRef);
+        if (equippedHUD) equippedHUD.Refresh(equipRef);
         UpdateEquipButtonState();
         UpdateSellButtonState();
     }
