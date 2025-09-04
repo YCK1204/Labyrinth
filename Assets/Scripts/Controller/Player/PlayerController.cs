@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : CreatureController
 {
     [SerializeField] private DeadUI deadUI;
+    [SerializeField] private PlayerData playerData;
+    public PlayerData PlayerData => playerData;
     [Header("Refs")]
     [SerializeField] private SimpleSensor2D GroundSensor;
     [SerializeField] private Transform AttackPoint;     // 칼끝 기준점

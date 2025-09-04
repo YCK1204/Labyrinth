@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerController _pc;
     public PlayerController Player => _pc;
 
+    [SerializeField] private PlayerData _playerData;
+    public PlayerData PlayerData => _playerData;
+
     private void Awake()
     {
         var existing = FindObjectsOfType<GameManager>();
@@ -18,6 +21,9 @@ public class GameManager : MonoBehaviour
 
         if (_pc == null)
             _pc = FindObjectOfType<PlayerController>();
+            
+        if (_playerData == null && _pc != null)
+            _playerData = _pc.PlayerData;
 
         Manager.Game = this;
     }

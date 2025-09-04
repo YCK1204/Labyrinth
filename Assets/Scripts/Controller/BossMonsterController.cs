@@ -138,6 +138,10 @@ public class BossMonsterController : GroundMonsterController
             clearUI.gameObject.SetActive(true);
             clearUI.Show();
         }
+        if (Manager.Game != null && Manager.Game.PlayerData != null)
+        {
+            Manager.Game.PlayerData.IsHardMode = true;
+        }
     }
     protected override void UpdateAnimation()
     {
