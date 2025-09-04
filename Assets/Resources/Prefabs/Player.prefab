@@ -162,6 +162,7 @@ MonoBehaviour:
   critX: 0
   armorPen: 0
   atkSpeed: 0
+  deadUI: {fileID: 0}
   GroundSensor: {fileID: 6254059701309835601}
   AttackPoint: {fileID: 7986395276139832285}
   AttackRadius: 0.8
@@ -174,6 +175,7 @@ MonoBehaviour:
   JumpForce: 7.5
   RollForce: 10
   RollDuration: 0.5
+  _rolling: 0
 --- !u!70 &9013992672445738455
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -282,7 +284,7 @@ Transform:
   m_GameObject: {fileID: 1375677611483181627}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.935, z: 0}
+  m_LocalPosition: {x: 0, y: -0.855, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

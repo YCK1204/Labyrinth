@@ -2,33 +2,33 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class DeadUI : MonoBehaviour
+public class ClearUI : MonoBehaviour
 {
-    [SerializeField] private GameObject deadUI;
+    [SerializeField] private GameObject clearUI;
     [SerializeField] private Button returnButton;
     [SerializeField] private string lobbySceneName = "LobbyScene";
     [SerializeField] private PlayerData playerData;
 
     void Awake()
     {
-        if (deadUI == null)
-            deadUI = transform.Find("UI_Dead")?.gameObject;
+        if (clearUI == null)
+            clearUI = transform.Find("UI_Clear")?.gameObject;
 
-        if (returnButton == null && deadUI != null)
-            returnButton = deadUI.transform.Find("ReturnButton")?.GetComponent<Button>();
+        if (returnButton == null && clearUI != null)
+            returnButton = clearUI.transform.Find("ReturnButton")?.GetComponent<Button>();
 
         if (playerData == null)
             playerData = Resources.Load<PlayerData>("New Player Data"); 
 
-        if (deadUI) deadUI.SetActive(false);
+        if (clearUI) clearUI.SetActive(false);
         if (returnButton) returnButton.onClick.AddListener(OnReturnClicked);
     }
 
     public void Show()
     {
-        if (deadUI)
+        if (clearUI)
         {
-            deadUI.SetActive(true);
+            clearUI.SetActive(true);
         }
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -58,7 +58,6 @@ public class DeadUI : MonoBehaviour
         playerData.Armor = 5;
         playerData.ArmorPen = 0;
         playerData.Speed = 8;
-        playerData.Gold = 300;
 
         playerData.Crit = 0f;
         playerData.CritX = 1.5f;

@@ -118,7 +118,7 @@ public class PlayerController : CreatureController
         if (!_combo.TryNext(out var step, consumeStep: true)) return;
         _anim.TrgAttack(step);
     }
-    //실제 공격(몬스터 스탯이 생기면 데미지 처리 수정)
+    //실제 공격
     public void OnAttackHit()
     {
         if (AttackRadius <= 0f) return;
@@ -129,17 +129,35 @@ public class PlayerController : CreatureController
         foreach (var h in hits)
         {
             var monster = h.GetComponentInParent<MonsterController>();
-            if (monster == null) continue;
+            if (monster != null)
+            {
+                var (dmg, isCrit) = CalcFinalDamage(power, monster.armor);
+                monster.TakeDamage(dmg);
 
-            var (dmg, isCrit) = CalcFinalDamage(power, monster.armor);
-            monster.TakeDamage(dmg);
+                if (DamageUI.Instance != null)
+                    DamageUI.Instance.Show(monster.transform.position + Vector3.up * 1f, dmg, DamageStyle.Enemy, isCrit);
 
-            if (DamageUI.Instance != null)
-                DamageUI.Instance.Show(monster.transform.position + Vector3.up * 1f, dmg, DamageStyle.Enemy, isCrit);
+                Debug.Log($"{monster.name}에게 {dmg} 피해!");
+                continue;
+            }
 
-            Debug.Log($"{monster.name}에게 {dmg} 피해!");
+            //허수아비용
+            var dummy = h.GetComponentInParent<AttackPracticeNPC>();
+            if (dummy != null)
+            {
+                var (dmg, isCrit) = CalcFinalDamage(power, 0);
+                dummy.TakeDamage(dmg);
+
+                if (DamageUI.Instance != null)
+                {
+                    DamageUI.Instance.Show(dummy.transform.position + Vector3.up * 1f,dmg,DamageStyle.Enemy,isCrit);
+                }
+                continue;
+            }
+
         }
     }
+
     public void OnAttackMoveLock()
     {
         _attackLocked = true;
@@ -179,9 +197,9 @@ public class PlayerController : CreatureController
         _rb.velocity = Vector2.zero;
         _rb.isKinematic = true;
         enabled = false;
-
         if (deadUI != null)
         {
+            deadUI.gameObject.SetActive(true);
             deadUI.Show();
         }
     }
