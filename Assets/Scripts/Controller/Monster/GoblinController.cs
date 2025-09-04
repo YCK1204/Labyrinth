@@ -25,8 +25,10 @@ public class GoblinController : GroundMonsterController
         bool isDamage = player._TakeDamage(dmg);
         if (DamageUI.Instance != null & isDamage)
             DamageUI.Instance.Show(player.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
-        if (player._rolling)
+        if (player._rolling == false)
             Manager.Audio.PlayOneShot(audioData.HitSuccess[0], pos);
+        else
+            Manager.Audio.PlayOneShot(audioData.HitFail, transform.position);
     }
     public override void OnAttackFinished()
     {
