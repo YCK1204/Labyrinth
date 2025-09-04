@@ -19,6 +19,10 @@ public class PlayerDataUI : MonoBehaviour
     public int Level => PlayerData.Level;
     public float currentEXP => PlayerData.Exp;
     public float MaxEXP => PlayerData.MaxExp;
+    public float AttackPoint => _playerController.power;
+    public float AttackSpeed => _playerController.atkSpeed;
+    public float DefensePoint => _playerController.armor;
+
 
     private void Awake()
     {

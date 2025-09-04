@@ -1124,9 +1124,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6562202334398295526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 300, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 300, y: -50}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3639919078756351191
@@ -4017,6 +4017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSO: {fileID: 11400000, guid: 95c28af892a88bc45bbf57d5ebbe6273, type: 2}
   shopPanel: {fileID: 6393252428022487964}
+  equippedHUD: {fileID: 0}
   content: {fileID: 166444169903009279}
   rowPrefab: {fileID: 297066068600386089, guid: e3949ded709c074498c17cc3e5dc2a7c, type: 3}
   shopItems:

@@ -1,77 +1,141 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
     [Header("UI Panels")]
-    [SerializeField] private GameObject startScreenUI;
-    [SerializeField] private GameObject settingPanel;
-    [SerializeField] private GameObject exitPanel;
-    [SerializeField] private GameObject shopUI;
-    [SerializeField] private GameObject upgradeUI;
-    [SerializeField] private GameObject playerStatusUI;
-    [SerializeField] private GameObject topButtonUI;
-    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject startScreenUIPrefeb;
+    [SerializeField] private GameObject settingUIPrefeb;
+    [SerializeField] private GameObject exitUIPrefeb;
+    [SerializeField] private GameObject shopUIPrefeb;
+    [SerializeField] private GameObject upgradeUIPrefeb;
+    [SerializeField] private GameObject playerStatusUIPrefeb;
+    [SerializeField] private GameObject topButtonUIPrefeb;
+    [SerializeField] private GameObject pauseMenuUIPrefeb;
+
+    private GameObject startScreenUIInstance;
+    private GameObject settingUIInstance;
+    private GameObject exitUIInstance;
+    private GameObject shopUIInstance;
+    private GameObject upgradeUIInstance;
+    private GameObject playerStatusUIInstance;
+    private GameObject topButtonUIInstance;
+    private GameObject pauseMenuUIInstance;
 
     void Start()
     {
         Manager.UI = this;
+        SetSceneUI(SceneManager.GetActiveScene().name);
     }
 
     public void SetSceneUI(string sceneName)
     {
-        HideAllUI();
+        DestroyAllUI();
+
         switch (sceneName)
         {
             case "StartScene":
-                startScreenUI.SetActive(true); 
+                startScreenUIInstance = Instantiate(startScreenUIPrefeb);
                 break;
             case "LobbyScene":
-                playerStatusUI.SetActive(true);
-                topButtonUI.SetActive(true);
+                playerStatusUIInstance = Instantiate(playerStatusUIPrefeb);
+                topButtonUIInstance = Instantiate(topButtonUIPrefeb);
                 break;
             case "DungeonScene":
-                playerStatusUI.SetActive(true);
-                topButtonUI.SetActive(true);
+                playerStatusUIInstance = Instantiate(playerStatusUIPrefeb);
+                topButtonUIInstance = Instantiate(topButtonUIPrefeb);
                 break;
         }
     }
 
-    public void HideAllUI()
+    public void DestroyAllUI()
     {
-        startScreenUI.SetActive(false);
-        playerStatusUI.SetActive(false);
-        topButtonUI.SetActive(false);
-        pauseMenuUI.SetActive(false);
-        shopUI.SetActive(false);
-        upgradeUI.SetActive(false);
-        settingPanel.SetActive(false);
-        exitPanel.SetActive(false);
+        if (startScreenUIInstance != null) Destroy(startScreenUIInstance);
+        if (settingUIInstance != null) Destroy(settingUIInstance);
+        if (exitUIInstance != null) Destroy(exitUIInstance);
+        if (shopUIInstance != null) Destroy(shopUIInstance);
+        if (upgradeUIInstance != null) Destroy(upgradeUIInstance);
+        if (playerStatusUIInstance != null) Destroy(playerStatusUIInstance);
+        if (topButtonUIInstance != null) Destroy(topButtonUIInstance);
+        if (pauseMenuUIInstance != null) Destroy(pauseMenuUIInstance);
     }
 
-    // 특정 UI 패널을 활성화하는 함수들
-    public void ShowStartScreen() => startScreenUI.SetActive(true);
-    public void ShowSettingPanel() => settingPanel.SetActive(true);
-    public void ShowExitPanel() => exitPanel.SetActive(true);
-    public void ShowShopUI() => shopUI.SetActive(true);
-    public void ShowUpgradeUI() => upgradeUI.SetActive(true);
-    public void ShowPlayerStatusUI() => playerStatusUI.SetActive(true);
-    public void ShowPauseMenu() => pauseMenuUI.SetActive(true);
-    // ------------------------------------------------------------
-    
+    // startScreenUIInstance
+    public void ShowStartScreenUI() => startScreenUIInstance?.SetActive(true);
+    public void HideStartScreenUI() => startScreenUIInstance?.SetActive(false);
 
-    // 특정 UI 패널을 비활성화하는 함수들
-    public void HideStartScreen() => startScreenUI.SetActive(false);
-    public void HideSettingPanel() => settingPanel.SetActive(false);
-    public void HideExitPanel() => exitPanel.SetActive(false);
-    public void HideShopUI() => shopUI.SetActive(false);
-    public void HideUpgradeUI() => upgradeUI.SetActive(false);
-    public void HidePlayerStatusUI() => playerStatusUI.SetActive(false);
-    public void HidePauseMenu() => pauseMenuUI.SetActive(false);
-    // ---------------------------------------------------------
-    
+    // playerStatusUIInstance
+    public void ShowPlayerStatusUI() => playerStatusUIInstance?.SetActive(true);
+    public void HidePlayerStatusUI() => playerStatusUIInstance?.SetActive(false);
 
+    // topButtonUIInstance
+    public void ShowTopButtonUI() => topButtonUIInstance?.SetActive(true);
+    public void HideTopButtonUI() => topButtonUIInstance?.SetActive(false);
+
+    // settingUIInstance
+    public void ShowSettingUI()
+    {
+        if (settingUIInstance == null)
+        {
+            settingUIInstance = Instantiate(settingUIPrefeb);
+        }
+        settingUIInstance.SetActive(true);
+    }
+    public void HideSettingUI() => settingUIInstance?.SetActive(false);
+
+    // exitUIInstance
+    public void ShowExitUI()
+    {
+        if (exitUIInstance == null)
+        {
+            exitUIInstance = Instantiate(exitUIPrefeb);
+        }
+        exitUIInstance.SetActive(true);
+    }
+    public void HideExitUI() => exitUIInstance?.SetActive(false);
+
+    // shopUIInstance
+    public void ShowShopUI()
+    {
+        if (shopUIInstance == null)
+        {
+            shopUIInstance = Instantiate(shopUIPrefeb);
+        }
+        shopUIInstance.SetActive(true);
+    }
+    public void HideShopUI() => shopUIInstance?.SetActive(false);
+
+    // upgradeUIInstance
+    public void ShowUpgradeUI()
+    {
+        if (upgradeUIInstance == null)
+        {
+            upgradeUIInstance = Instantiate(upgradeUIPrefeb);
+        }
+        upgradeUIInstance.SetActive(true);
+    }
+    public void HideUpgradeUI() => upgradeUIInstance?.SetActive(false);
+
+    // pauseMenuUIInstance
+    public void ShowPauseMenuUI()
+    {
+        if (pauseMenuUIInstance == null)
+        {
+            pauseMenuUIInstance = Instantiate(pauseMenuUIPrefeb);
+        }
+        Time.timeScale = 0f;
+        pauseMenuUIInstance.SetActive(true);
+    }
+    public void HidePauseMenuUI()
+    {
+        if (pauseMenuUIInstance != null)
+        {
+            pauseMenuUIInstance.SetActive(false);
+            Time.timeScale = 1f;
+        }
+    }
 }
