@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class GroundMonsterController : MonsterController
@@ -50,11 +51,23 @@ public class GroundMonsterController : MonsterController
     protected override void Move()
     {
         var pos = transform.position + speed * Time.deltaTime * (Vector3)destDir;
-        pos.y = detectionCollider.bounds.min.y + .01f;
-        Ray ray = new Ray(pos, Vector2.down);
-        var hit = Physics2D.Raycast(pos, Vector2.down, .1f, LayerMask.GetMask("Ground"));
+
+        Vector2 tempPos = pos;
+        tempPos.y = detectionCollider.bounds.min.y + .01f;
+        Ray ray = new Ray(tempPos, Vector2.down);
+        var hit = Physics2D.Raycast(tempPos, Vector2.down, .1f, LayerMask.GetMask("Ground"));
 
         if (hit.collider == null)
+        {
+            if (state == MonsterState.Patrol)
+                state = MonsterState.Idle;
+            return;
+        }
+        pos = spriteRenderer.bounds.center;
+        pos.x = destDir.x > 0 ? spriteRenderer.bounds.max.x : spriteRenderer.bounds.min.x;
+        ray = new Ray(pos, destDir);
+        hit = Physics2D.Raycast(pos, destDir, .1f, LayerMask.GetMask("Ground"));
+        if (hit.collider != null)
         {
             if (state == MonsterState.Patrol)
                 state = MonsterState.Idle;
@@ -80,7 +93,7 @@ public class GroundMonsterController : MonsterController
 
 
         InitCollisionChild();
-        var collision = transform.FindChild<BoxCollider2D>(name:"Collision");
+        var collision = transform.FindChild<BoxCollider2D>(name: "Collision");
         var offset = collision.bounds.center.y - collision.bounds.min.y;
         transform.position = new Vector2(transform.position.x, yBottom + offset);
         (detectionCollider as BoxCollider2D).size = new Vector2(patrol.detectionRange / transform.localScale.x, height / transform.localScale.y);

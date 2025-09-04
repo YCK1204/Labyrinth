@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerController : CreatureController
 {
+    [SerializeField] private DeadUI deadUI;
     [Header("Refs")]
     [SerializeField] private SimpleSensor2D GroundSensor;
     [SerializeField] private Transform AttackPoint;     // 칼끝 기준점
@@ -25,7 +26,8 @@ public class PlayerController : CreatureController
     private Vector2 _attackPointDefault;
     private bool _attackLocked;
 
-    private bool _grounded, _rolling;
+    private bool _grounded;
+    public bool _rolling;
     private int _facing = 1;
     private float _rollTimer;
     private float _rollCooldownRemain;
@@ -177,6 +179,11 @@ public class PlayerController : CreatureController
         _rb.velocity = Vector2.zero;
         _rb.isKinematic = true;
         enabled = false;
+
+        if (deadUI != null)
+        {
+            deadUI.Show();
+        }
     }
     // 구르기 시작
     private void OnRoll()

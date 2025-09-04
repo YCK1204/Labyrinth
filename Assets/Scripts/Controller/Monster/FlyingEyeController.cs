@@ -9,6 +9,23 @@ public class FlyingEyeController : FlyingMonsterController
     Coroutine _coMoveAttack = null;
     float OnAttackDuration { get { return _data.OnAttackDuration; } }
     float FinishAttackDuration { get { return _data.FinishAttackDuration; } }
+    public override void OnAttacked()
+    {
+        var audioData = Manager.Audio.Monster.GetAudiodata(MonsterAudioType.Bat);
+        Vector2 pos = transform.position;
+        bool isCrit = Random.Range(0f, 100f) < crit;
+        var coll = Physics2D.OverlapCircle(pos, attackHitboxRadius, LayerMask.GetMask("Player"));
+        if (coll == null) return;
+        var player = coll.GetComponent<PlayerController>();
+        if (player == null) return;
+        var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (isCrit ? critX : 1);
+        dmg = Mathf.Round(dmg * 10f) / 10f;
+        player.TakeDamage(dmg);
+        if (DamageUI.Instance != null)
+            DamageUI.Instance.Show(player.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
+        if (player._rolling)
+            Manager.Audio.PlayOneShot(audioData.HitSuccess[0], pos);
+    }
     public override void OnAttackReturn()
     {
         if (_coMoveAttack != null)
@@ -80,5 +97,14 @@ public class FlyingEyeController : FlyingMonsterController
     {
         base.Init();
         _data = monsterData as FlyingeyeData;
+    }
+    public override void TakeDamage(float dmg)
+    {
+        base.TakeDamage(dmg);
+        if (hp == 0)
+        {
+            var data = Manager.Audio.Monster.GetAudiodata(MonsterAudioType.Bat);
+            Manager.Audio.PlayOneShot(data.Die, transform.position);
+        }
     }
 }

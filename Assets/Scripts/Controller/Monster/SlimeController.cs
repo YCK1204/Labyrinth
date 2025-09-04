@@ -68,12 +68,15 @@ public class SlimeController : GroundMonsterController
                 var pc = collider.GetComponent<PlayerController>();
                 if (pc != null)
                 {
+                    var data = Manager.Audio.Monster.GetAudiodata(MonsterAudioType.Slime);
                     bool isCrit = Random.Range(0f, 100f) < crit;
-                    var dmg = power * (100 / (100 + Mathf.Max(0, target.armor - armorPen))) *  (isCrit ? critX : 1);
+                    var dmg = power * (100 / (100 + Mathf.Max(0, target.armor - armorPen))) * (isCrit ? critX : 1);
                     dmg = Mathf.Round(dmg * 10f) / 10f;
                     bool isDamage = pc._TakeDamage(dmg);
                     if (DamageUI.Instance != null & isDamage)
                         DamageUI.Instance.Show(pc.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
+                    if (pc._rolling)
+                        Manager.Audio.PlayOneShot(data.HitSuccess[0], transform.position);
                     break;
                 }
             }
@@ -95,6 +98,15 @@ public class SlimeController : GroundMonsterController
             return;
         }
         base.Move();
+    }
+    public override void TakeDamage(float dmg)
+    {
+        base.TakeDamage(dmg);
+        if (hp == 0)
+        {
+            var audioData = Manager.Audio.Monster.GetAudiodata(MonsterAudioType.Slime);
+            Manager.Audio.PlayOneShot(audioData.Die, transform.position);
+        }
     }
     protected override void Init()
     {

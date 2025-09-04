@@ -18,10 +18,17 @@ MonoBehaviour:
   _power: 5
   _crit: 0
   _lv: 1
-  _kbResist: 20
+  _kbResist: 0.2
   _critX: 1.5
   _armorPen: 0
   _atkSpeed: 2
   energy: 100
-  gold: 300
+  gold: 10000
+  level: 1
   exp: 0
+  growth:
+    Hp: 10
+    Power: 1
+    AtkSpeed: 0.04
+    Armor: 1
+    Crit: 0.5
