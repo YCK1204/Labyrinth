@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         Manager.UI = this;
+        SetSceneUI(SceneManager.GetActiveScene().name);
     }
 
     public void SetSceneUI(string sceneName)
