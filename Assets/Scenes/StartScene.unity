@@ -251,8 +251,8 @@ MonoBehaviour:
   startScreenUIPrefeb: {fileID: 3100195143648603400, guid: 85a0ba391c7ecc340ba23608cbb055c0, type: 3}
   settingUIPrefeb: {fileID: 2516878641773862092, guid: b83035552ca030f4ca8d292fde547904, type: 3}
   exitUIPrefeb: {fileID: 7657130888181221254, guid: 2009828ad80a4f4478f5654b03dfa40b, type: 3}
-  shopUIPrefeb: {fileID: 0}
-  upgradeUIPrefeb: {fileID: 0}
+  shopUIPrefeb: {fileID: 6393252428022487964, guid: 85ff90c329030c149a2775424bdeb8fe, type: 3}
+  upgradeUIPrefeb: {fileID: 2355367217889584564, guid: 7c90703af9593934a99b6a2ae0a5f876, type: 3}
   playerStatusUIPrefeb: {fileID: 6712904606964598105, guid: 45a88395005b46b49b71cf7f79715103, type: 3}
   topButtonUIPrefeb: {fileID: 5737659345886719407, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
   pauseMenuUIPrefeb: {fileID: 7385122467044348172, guid: 61e9e9e6d4228884c94612b7886e6164, type: 3}
