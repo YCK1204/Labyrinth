@@ -58,6 +58,7 @@ public class AudioManager : MonoBehaviour
     }
     public void SetBgm(AudioClip bgm)
     {
+        if (_bgmSource.clip == bgm) return;
         _bgmSource.clip = bgm;
         _bgmSource.loop = true;
         _bgmSource.Play();
