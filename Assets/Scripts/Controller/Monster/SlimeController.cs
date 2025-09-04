@@ -81,21 +81,6 @@ public class SlimeController : GroundMonsterController
         }
     }
     #endregion
-    protected override void Move()
-    {
-        var pos = transform.position + speed * Time.deltaTime * (Vector3)destDir;
-        pos.y = detectionCollider.bounds.min.y + .01f;
-        Ray ray = new Ray(pos, Vector2.down);
-        var hit = Physics2D.Raycast(pos, Vector2.down, .1f, LayerMask.GetMask("Ground"));
-
-        if (hit.collider == null)
-        {
-            if (state == MonsterState.Patrol)
-                state = MonsterState.Idle;
-            return;
-        }
-        base.Move();
-    }
     protected override void Init()
     {
         base.Init();

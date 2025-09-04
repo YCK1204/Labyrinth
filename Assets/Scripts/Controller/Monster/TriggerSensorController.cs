@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class FastChaseAreaController : MonoBehaviour
+public class TriggerSensorController : MonoBehaviour
 {
     Action<Collider2D> _onTriggerEnterCallback;
     Action<Collider2D> _onTriggerExitCallback;
@@ -35,14 +32,14 @@ public class FastChaseAreaController : MonoBehaviour
     {
         if (collision.gameObject.layer == _targetLayer)
         {
-            _onTriggerEnterCallback.Invoke(collision);
+            _onTriggerEnterCallback?.Invoke(collision);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == _targetLayer)
         {
-            _onTriggerExitCallback.Invoke(collision);
+            _onTriggerExitCallback?.Invoke(collision);
         }
     }
 }
