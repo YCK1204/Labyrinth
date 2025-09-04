@@ -288,4 +288,10 @@ public class PlayerController : CreatureController
             hp = pd.HP;
         }
     }
+    public void GainGold(int amount)
+    {
+        var pd = creatureData as PlayerData;
+        if (pd == null) return;
+        pd.AddGold(amount);
+    }
 }
