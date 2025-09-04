@@ -33,22 +33,33 @@ public class BossMonsterController : GroundMonsterController
     {
         speed = 0;
         attacked = false;
+        playHitFail = false;
     }
-
+    bool playHitFail = false;
     public override void OnAttacked()
     {
+        var audioData = Manager.Audio.Monster.GetAudiodata(MonsterAudioType.Boss);
         if (attacked) return;
         Vector2 pos = transform.position;
         var coll = _attackHitbox.Check();
-        if (coll == null) return;
+        if (coll == null)
+        {
+            if (!playHitFail)
+            {
+                Manager.Audio.PlayOneShot(audioData.HitFail, pos);
+                playHitFail = true;
+            }
+            return;
+        }
         var player = coll.GetComponent<PlayerController>();
-        if (player == null) return;
         bool isCrit = Random.Range(0f, 100f) < crit;
         var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (isCrit ? critX : 1);
         player.TakeDamage(dmg);
         attacked = true;
         if (DamageUI.Instance != null)
             DamageUI.Instance.Show(player.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
+        if (player._rolling)
+            Manager.Audio.PlayOneShot(audioData.HitSuccess[0], pos);
     }
     public override void OnAttackFinished()
     {
@@ -98,7 +109,11 @@ public class BossMonsterController : GroundMonsterController
     {
         hp = Mathf.Clamp(hp - dmg, 0, hp);
         if (hp == 0)
+        {
             state = MonsterState.Die;
+            var audioData = Manager.Audio.Monster.GetAudiodata(MonsterAudioType.Boss);
+            Manager.Audio.PlayOneShot(audioData.Die, transform.position);
+        }
     }
     protected override void UpdateAnimation()
     {

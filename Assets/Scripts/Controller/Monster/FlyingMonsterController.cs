@@ -5,20 +5,7 @@ using UnityEngine;
 public class FlyingMonsterController : MonsterController
 {
     protected FlyingMonsterData _fmData;
-    public override void OnAttacked()
-    {
-        Vector2 pos = transform.position;
-        bool isCrit = Random.Range(0f, 100f) < crit;
-        var coll = Physics2D.OverlapCircle(pos, attackHitboxRadius, LayerMask.GetMask("Player"));
-        if (coll == null) return;
-        var player = coll.GetComponent<PlayerController>();
-        if (player == null) return;
-        var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) *  (isCrit ? critX : 1);
-        dmg = Mathf.Round(dmg * 10f) / 10f;
-        player.TakeDamage(dmg);
-        if (DamageUI.Instance != null)
-            DamageUI.Instance.Show(player.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
-    }
+
     protected override void UpdateAnimation()
     {
         base.UpdateAnimation();

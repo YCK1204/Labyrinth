@@ -25,7 +25,8 @@ public class PlayerController : CreatureController
     private Vector2 _attackPointDefault;
     private bool _attackLocked;
 
-    private bool _grounded, _rolling;
+    private bool _grounded;
+    public bool _rolling;
     private int _facing = 1;
     private float _rollTimer;
     private float _rollCooldownRemain;
