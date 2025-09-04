@@ -27,6 +27,8 @@ public class StartScreenUI : MonoBehaviour
     void OnPlayClicked()
     {
         SceneManager.LoadScene(lobbySceneName);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void OnSettingClicked()
