@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,18 +5,29 @@ public class TopButtonUI : MonoBehaviour
 {
     [SerializeField] private Button pauseButton;
 
+    private static TopButtonUI instance;
+
     private void Awake()
     {
-        if (!pauseButton) pauseButton = transform.Find("PauseButton")?.GetComponent<Button>();
-
-        if (pauseButton != null )
+        if (instance != null && instance != this)
         {
-            pauseButton.onClick.AddListener(OnPauseButtonClicked);
+            Destroy(gameObject);
+            return;
         }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        if (!pauseButton)
+            pauseButton = transform.Find("PauseButton")?.GetComponent<Button>();
+
+        if (pauseButton != null)
+            pauseButton.onClick.AddListener(OnPauseButtonClicked);
     }
 
     private void OnPauseButtonClicked()
     {
-        Manager.UI.ShowPauseMenuUI();
+        if (Manager.UI != null)
+            Manager.UI.ShowPauseMenuUI();
     }
 }
