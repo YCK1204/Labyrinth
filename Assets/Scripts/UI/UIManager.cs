@@ -37,6 +37,25 @@ public class UIManager : MonoBehaviour
         SetSceneUI(SceneManager.GetActiveScene().name);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            string currentScene = SceneManager.GetActiveScene().name;
+            if (currentScene == "LobbyScene" ||  currentScene == "DungeonScene")
+            {
+                if (pauseMenuUIInstance != null && pauseMenuUIInstance.activeSelf)
+                {
+                    HidePauseMenuUI();
+                }
+                else
+                {
+                    ShowPauseMenuUI();
+                }
+            }
+        }
+    }
+
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
