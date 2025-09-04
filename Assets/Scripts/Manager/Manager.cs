@@ -15,12 +15,27 @@ public class Manager : MonoBehaviour
                 if (instance == null)
                 {
                     instance = new GameObject("Manager").AddComponent<Manager>();
+                    DontDestroyOnLoad(instance.gameObject);
                 }
                 _instance = instance;
             }
             return _instance; 
         }
     }
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     UIManager _ui;
     public static UIManager UI { get { return Instance._ui; } set { Instance._ui = value; DontDestroyOnLoad(value.gameObject); } }
     GameManager _game;
