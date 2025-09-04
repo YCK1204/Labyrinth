@@ -8,6 +8,7 @@ public class BossMonsterController : GroundMonsterController
     BossMonsterData _bossData;
     MonsterAttackHitboxController _attackHitbox;
     bool attacked = false;
+    float _maxHp;
     protected override Vector2 destPos
     {
         get { return _destPos; }
@@ -108,6 +109,7 @@ public class BossMonsterController : GroundMonsterController
     {
         Move();
     }
+    bool _abilityUpdate = false;
     public override void TakeDamage(float dmg)
     {
         hp = Mathf.Clamp(hp - dmg, 0, hp);
@@ -117,6 +119,14 @@ public class BossMonsterController : GroundMonsterController
             var audioData = Manager.Audio.Monster.GetAudiodata(MonsterAudioType.Boss);
             Manager.Audio.PlayOneShot(audioData.Die, transform.position);
         }
+        if (hp < _maxHp * .5f && _abilityUpdate == false)
+        {
+            spriteRenderer.color = Color.red;
+            _abilityUpdate = true;
+            speed *= 1.2f;
+            atkSpeed *= 1.2f;
+            animator.speed = 1.2f;
+		}
     }
     protected override void UpdateAnimation()
     {
@@ -189,7 +199,8 @@ public class BossMonsterController : GroundMonsterController
         _attackHitbox.Init(attackHitboxRadius, transform, _bossData.AttackHitboxOffset, 1 << LayerMask.NameToLayer("Player"));
 
         startPosition = transform.position;
-    }
+        _maxHp = hp;
+	}
     void FastChaseEnter(Collider2D collision)
     {
         var pc = collision.GetComponent<PlayerController>();
