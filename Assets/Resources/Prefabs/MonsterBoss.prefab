@@ -80,5 +80,36 @@ PrefabInstance:
     - {fileID: 8343348288139645703, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9015496709570990289, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -213491157971645061}
   m_SourcePrefab: {fileID: 100100000, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
+--- !u!1 &3304108167855236742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9015496709570990289, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
+  m_PrefabInstance: {fileID: 5820892222598739543}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-213491157971645061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3304108167855236742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278d14f08b0272c4daedaeed5c5d1197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureData: {fileID: 11400000, guid: a764d09f0c042d44e829f6cc91071919, type: 2}
+  hp: 0
+  speed: 0
+  armor: 0
+  power: 0
+  crit: 0
+  lv: 0
+  kbResist: 0
+  critX: 0
+  armorPen: 0
+  atkSpeed: 0
