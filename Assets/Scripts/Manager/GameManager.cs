@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
         _playerData.CritX = 1.5f;
         _playerData.KBResist = 0.2f;
 
+        _playerData.Exp = 0;
+
         _playerData.equippedWeapon = null;
         _playerData.equippedArmor  = null;
     }
