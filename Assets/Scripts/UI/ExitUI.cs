@@ -6,6 +6,7 @@ public class ExitUI : MonoBehaviour
 {
     public void OnYesButtonClicked()
     {
+        Manager.Game.ResetPlayerData();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

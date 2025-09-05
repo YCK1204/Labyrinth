@@ -20,8 +20,8 @@ public class PlayerDataUI : MonoBehaviour
     public float CurrentEXP => playerData.Exp;
     public float MaxEXP => playerData.MaxExp;
     public float AttackPoint => _playerEquipment ? _playerEquipment.Power : (_playerController ? _playerController.power : 0f);
-    public float AttackSpeed => _playerController.atkSpeed;
-    public float DefensePoint => _playerController.armor;
+    public float AttackSpeed => _playerEquipment ? _playerEquipment.AtkSpeed : (_playerController ? _playerController.atkSpeed : 1f);
+    public float DefensePoint => _playerEquipment ? _playerEquipment.Armor : (_playerController ? _playerController.armor : 0f);
 
 
     private void Awake()

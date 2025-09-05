@@ -133,11 +133,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1675327703004888647, guid: fd0dd6843bf92454b8b9f2c87881d2f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.97342443
+      value: 0.9774308
       objectReference: {fileID: 0}
     - target: {fileID: 1675327703004888647, guid: fd0dd6843bf92454b8b9f2c87881d2f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5783198
+      value: 1.5781701
       objectReference: {fileID: 0}
     - target: {fileID: 1675327703004888647, guid: fd0dd6843bf92454b8b9f2c87881d2f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8262,38 +8262,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4547989810912606342, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547989810912606342, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547989810912606342, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547989810912606342, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918575820831193057, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918575820831193057, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918575820831193057, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918575820831193057, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5737659345886719407, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
       propertyPath: m_Name
       value: UI_TopButton

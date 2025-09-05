@@ -36,7 +36,7 @@ public class DeadUI : MonoBehaviour
 
     void OnReturnClicked()
     {
-        ResetPlayerData();
+        Manager.Game.ResetPlayerData();
 
         Time.timeScale = 1f;
         Manager.Scene.LoadScene(lobbySceneName);
@@ -45,26 +45,4 @@ public class DeadUI : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void ResetPlayerData()
-    {
-        if (playerData == null) return;
-
-        playerData.Level = 1;
-        playerData.Exp = 0;
-        playerData.HP = 100;
-
-        playerData.Power = 5;
-        playerData.AtkSpeed = 2f;
-        playerData.Armor = 5;
-        playerData.ArmorPen = 0;
-        playerData.Speed = 8;
-        playerData.Gold = 300;
-
-        playerData.Crit = 0f;
-        playerData.CritX = 1.5f;
-        playerData.KBResist = 0.2f;
-
-        playerData.equippedWeapon = null;
-        playerData.equippedArmor  = null;
-    }
 }
