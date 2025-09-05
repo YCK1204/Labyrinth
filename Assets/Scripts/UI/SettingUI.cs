@@ -42,6 +42,7 @@ public class SettingUI : MonoBehaviour
     private void OnCloseButtonClicked()
     {
         Manager.UI.HideSettingUI();
+        Manager.Audio.ClickBtn();
     }
 
     private void SetMasterVolume(float volume)

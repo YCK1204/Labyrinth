@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
             _playerData.equippedWeapon = null;
             _playerData.equippedArmor = null;
         }
-        SceneManager.LoadScene("LobbyScene");
+        Manager.Scene.LoadScene("LobbyScene");
     }
     public void ResetPlayerData()
     {

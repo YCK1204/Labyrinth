@@ -8057,7 +8057,8 @@ MonoBehaviour:
   playerAudioData:
   - {fileID: 11400000, guid: 7ac56f7de9496404d9ad3ab1edbe0dba, type: 2}
   mapEffectAudioData: []
-  uiAudioData: []
+  uiAudioData:
+  - {fileID: 11400000, guid: 9e82aca0f30c7c64f99271a1b24d6da7, type: 2}
 --- !u!4 &749261693
 Transform:
   m_ObjectHideFlags: 0
@@ -16682,7 +16683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65fab321cda4838479437a4c1e7a0320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData: {fileID: 11400000, guid: 95c28af892a88bc45bbf57d5ebbe6273, type: 2}
+  playerData: {fileID: 0}
 --- !u!4 &1490639182
 Transform:
   m_ObjectHideFlags: 0

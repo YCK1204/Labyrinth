@@ -8262,6 +8262,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4547989810912606342, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547989810912606342, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547989810912606342, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547989810912606342, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918575820831193057, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918575820831193057, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918575820831193057, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918575820831193057, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5737659345886719407, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
       propertyPath: m_Name
       value: UI_TopButton
@@ -9302,7 +9334,12 @@ MonoBehaviour:
   playerAudioData:
   - {fileID: 11400000, guid: 7ac56f7de9496404d9ad3ab1edbe0dba, type: 2}
   mapEffectAudioData: []
-  uiAudioData: []
+  uiAudioData:
+  - {fileID: 11400000, guid: 9e82aca0f30c7c64f99271a1b24d6da7, type: 2}
+  - {fileID: 11400000, guid: 299312a1ae3bf9e4e874632f86ab0de2, type: 2}
+  - {fileID: 11400000, guid: d3da17a56f910d94a967f484ef8ce46e, type: 2}
+  - {fileID: 11400000, guid: 94b433269f7415447babced8b23faa7c, type: 2}
+  - {fileID: 11400000, guid: ff0428f8baa16a44c934377546ec52b4, type: 2}
 --- !u!4 &1970825251
 Transform:
   m_ObjectHideFlags: 0

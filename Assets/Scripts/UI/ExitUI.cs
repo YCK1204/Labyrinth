@@ -6,6 +6,7 @@ public class ExitUI : MonoBehaviour
 {
     public void OnYesButtonClicked()
     {
+        Manager.Audio.ClickBtn();
         Manager.Game.ResetPlayerData();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -18,6 +19,7 @@ public class ExitUI : MonoBehaviour
     {
         if (Manager.UI != null)
         {
+            Manager.Audio.ClickBtn();
             Manager.UI.HideExitUI();
         }
     }

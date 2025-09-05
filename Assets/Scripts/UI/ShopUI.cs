@@ -96,6 +96,7 @@ public class ShopUI : MonoBehaviour
 
     public void Refresh()
     {
+        Manager.Audio.PlayOneShot(Manager.Audio.UI.GetAudiodata(UIAudioType.EnterShop).EffectSound, Camera.main.transform.position);
         foreach (var r in rows) Destroy(r);
         rows.Clear();
         rowMap.Clear();
@@ -151,6 +152,7 @@ public class ShopUI : MonoBehaviour
 
     void OnRowClicked(GameObject row, EquipmentData item)
     {
+        Manager.Audio.ClickBtn();
         if (selectedRow != row)
         {
             if (selectedRow)
@@ -209,6 +211,8 @@ public class ShopUI : MonoBehaviour
             if (texts.Length >= 5) texts[4].text = "구매완료";
         }
 
+        var data = Manager.Audio.UI.GetAudiodata(UIAudioType.Purchase);
+        Manager.Audio.PlayOneShot(data.EffectSound, Camera.main.transform.position);
         UpdateBuyButtonState();
         UpdateSellButtonState();
         UpdateEquipButtonState();
@@ -232,6 +236,8 @@ public class ShopUI : MonoBehaviour
             if (texts.Length >= 5) texts[4].text = "Gold " + selectedItem.price;
         }
 
+        var data = Manager.Audio.UI.GetAudiodata(UIAudioType.Resell);
+        Manager.Audio.PlayOneShot(data.EffectSound, Camera.main.transform.position);
         UpdateBuyButtonState();
         UpdateSellButtonState();
         UpdateEquipButtonState();
@@ -254,6 +260,7 @@ public class ShopUI : MonoBehaviour
             else { if (equipRef.armor) equipRef.Unequip(EquipmentData.EquipmentType.Armor); equipRef.Equip(selectedItem); }
         }
 
+        Manager.Audio.PlayOneShot(Manager.Audio.UI.GetAudiodata(UIAudioType.EuqipmentAttach).EffectSound, Camera.main.transform.position);
         SyncBadges(equipRef);
         if (equippedHUD) equippedHUD.Refresh(equipRef);
         UpdateEquipButtonState();

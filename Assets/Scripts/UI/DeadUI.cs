@@ -38,6 +38,7 @@ public class DeadUI : MonoBehaviour
     {
         Manager.Game.ResetPlayerData();
 
+        Manager.Audio.ClickBtn();
         Time.timeScale = 1f;
         Manager.Scene.LoadScene(lobbySceneName);
 
