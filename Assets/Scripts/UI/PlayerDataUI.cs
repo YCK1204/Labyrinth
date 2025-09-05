@@ -6,20 +6,20 @@ public class PlayerDataUI : MonoBehaviour
 {
     public static PlayerDataUI Instance { get; private set; }
 
-    [SerializeField] PlayerData PlayerData;
-
+    [SerializeField] PlayerData playerData;
     private PlayerController _playerController;
+    private PlayerEquipment _playerEquipment;
 
-    public int Gold => PlayerData.Gold;
+    public int Gold => playerData.Gold;
     public int Gem => 0;
     public float CurrentHP => _playerController.hp;
-    public float MaxHP => PlayerData.HP;
     public float CurrentEnergy => _playerController.Energy;
-    public float MaxEnergy => PlayerData.Energy;
-    public int Level => PlayerData.Level;
-    public float currentEXP => PlayerData.Exp;
-    public float MaxEXP => PlayerData.MaxExp;
-    public float AttackPoint => _playerController.power;
+    public float MaxHP => _playerEquipment ? _playerEquipment.Hp : (playerData ? playerData.HP : 100f);
+    public float MaxEnergy => _playerEquipment ? _playerEquipment.Energy : (playerData ? playerData.Energy : 100f);
+    public int Level => playerData.Level;
+    public float CurrentEXP => playerData.Exp;
+    public float MaxEXP => playerData.MaxExp;
+    public float AttackPoint => _playerEquipment ? _playerEquipment.Power : (_playerController ? _playerController.power : 0f);
     public float AttackSpeed => _playerController.atkSpeed;
     public float DefensePoint => _playerController.armor;
 
