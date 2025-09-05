@@ -252,7 +252,6 @@ GameObject:
   - component: {fileID: 1047592371}
   - component: {fileID: 1047592373}
   - component: {fileID: 1047592374}
-  - component: {fileID: 1047592375}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -307,6 +306,7 @@ MonoBehaviour:
   playerStatusUIPrefeb: {fileID: 6712904606964598105, guid: 45a88395005b46b49b71cf7f79715103, type: 3}
   topButtonUIPrefeb: {fileID: 5737659345886719407, guid: f1acbda746b78f343b880ca14fee5cea, type: 3}
   pauseMenuUIPrefeb: {fileID: 7385122467044348172, guid: 61e9e9e6d4228884c94612b7886e6164, type: 3}
+  playerData: {fileID: 11400000, guid: 95c28af892a88bc45bbf57d5ebbe6273, type: 2}
 --- !u!114 &1047592374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,19 +321,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: -4952564713874970939, guid: 842d12fb3deb0cd43820e532a155ee27, type: 3}
   worldRoot: {fileID: 0}
---- !u!114 &1047592375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1047592369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65fab321cda4838479437a4c1e7a0320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerData: {fileID: 11400000, guid: 95c28af892a88bc45bbf57d5ebbe6273, type: 2}
 --- !u!1 &1455406993
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,15 +26,42 @@ public class UIManager : MonoBehaviour
     private GameObject topButtonUIInstance;
     private GameObject pauseMenuUIInstance;
 
+    [Header("Player Data")]
+    [SerializeField] private PlayerData playerData;
+    private PlayerController _playerController;
+    private PlayerEquipment _playerEquipment;
+
+    public int Gold => playerData ? playerData.Gold : 0;
+    public int Gem => 0;
+    public float CurrentHP => _playerController ? _playerController.hp : 0f;
+    public float CurrentEnergy => _playerController ? _playerController.Energy : 0f;
+
+    public float MaxHP => _playerEquipment ? _playerEquipment.Hp : (playerData ? playerData.HP : 100f);
+    public float MaxEnergy => _playerEquipment ? _playerEquipment.Energy : (playerData ? playerData.Energy : 100f);
+
+    public int Level => playerData ? playerData.Level : 1;
+    public float CurrentEXP => playerData ? playerData.Exp : 0f;
+    public float MaxEXP => playerData ? playerData.MaxExp : 100f;
+
+    public float AttackPoint => _playerEquipment ? _playerEquipment.Power : (_playerController ? _playerController.power : 0f);
+    public float AttackSpeed => _playerEquipment ? _playerEquipment.AtkSpeed : (_playerController ? _playerController.atkSpeed : 1f);
+    public float DefensePoint => _playerEquipment ? _playerEquipment.Armor : (_playerController ? _playerController.armor : 0f);
+
     private void Awake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        if (playerData == null)
+        {
+            playerData = Resources.Load<PlayerData>("Data/ScriptableObject/New Player Data");
+        }
     }
 
     private void Start()
     {
         Manager.UI = this;
         SetSceneUI(SceneManager.GetActiveScene().name);
+        PlayerDataReference();
     }
 
     private void Update()
@@ -64,6 +91,14 @@ public class UIManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         SetSceneUI(scene.name);
+        PlayerDataReference();
+    }
+
+    public void PlayerDataReference()
+    {
+        _playerController = FindObjectOfType<PlayerController>();
+        if (_playerController != null)
+            _playerEquipment = _playerController.GetComponent<PlayerEquipment>();
     }
 
     public void SetSceneUI(string sceneName)
