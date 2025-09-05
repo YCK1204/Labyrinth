@@ -63,5 +63,8 @@ public class DeadUI : MonoBehaviour
         playerData.Crit = 0f;
         playerData.CritX = 1.5f;
         playerData.KBResist = 0.2f;
+
+        playerData.equippedWeapon = null;
+        playerData.equippedArmor  = null;
     }
 }

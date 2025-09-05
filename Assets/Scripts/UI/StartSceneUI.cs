@@ -8,8 +8,6 @@ public class StartScreenUI : MonoBehaviour
     [SerializeField] private Button settingButton;
     [SerializeField] private Button exitButton;
 
-    [SerializeField] private string lobbySceneName = "LobbyScene";
-
     void Awake()
     {
         if (!playButton)
