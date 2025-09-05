@@ -135,16 +135,12 @@ public class PlayerController : CreatureController
         foreach (var h in hits)
         {
             var monster = h.GetComponentInParent<MonsterController>();
-            if (monster != null)
+            if (monster != null && monster.IsAlive)
             {
                 var (dmg, isCrit) = CalcFinalDamage(power, monster.armor);
                 monster.TakeDamage(dmg);
-
-                if (DamageUI.Instance != null)
-                    DamageUI.Instance.Show(monster.transform.position + Vector3.up * 1f, dmg, DamageStyle.Enemy, isCrit);
-
+                DamageUI.Instance?.Show(monster.transform.position + Vector3.up * 1f, dmg, DamageStyle.Enemy, isCrit);
                 Manager.Audio.PlayOneShot(data.HitSuccess[atkNum], transform.position);
-                Debug.Log($"{monster.name}에게 {dmg} 피해!");
                 continue;
             }
 

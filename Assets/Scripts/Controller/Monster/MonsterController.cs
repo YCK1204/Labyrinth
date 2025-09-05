@@ -20,6 +20,8 @@ public abstract class MonsterController : CreatureController
     protected float attackHitboxRadius { get { return monsterData.AttackHitboxRadius; } }
     protected float attackRange { get { return monsterData.AttackRange; } }
     protected Vector2 startPosition;
+    protected bool isDead;
+    public bool IsAlive => !isDead;
 
     protected PlayerController target;
     protected Vector2 _destPos = Vector2.zero;
@@ -177,9 +179,13 @@ public abstract class MonsterController : CreatureController
     }
     public override void TakeDamage(float dmg)
     {
+        if (isDead) return;
+
         hp = Mathf.Clamp(hp - dmg, 0, hp);
-        if (hp == 0)
+        if (hp <= 0) {
+            isDead = true;  
             state = MonsterState.Die;
+        }
         else
             state = MonsterState.TakeHit;
     }
