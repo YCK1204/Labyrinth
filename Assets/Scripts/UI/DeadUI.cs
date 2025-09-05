@@ -39,7 +39,7 @@ public class DeadUI : MonoBehaviour
         ResetPlayerData();
 
         Time.timeScale = 1f;
-        SceneManager.LoadScene(lobbySceneName);
+        Manager.Scene.LoadScene(lobbySceneName);
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

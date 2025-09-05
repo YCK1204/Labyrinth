@@ -8519,6 +8519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pc: {fileID: 0}
+  _playerData: {fileID: 0}
 --- !u!4 &1663664139
 Transform:
   m_ObjectHideFlags: 0
@@ -9319,7 +9320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmAudioData: {fileID: 11400000, guid: 3988cd373e1c3324a982aeb1211404d4, type: 2}
   monsterAudioData: []
-  playerAudioData: []
+  playerAudioData:
+  - {fileID: 11400000, guid: 7ac56f7de9496404d9ad3ab1edbe0dba, type: 2}
   mapEffectAudioData: []
   uiAudioData: []
 --- !u!4 &1970825251

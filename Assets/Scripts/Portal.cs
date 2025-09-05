@@ -31,7 +31,6 @@ public class Portal : MonoBehaviour
 
     public void MoveDungeon()
     {
-        SceneManager.LoadScene(dungeonSceneName);
+        Manager.Scene.LoadScene(dungeonSceneName);
     }
-
 }

@@ -8054,7 +8054,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b2bf09f21b634584bbc2a1e04a3914a2, type: 2}
   - {fileID: 11400000, guid: e885a6919a1e234488bbbf62c72f5dec, type: 2}
   - {fileID: 11400000, guid: e58f62d89c98e07449cf9fbd02a3d6ba, type: 2}
-  playerAudioData: []
+  playerAudioData:
+  - {fileID: 11400000, guid: 7ac56f7de9496404d9ad3ab1edbe0dba, type: 2}
   mapEffectAudioData: []
   uiAudioData: []
 --- !u!4 &749261693

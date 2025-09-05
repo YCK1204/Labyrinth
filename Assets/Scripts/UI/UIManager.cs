@@ -73,7 +73,6 @@ public class UIManager : MonoBehaviour
         switch (sceneName)
         {
             case "StartScene":
-                startScreenUIInstance = Instantiate(startScreenUIPrefeb);
                 break;
             case "LobbyScene":
                 playerStatusUIInstance = Instantiate(playerStatusUIPrefeb);
