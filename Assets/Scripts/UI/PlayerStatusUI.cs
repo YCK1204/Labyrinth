@@ -45,13 +45,5 @@ public class PlayerStatusUI : MonoBehaviour
     private void UpdateUI()
     {
         if (_playerDataUI == null) return;
-
-        _goldCountText.text = _playerDataUI.Gold.ToString();
-        _gemCountText.text = _playerDataUI.Gem.ToString();
-        _levelCountText.text = _playerDataUI.Level.ToString();
-
-        _healthBar.fillAmount = _playerDataUI.CurrentHP / _playerDataUI.MaxHP;
-        _energyBar.fillAmount = _playerDataUI.CurrentEnergy / _playerDataUI.MaxEnergy;
-        _levelBar.fillAmount = _playerDataUI.currentEXP / _playerDataUI.MaxEXP;
     }
 }
