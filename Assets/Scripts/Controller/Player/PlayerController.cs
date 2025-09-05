@@ -124,10 +124,8 @@ public class PlayerController : CreatureController
     public void OnAttackHit()
     {
         var data = Manager.Audio.Player.GetAudiodata(PlayerAudioType.Player);
-        var st = _an.GetCurrentAnimatorStateInfo(0);
         if (AttackRadius <= 0f)
             return;
-        int atkNum = st.IsName("Attack1") ? 0 : st.IsName("Attack2") ? 1 : 2;
         Vector2 center = AttackPoint ? (Vector2)AttackPoint.position : (Vector2)transform.position;
 
         var hits = Physics2D.OverlapCircleAll(center, AttackRadius, EnemyLayer);
@@ -140,7 +138,7 @@ public class PlayerController : CreatureController
                 var (dmg, isCrit) = CalcFinalDamage(power, monster.armor);
                 monster.TakeDamage(dmg);
                 DamageUI.Instance?.Show(monster.transform.position + Vector3.up * 1f, dmg, DamageStyle.Enemy, isCrit);
-                Manager.Audio.PlayOneShot(data.HitSuccess[atkNum], transform.position);
+                Manager.Audio.PlayOneShot(data.HitSuccess, transform.position);
                 continue;
             }
 
@@ -155,7 +153,7 @@ public class PlayerController : CreatureController
                 {
                     DamageUI.Instance.Show(dummy.transform.position + Vector3.up * 1f, dmg, DamageStyle.Enemy, isCrit);
                 }
-                Manager.Audio.PlayOneShot(data.HitSuccess[atkNum], transform.position);
+                Manager.Audio.PlayOneShot(data.HitSuccess, transform.position);
                 continue;
             }
         }
@@ -198,6 +196,7 @@ public class PlayerController : CreatureController
     // 사망 처리
     protected override void OnDied()
     {
+        if (_rb.isKinematic == true) return;
         _anim.TrgDeath();
         _rb.velocity = Vector2.zero;
         _rb.isKinematic = true;
@@ -207,6 +206,7 @@ public class PlayerController : CreatureController
             deadUI.gameObject.SetActive(true);
             deadUI.Show();
         }
+        Manager.Audio.PlayOneShot(Manager.Audio.Player.GetAudiodata(PlayerAudioType.Player).Die, transform.position);
     }
     // 구르기 시작
     private void OnRoll()

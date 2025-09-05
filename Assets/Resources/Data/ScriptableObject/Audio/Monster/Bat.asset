@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76342901c3bf0cf49bf766d9fe1989f8, type: 3}
-  m_Name: Slime
+  m_Name: Bat
   m_EditorClassIdentifier: 
-  die: {fileID: 8300000, guid: 7a795b81c0c9754468d9d501afeda170, type: 3}
-  hitSuccess:
-  - {fileID: 8300000, guid: 1000e1c57b2d3a644ade64628e52d6bd, type: 3}
-  hitFail: {fileID: 8300000, guid: 7a795b81c0c9754468d9d501afeda170, type: 3}
-  monsterAudioType: 1
+  die: {fileID: 8300000, guid: 75bf28a8143580945bcf13b9d32260e6, type: 3}
+  hitSuccess: {fileID: 8300000, guid: 1000e1c57b2d3a644ade64628e52d6bd, type: 3}
+  hitFail: {fileID: 0}
+  monsterAudioType: 2

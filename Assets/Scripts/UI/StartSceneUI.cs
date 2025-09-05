@@ -17,9 +17,9 @@ public class StartScreenUI : MonoBehaviour
         if (!exitButton)
             exitButton = transform.Find("ButtonArea/ExitButton")?.GetComponent<Button>();
 
-        if (playButton)    playButton.onClick.AddListener(OnPlayClicked);
+        if (playButton) playButton.onClick.AddListener(OnPlayClicked);
         if (settingButton) settingButton.onClick.AddListener(OnSettingClicked);
-        if (exitButton)    exitButton.onClick.AddListener(OnExitClicked);
+        if (exitButton) exitButton.onClick.AddListener(OnExitClicked);
     }
     void Start()
     {

@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76342901c3bf0cf49bf766d9fe1989f8, type: 3}
-  m_Name: Boss
+  m_Name: Goblin
   m_EditorClassIdentifier: 
-  die: {fileID: 8300000, guid: 4f8f3ec5d7c8ff642bf527bce600f905, type: 3}
-  hitSuccess:
-  - {fileID: 8300000, guid: 55fac87f86b3c0c42978b6a36f4169bb, type: 3}
+  die: {fileID: 8300000, guid: 92902c0a50d752446ac45d8c48ace3e3, type: 3}
+  hitSuccess: {fileID: 8300000, guid: 1000e1c57b2d3a644ade64628e52d6bd, type: 3}
   hitFail: {fileID: 8300000, guid: f4d3c4bc18e14da4eb8122251c355e48, type: 3}
-  monsterAudioType: 3
+  monsterAudioType: 0
