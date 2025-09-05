@@ -13,7 +13,7 @@ public class HardmodeUI : MonoBehaviour
     {
         if (hardModePanel != null)
         {
-            if (GameManager.Instance.PlayerData.IsHardMode)
+            if (Manager.Game.PlayerData.IsHardMode)
                 hardModePanel.SetActive(true);
             else
                 hardModePanel.SetActive(false);

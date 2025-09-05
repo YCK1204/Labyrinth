@@ -28,7 +28,7 @@ public class StartScreenUI : MonoBehaviour
     }
     void OnPlayClicked()
     {
-        GameManager.Instance.LoadLobbyScene();
+        Manager.Game.LoadLobbyScene();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
