@@ -11,18 +11,14 @@ public class FlyingEyeController : FlyingMonsterController
     float FinishAttackDuration { get { return _data.FinishAttackDuration; } }
     public override void OnAttacked()
     {
+        base.OnAttacked();
+
         var audioData = Manager.Audio.Monster.GetAudiodata(MonsterAudioType.Bat);
         Vector2 pos = transform.position;
-        bool isCrit = Random.Range(0f, 100f) < crit;
-        var coll = Physics2D.OverlapCircle(pos, attackHitboxRadius, LayerMask.GetMask("Player"));
-        if (coll == null) return;
-        var player = coll.GetComponent<PlayerController>();
+
+        var player = FindObjectOfType<PlayerController>();
         if (player == null) return;
-        var dmg = power * (100 / (100 + Mathf.Max(0, player.armor - armorPen))) * (isCrit ? critX : 1);
-        dmg = Mathf.Round(dmg * 10f) / 10f;
-        player.TakeDamage(dmg);
-        if (DamageUI.Instance != null)
-            DamageUI.Instance.Show(player.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
+
         if (player._rolling == false)
             Manager.Audio.PlayOneShot(audioData.HitSuccess, pos);
         else
