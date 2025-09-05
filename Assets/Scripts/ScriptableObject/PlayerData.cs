@@ -20,7 +20,7 @@ public class PlayerData : CreatureData
     [SerializeField] private bool isHardMode = false;
     public bool IsHardMode
     {
-        get => IsHardMode;
+        get => isHardMode;
         set
         {
             if (isHardMode == value) return;
