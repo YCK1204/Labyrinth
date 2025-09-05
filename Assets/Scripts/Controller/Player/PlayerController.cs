@@ -123,7 +123,11 @@ public class PlayerController : CreatureController
     //실제 공격
     public void OnAttackHit()
     {
-        if (AttackRadius <= 0f) return;
+        var data = Manager.Audio.Player.GetAudiodata(PlayerAudioType.Player);
+        var st = _an.GetCurrentAnimatorStateInfo(0);
+        if (AttackRadius <= 0f)
+            return;
+        int atkNum = st.IsName("Attack1") ? 0 : st.IsName("Attack2") ? 1 : 2;
         Vector2 center = AttackPoint ? (Vector2)AttackPoint.position : (Vector2)transform.position;
 
         var hits = Physics2D.OverlapCircleAll(center, AttackRadius, EnemyLayer);
@@ -139,6 +143,7 @@ public class PlayerController : CreatureController
                 if (DamageUI.Instance != null)
                     DamageUI.Instance.Show(monster.transform.position + Vector3.up * 1f, dmg, DamageStyle.Enemy, isCrit);
 
+                Manager.Audio.PlayOneShot(data.HitSuccess[atkNum], transform.position);
                 Debug.Log($"{monster.name}에게 {dmg} 피해!");
                 continue;
             }
@@ -152,12 +157,14 @@ public class PlayerController : CreatureController
 
                 if (DamageUI.Instance != null)
                 {
-                    DamageUI.Instance.Show(dummy.transform.position + Vector3.up * 1f,dmg,DamageStyle.Enemy,isCrit);
+                    DamageUI.Instance.Show(dummy.transform.position + Vector3.up * 1f, dmg, DamageStyle.Enemy, isCrit);
                 }
+                Manager.Audio.PlayOneShot(data.HitSuccess[atkNum], transform.position);
                 continue;
             }
-
         }
+        if (hits.Length == 0)
+            Manager.Audio.PlayOneShot(data.HitFail, transform.position);
     }
 
     public void OnAttackMoveLock()
@@ -189,7 +196,7 @@ public class PlayerController : CreatureController
         }
         else
             _anim.TrgHurt();
-        
+
         return true;
     }
     // 사망 처리
