@@ -1,10 +1,22 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HardmodeUI : MonoBehaviour
 {
     [SerializeField] private GameObject hardModePanel;
 
-    void Start()
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        UpdateUI();
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UpdateUI();
     }
@@ -12,11 +24,6 @@ public class HardmodeUI : MonoBehaviour
     void UpdateUI()
     {
         if (hardModePanel != null)
-        {
-            if (Manager.Game.PlayerData.IsHardMode)
-                hardModePanel.SetActive(true);
-            else
-                hardModePanel.SetActive(false);
-        }
+            hardModePanel.SetActive(Manager.Game.PlayerData.IsHardMode);
     }
 }
