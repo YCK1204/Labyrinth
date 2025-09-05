@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
     [SerializeField] private PlayerController _pc;
     public PlayerController Player => _pc;
 
@@ -12,13 +11,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
         DontDestroyOnLoad(gameObject);
 
         if (_pc == null)
@@ -71,6 +63,8 @@ public class GameManager : MonoBehaviour
         _playerData.Crit = 0f;
         _playerData.CritX = 1.5f;
         _playerData.KBResist = 0.2f;
+
+        _playerData.Exp = 0;
 
         _playerData.equippedWeapon = null;
         _playerData.equippedArmor  = null;
