@@ -17,7 +17,16 @@ public class PlayerData : CreatureData
     public int Exp { get => exp; set => exp = value; }
 
     public int MaxExp => 100 * Level * Level;
-
+    [SerializeField] private bool isHardMode = false;
+    public bool IsHardMode
+    {
+        get => IsHardMode;
+        set
+        {
+            if (isHardMode == value) return;
+            isHardMode = value;
+        }
+    }
     [System.Serializable]
     public struct GrowthPerLevel
     {
@@ -30,7 +39,11 @@ public class PlayerData : CreatureData
 
     public GrowthPerLevel growth = new GrowthPerLevel
     {
-        Hp = 10f, Power = 1f, AtkSpeed = 0.04f, Armor = 1f, Crit = 0.5f
+        Hp = 10f,
+        Power = 1f,
+        AtkSpeed = 0.04f,
+        Armor = 1f,
+        Crit = 0.5f
     };
     public int AddExp(int amount)
     {
@@ -54,10 +67,14 @@ public class PlayerData : CreatureData
 
     void ApplyLevelGrowth()
     {
-        HP       += growth.Hp;
-        Power    += growth.Power;
+        HP += growth.Hp;
+        Power += growth.Power;
         AtkSpeed += growth.AtkSpeed;
-        Armor    += growth.Armor;
-        Crit      = Mathf.Clamp(Crit + growth.Crit, 0f, 100f);
+        Armor += growth.Armor;
+        Crit = Mathf.Clamp(Crit + growth.Crit, 0f, 100f);
+    }
+    public void UnlockHardMode()
+    {
+        IsHardMode = true;
     }
 }

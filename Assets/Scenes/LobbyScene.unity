@@ -8519,6 +8519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pc: {fileID: 0}
+  _playerData: {fileID: 0}
 --- !u!4 &1663664139
 Transform:
   m_ObjectHideFlags: 0
@@ -9317,9 +9318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738ccd5843542a74287b5b3386249808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmAudioData: {fileID: 11400000, guid: 01fa087512ef66d4b831212aa58be7fb, type: 2}
+  bgmAudioData: {fileID: 11400000, guid: 3988cd373e1c3324a982aeb1211404d4, type: 2}
   monsterAudioData: []
-  playerAudioData: []
+  playerAudioData:
+  - {fileID: 11400000, guid: 7ac56f7de9496404d9ad3ab1edbe0dba, type: 2}
   mapEffectAudioData: []
   uiAudioData: []
 --- !u!4 &1970825251

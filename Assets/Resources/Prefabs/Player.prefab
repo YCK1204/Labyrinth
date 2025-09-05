@@ -163,6 +163,7 @@ MonoBehaviour:
   armorPen: 0
   atkSpeed: 0
   deadUI: {fileID: 0}
+  playerData: {fileID: 11400000, guid: 95c28af892a88bc45bbf57d5ebbe6273, type: 2}
   GroundSensor: {fileID: 6254059701309835601}
   AttackPoint: {fileID: 7986395276139832285}
   AttackRadius: 0.8

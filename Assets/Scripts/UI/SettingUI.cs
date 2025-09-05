@@ -33,7 +33,10 @@ public class SettingUI : MonoBehaviour
 
     private void OnEnable()
     {
-        SetSliderValueCurrentVolume();
+        //SetSliderValueCurrentVolume();
+        Manager.Audio.SetVolume(AudioType.MASTER, 1f);
+        Manager.Audio.SetVolume(AudioType.BGM, 1f);
+        Manager.Audio.SetVolume(AudioType.EFFECT, 1f);
     }
 
     private void OnCloseButtonClicked()
@@ -44,33 +47,36 @@ public class SettingUI : MonoBehaviour
     private void SetMasterVolume(float volume)
     {
         float dbVolume = volume > 0 ? Mathf.Log10(volume) * 20 : -80;
-        audioMixer.SetFloat(MasterVolume, dbVolume);
+        Manager.Audio.SetVolume(AudioType.MASTER, volume);
+        //audioMixer.SetFloat(MasterVolume, dbVolume);
     }
 
     private void SetBGMVolume(float volume)
     {
         float dbVolume = volume > 0 ? Mathf.Log10(volume) * 20 : -80;
-        audioMixer.SetFloat(BGMVolume, dbVolume);
+        Manager.Audio.SetVolume(AudioType.BGM, volume);
+        //audioMixer.SetFloat(BGMVolume, dbVolume);
     }
 
     private void SetSFXVolume(float volume)
     {
         float dbVolume = volume > 0 ? Mathf.Log10(volume) * 20 : -80;
-        audioMixer.SetFloat(SFXVolume, dbVolume);
+        Manager.Audio.SetVolume(AudioType.EFFECT, volume);
+        //audioMixer.SetFloat(SFXVolume, dbVolume);
     }
 
-    private void SetSliderValueCurrentVolume()
-    {
-        float masterVolume;
-        float bgmVolume;
-        float sfxVolume;
+    //private void SetSliderValueCurrentVolume()
+    //{
+    //    float masterVolume;
+    //    float bgmVolume;
+    //    float sfxVolume;
         
-        audioMixer.GetFloat(MasterVolume, out masterVolume);
-        audioMixer.GetFloat(BGMVolume, out bgmVolume);
-        audioMixer.GetFloat(SFXVolume, out sfxVolume);
+    //    audioMixer.GetFloat(MasterVolume, out masterVolume);
+    //    audioMixer.GetFloat(BGMVolume, out bgmVolume);
+    //    audioMixer.GetFloat(SFXVolume, out sfxVolume);
 
-        masterVolumeSlider.value = Mathf.Pow(10, masterVolume / 20);
-        BGMVolumeSlider.value = Mathf.Pow(10, bgmVolume / 20);
-        SFXVolumeSlider.value = Mathf.Pow(10, sfxVolume / 20);
-    }
+    //    masterVolumeSlider.value = Mathf.Pow(10, masterVolume / 20);
+    //    BGMVolumeSlider.value = Mathf.Pow(10, bgmVolume / 20);
+    //    SFXVolumeSlider.value = Mathf.Pow(10, sfxVolume / 20);
+    //}
 }

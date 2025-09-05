@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "PlayerAudioData", menuName = "Audio/PlayerAudioData", order = 1)]
 public class PlayerAudioData : CreatureAudioData
 {
     [SerializeField]

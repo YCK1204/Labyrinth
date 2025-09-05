@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using Object = UnityEngine.Object;
 
 public interface IAudioManager<T1, T2> where T1 : Enum where T2 : AudioData
@@ -10,6 +11,8 @@ public interface IAudioManager<T1, T2> where T1 : Enum where T2 : AudioData
     public void Clear();
     public T2 GetAudiodata(T1 type);
 }
+
+public enum AudioType { MASTER, BGM, EFFECT }
 
 public class AudioManager : MonoBehaviour
 {
@@ -20,6 +23,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource prefab;
     private Queue<AudioSource> pool = new Queue<AudioSource>();
     AudioSource _bgmSource;
+    [SerializeField]
+    AudioMixer AudioMixer;
     void Start()
     {
         if (Manager.Audio != null)
@@ -28,7 +33,8 @@ public class AudioManager : MonoBehaviour
             return;
         }
         Manager.Audio = this;
-        _bgmSource = gameObject.AddComponent<AudioSource>();
+        _bgmSource = GetComponent<AudioSource>();
+        Manager.Scene.OnSceneChanged += Clear;
     }
     void Clear()
     {
@@ -62,5 +68,9 @@ public class AudioManager : MonoBehaviour
         _bgmSource.clip = bgm;
         _bgmSource.loop = true;
         _bgmSource.Play();
+    }
+    public void SetVolume(AudioType type, float volume)
+    {
+        AudioMixer.SetFloat(type.ToString(), Mathf.Log10(volume) * 20);
     }
 }
