@@ -16,3 +16,4 @@ MonoBehaviour:
   hitSuccess: {fileID: 8300000, guid: 1000e1c57b2d3a644ade64628e52d6bd, type: 3}
   hitFail: {fileID: 8300000, guid: f4d3c4bc18e14da4eb8122251c355e48, type: 3}
   playerAudioType: 0
+  levelUp: {fileID: 8300000, guid: 0f1a4bf6ebd58994b9f0f7e3ca0117e5, type: 3}

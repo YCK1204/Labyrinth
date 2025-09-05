@@ -79,6 +79,11 @@ public class PlayerData : CreatureData
         AtkSpeed += growth.AtkSpeed;
         Armor += growth.Armor;
         Crit = Mathf.Clamp(Crit + growth.Crit, 0f, 100f);
+
+        var data = Manager.Audio.Player.GetAudiodata(PlayerAudioType.Player);
+        var pos = Camera.main ? Camera.main.transform.position : Vector3.zero;
+        Manager.Audio.PlayOneShot(data.LevelUp, pos);
+
     }
     public void ClearEquipment()
     {

@@ -8,4 +8,7 @@ public class PlayerAudioData : CreatureAudioData
     [SerializeField]
     PlayerAudioType playerAudioType;
     public PlayerAudioType PlayerAudioType { get { return playerAudioType; } }
+
+    [SerializeField] private AudioClip levelUp;
+    public AudioClip LevelUp => levelUp;
 }
