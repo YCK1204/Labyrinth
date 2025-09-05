@@ -23,7 +23,11 @@ public class StartScreenUI : MonoBehaviour
         if (settingButton) settingButton.onClick.AddListener(OnSettingClicked);
         if (exitButton)    exitButton.onClick.AddListener(OnExitClicked);
     }
-
+    void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
     void OnPlayClicked()
     {
         Manager.Scene.LoadScene(lobbySceneName);

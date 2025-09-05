@@ -1,51 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PauseMenuUI : MonoBehaviour
 {
-    public TextMeshProUGUI atkCountText;
-    public TextMeshProUGUI atkSpdCountText;
-    public TextMeshProUGUI defCountText;
-    public TextMeshProUGUI hpCountText;
+    [Header("Stat Texts")]
+    [SerializeField] private TextMeshProUGUI atkCountText;
+    [SerializeField] private TextMeshProUGUI atkSpdCountText;
+    [SerializeField] private TextMeshProUGUI defCountText;
+    [SerializeField] private TextMeshProUGUI hpCountText;
 
-    private PlayerDataUI _playerDataUI;
-    private bool _isPaused = false;
+    [Header("Refs")]
+    [SerializeField] private PlayerEquipment playerEquip;
+    [SerializeField] private PlayerData playerSO;
 
-    private void Start()
+    private void Awake()
     {
-        _playerDataUI = PlayerDataUI.Instance;
+        if (!playerEquip)
+        {
+            playerEquip = FindObjectOfType<PlayerEquipment>();
+        }
     }
 
     private void OnEnable()
     {
         UpdatePlayerStats();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+    private void OnDisable()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void OnResumeButtonClicked()
-    {
-        Manager.UI.HidePauseMenuUI();
-    }
-
-    public void OnSettingButtonClicked()
-    {
-        Manager.UI.ShowSettingUI();
-    }
-
-    public void OnExitButtonClicked()
-    {
-        Manager.UI.ShowExitUI();
-    }
+    public void OnResumeButtonClicked() => Manager.UI.HidePauseMenuUI();
+    public void OnSettingButtonClicked() => Manager.UI.ShowSettingUI();
+    public void OnExitButtonClicked() => Manager.UI.ShowExitUI();
 
     private void UpdatePlayerStats()
     {
-        if (_playerDataUI == null) return;
+        if (!atkCountText || !atkSpdCountText || !defCountText || !hpCountText)
+        {
+            Debug.LogError("PauseMenuUI Text references X");
+            return;
+        }
+        if (!playerEquip)
+        {
+            Debug.LogError("playerEquip X");
+            return;
+        }
 
-        atkCountText.text = _playerDataUI.AttackPoint.ToString();
-        atkSpdCountText.text = _playerDataUI.AttackSpeed.ToString();
-        defCountText.text = _playerDataUI.DefensePoint.ToString();
-        hpCountText.text = _playerDataUI.CurrentHP.ToString();
+        playerEquip.Recalculate();
+
+        atkCountText.SetText(playerEquip.Power.ToString("0.0"));
+        atkSpdCountText.SetText(playerEquip.AtkSpeed.ToString("0.00"));
+        defCountText.SetText(playerEquip.Armor.ToString("0.0"));
+        hpCountText.SetText(playerEquip.Hp.ToString("0.0"));
     }
 }
