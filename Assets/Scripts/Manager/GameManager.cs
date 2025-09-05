@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
     [SerializeField] private PlayerController _pc;
     public PlayerController Player => _pc;
 
@@ -11,17 +12,18 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        var existing = FindObjectsOfType<GameManager>();
-        if (existing.Length > 1)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
+
+        Instance = this;
         DontDestroyOnLoad(gameObject);
 
         if (_pc == null)
             _pc = FindObjectOfType<PlayerController>();
-            
+
         if (_playerData == null && _pc != null)
             _playerData = _pc.PlayerData;
 
@@ -42,5 +44,14 @@ public class GameManager : MonoBehaviour
     {
         if (_pc == null)
             _pc = FindObjectOfType<PlayerController>();
+    }
+    public void LoadLobbyScene()
+    {
+        if (_playerData)
+        {
+            _playerData.equippedWeapon = null;
+            _playerData.equippedArmor = null;
+        }
+        SceneManager.LoadScene("LobbyScene");
     }
 }

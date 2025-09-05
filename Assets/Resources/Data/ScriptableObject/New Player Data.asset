@@ -23,12 +23,15 @@ MonoBehaviour:
   _armorPen: 0
   _atkSpeed: 2.08
   energy: 100
-  gold: 10600
+  gold: 10040
   level: 3
   exp: 100
+  isHardMode: 0
   growth:
     Hp: 10
     Power: 1
     AtkSpeed: 0.04
     Armor: 1
     Crit: 0.5
+  equippedWeapon: {fileID: 0}
+  equippedArmor: {fileID: 0}

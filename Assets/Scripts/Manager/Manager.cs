@@ -14,10 +14,10 @@ public class Manager : MonoBehaviour
                 var instance = FindObjectOfType<Manager>();
                 if (instance == null)
                 {
-                    instance = new GameObject("Manager").AddComponent<Manager>();
+                    var go = new GameObject("Manager");
+                    _instance = go.AddComponent<Manager>();
                     DontDestroyOnLoad(instance.gameObject);
                 }
-                _instance = instance;
             }
             return _instance; 
         }
@@ -25,15 +25,13 @@ public class Manager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance == null)
+        if (_instance != null && _instance != this)
         {
-            _instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     UIManager _ui;
