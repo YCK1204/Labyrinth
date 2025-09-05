@@ -5,7 +5,11 @@ public class EquippedHUD : MonoBehaviour
 {
     [SerializeField] Image weaponIcon;
     [SerializeField] Image armorIcon;
-
+    void OnEnable()
+    {
+        var equip = FindObjectOfType<PlayerEquipment>();
+        if (equip) Refresh(equip);
+    }
     public void Refresh(PlayerEquipment equip)
     {
         if (!equip) return;

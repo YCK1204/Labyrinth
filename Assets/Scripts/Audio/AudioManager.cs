@@ -46,6 +46,7 @@ public class AudioManager : MonoBehaviour
     public void PlayOneShot(AudioClip clip, Vector3 position)
     {
         AudioSource source = GetSource();
+        source.transform.parent = transform;
         source.transform.position = position;
         source.PlayOneShot(clip);
         StartCoroutine(ReleaseAfter(source, clip.length));
@@ -72,5 +73,10 @@ public class AudioManager : MonoBehaviour
     public void SetVolume(AudioType type, float volume)
     {
         AudioMixer.SetFloat(type.ToString(), Mathf.Log10(volume) * 20);
+    }
+    public void ClickBtn()
+    {
+        var data = UI.GetAudiodata(UIAudioType.ButtonClick);
+        PlayOneShot(data.EffectSound, Camera.main.gameObject.transform.position);
     }
 }

@@ -76,7 +76,7 @@ public class SlimeController : GroundMonsterController
                     if (DamageUI.Instance != null & isDamage)
                         DamageUI.Instance.Show(pc.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
                     if (pc._rolling == false)
-                        Manager.Audio.PlayOneShot(data.HitSuccess[0], transform.position);
+                        Manager.Audio.PlayOneShot(data.HitSuccess, transform.position);
                     else
                         Manager.Audio.PlayOneShot(data.HitFail, transform.position);
                     break;

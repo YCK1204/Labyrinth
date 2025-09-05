@@ -28,6 +28,6 @@ public class CurMapAudioManager : MonoBehaviour
         Manager.Audio.MapEffect.Init(mapEffectAudioData);
         Manager.Audio.UI.Init(uiAudioData);
         Manager.Audio.SetBgm(bgmAudioData.Bgm);
-        Object.Destroy(this);
+        Object.Destroy(gameObject);
     }
 }

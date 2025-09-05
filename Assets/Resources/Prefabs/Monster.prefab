@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7914085408742787020}
   - component: {fileID: 1901799842812525501}
   - component: {fileID: 8343348288139645703}
+  - component: {fileID: 5785440541348493332}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -130,3 +131,17 @@ MonoBehaviour:
   critX: 0
   armorPen: 0
   atkSpeed: 0
+--- !u!114 &5785440541348493332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9015496709570990289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974402dcbb505c34a9d21cdc94adaa2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureData: {fileID: 11400000, guid: 28aa5ff4b4c7deb4fb0320bebdf261f0, type: 2}
+  isBoss: 0

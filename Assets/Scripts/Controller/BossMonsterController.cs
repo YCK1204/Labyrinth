@@ -62,7 +62,7 @@ public class BossMonsterController : GroundMonsterController
         if (DamageUI.Instance != null & isDamage)
             DamageUI.Instance.Show(player.transform.position + Vector3.up * 1.0f, dmg, DamageStyle.Player, isCrit);
         if (player._rolling == false)
-            Manager.Audio.PlayOneShot(audioData.HitSuccess[0], pos);
+            Manager.Audio.PlayOneShot(audioData.HitSuccess, pos);
 		else
 			Manager.Audio.PlayOneShot(audioData.HitFail, transform.position);
 	}

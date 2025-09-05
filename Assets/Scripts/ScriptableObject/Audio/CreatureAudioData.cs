@@ -8,8 +8,8 @@ public abstract class CreatureAudioData : AudioData
     AudioClip die;
     public AudioClip Die { get { return die; } }
     [SerializeField]
-    AudioClip[] hitSuccess;
-    public AudioClip[] HitSuccess { get { return hitSuccess; } }
+    AudioClip hitSuccess;
+    public AudioClip HitSuccess { get { return hitSuccess; } }
     [SerializeField]
     AudioClip hitFail;
     public AudioClip HitFail { get { return hitFail; } }

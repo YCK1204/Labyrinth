@@ -8,8 +8,6 @@ public class StartScreenUI : MonoBehaviour
     [SerializeField] private Button settingButton;
     [SerializeField] private Button exitButton;
 
-    [SerializeField] private string lobbySceneName = "LobbyScene";
-
     void Awake()
     {
         if (!playButton)
@@ -19,14 +17,18 @@ public class StartScreenUI : MonoBehaviour
         if (!exitButton)
             exitButton = transform.Find("ButtonArea/ExitButton")?.GetComponent<Button>();
 
-        if (playButton)    playButton.onClick.AddListener(OnPlayClicked);
+        if (playButton) playButton.onClick.AddListener(OnPlayClicked);
         if (settingButton) settingButton.onClick.AddListener(OnSettingClicked);
-        if (exitButton)    exitButton.onClick.AddListener(OnExitClicked);
+        if (exitButton) exitButton.onClick.AddListener(OnExitClicked);
     }
-
+    void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
     void OnPlayClicked()
     {
-        Manager.Scene.LoadScene(lobbySceneName);
+        GameManager.Instance.LoadLobbyScene();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

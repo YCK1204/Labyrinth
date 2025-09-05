@@ -28,6 +28,13 @@ public class PlayerEquipment : MonoBehaviour
         pc = GetComponent<PlayerController>();
         if (playerSO == null)
             Debug.LogWarning("playerSO 연결 필요");
+
+        weapon = playerSO.equippedWeapon;
+        armor = playerSO.equippedArmor;
+        SyncToController();
+        
+        var hud = FindObjectOfType<EquippedHUD>();
+        if (hud) hud.Refresh(this);
     }
 
     public bool Equip(EquipmentData data)
@@ -35,22 +42,45 @@ public class PlayerEquipment : MonoBehaviour
         if (data == null) return false;
 
         if (data.type == EquipmentData.EquipmentType.Weapon)
+        {
             weapon = data;
+            playerSO.equippedWeapon = data;
+        }
         else if (data.type == EquipmentData.EquipmentType.Armor)
+        {
             armor = data;
-        else
-            return false;
+            playerSO.equippedArmor = data;
+        }
+        else return false;
 
-        return SyncToController();
+        bool ok = SyncToController();
+
+        var hud = FindObjectOfType<EquippedHUD>();
+        if (hud) hud.Refresh(this);
+
+        return ok;
     }
 
     public bool Unequip(EquipmentData.EquipmentType type)
     {
-        if (type == EquipmentData.EquipmentType.Weapon) weapon = null;
-        else if (type == EquipmentData.EquipmentType.Armor) armor = null;
+        if (type == EquipmentData.EquipmentType.Weapon)
+        {
+            weapon = null;
+            playerSO.equippedWeapon = null;
+        }
+        else if (type == EquipmentData.EquipmentType.Armor)
+        {
+            armor = null;
+            playerSO.equippedArmor = null;
+        }
         else return false;
 
-        return SyncToController();
+        bool ok = SyncToController();
+
+        var hud = FindObjectOfType<EquippedHUD>();
+        if (hud) hud.Refresh(this);
+
+        return ok;
     }
 
     public bool SyncToController()

@@ -84,6 +84,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9015496709570990289, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
       insertIndex: -1
       addedObject: {fileID: -213491157971645061}
+    - targetCorrespondingSourceObject: {fileID: 9015496709570990289, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2479519812827667690}
   m_SourcePrefab: {fileID: 100100000, guid: ef0dc777edead9c41912fef6523c7f3d, type: 3}
 --- !u!1 &3304108167855236742 stripped
 GameObject:
@@ -113,3 +116,18 @@ MonoBehaviour:
   critX: 0
   armorPen: 0
   atkSpeed: 0
+  clearUI: {fileID: 0}
+--- !u!114 &-2479519812827667690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3304108167855236742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974402dcbb505c34a9d21cdc94adaa2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureData: {fileID: 11400000, guid: a764d09f0c042d44e829f6cc91071919, type: 2}
+  isBoss: 1

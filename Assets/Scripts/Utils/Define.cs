@@ -23,8 +23,10 @@ public enum MapEffectAudioType
 public enum UIAudioType
 {
     EnterShop,
-    Inventory,
     ButtonClick,
+    EuqipmentAttach,
+    Resell,
+    Purchase,
 }
 // »óÁ¡ ¿ÀÇÂ
 // ui common btn

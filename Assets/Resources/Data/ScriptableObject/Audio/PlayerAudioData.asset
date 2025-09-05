@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3e4b2d47d43944dbdf30b8f53c97ff, type: 3}
   m_Name: PlayerAudioData
   m_EditorClassIdentifier: 
-  die: {fileID: 0}
-  hitSuccess:
-  - {fileID: 8300000, guid: 1000e1c57b2d3a644ade64628e52d6bd, type: 3}
-  - {fileID: 8300000, guid: 6aa089b6220beed4a8c29f69b3bbcfa6, type: 3}
-  - {fileID: 8300000, guid: 76a391571e507df41b1f07e3557c6daf, type: 3}
+  die: {fileID: 8300000, guid: f575f2f8d358cc942929e1e298b8fdde, type: 3}
+  hitSuccess: {fileID: 8300000, guid: 1000e1c57b2d3a644ade64628e52d6bd, type: 3}
   hitFail: {fileID: 8300000, guid: f4d3c4bc18e14da4eb8122251c355e48, type: 3}
   playerAudioType: 0
