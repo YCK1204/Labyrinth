@@ -54,4 +54,25 @@ public class GameManager : MonoBehaviour
         }
         SceneManager.LoadScene("LobbyScene");
     }
+    public void ResetPlayerData()
+    {
+        if (_playerData == null) return;
+
+        _playerData.Level = 1;
+        _playerData.Exp = 0;
+        _playerData.HP = 100;
+
+        _playerData.Power = 5;
+        _playerData.AtkSpeed = 2f;
+        _playerData.Armor = 5;
+        _playerData.ArmorPen = 0;
+        _playerData.Speed = 8;
+
+        _playerData.Crit = 0f;
+        _playerData.CritX = 1.5f;
+        _playerData.KBResist = 0.2f;
+
+        _playerData.equippedWeapon = null;
+        _playerData.equippedArmor  = null;
+    }
 }
